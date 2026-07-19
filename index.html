@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>План: Кипр → Италия | MAX</title>
+    <title>Тимбул | Кипр → Италия</title>
     <style>
         /* ===== RESET & GLOBAL ===== */
         * {
@@ -15,13 +16,12 @@
             background: #0b0f15;
             color: #e6edf3;
             font-family: 'Segoe UI', system-ui, sans-serif;
-            padding: 20px;
-            max-width: 1300px;
+            padding: 16px;
+            max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
             background-image: radial-gradient(circle at 20% 30%, #151e2a 0%, #0b0f15 80%);
         }
-        /* ===== АНИМАЦИИ ===== */
         @keyframes fadeUp {
             0% {
                 opacity: 0;
@@ -37,30 +37,19 @@
                 text-shadow: 0 0 5px rgba(240, 136, 62, 0.2);
             }
             50% {
-                text-shadow: 0 0 25px rgba(240, 136, 62, 0.6);
+                text-shadow: 0 0 30px rgba(240, 136, 62, 0.6);
             }
             100% {
                 text-shadow: 0 0 5px rgba(240, 136, 62, 0.2);
             }
         }
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
         .card {
             animation: fadeUp 0.5s ease forwards;
             transition: transform 0.2s, box-shadow 0.3s;
-            background: rgba(22, 27, 34, 0.88);
+            background: rgba(22, 27, 34, 0.9);
             backdrop-filter: blur(4px);
             border-radius: 18px;
-            padding: 22px 24px 24px;
+            padding: 20px 22px 22px;
             border: 1px solid #30363d;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
         }
@@ -68,14 +57,8 @@
             transform: scale(1.01);
             box-shadow: 0 10px 40px rgba(240, 136, 62, 0.15);
         }
-        .glow {
-            animation: glow 3s infinite;
-        }
-        .float {
-            animation: float 4s ease-in-out infinite;
-        }
         h1 {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 800;
             background: linear-gradient(135deg, #f0883e, #f6a85b, #f0883e);
             background-size: 200% 200%;
@@ -86,26 +69,25 @@
         }
         .subhead {
             color: #8b949e;
-            font-size: 17px;
-            margin: 6px 0 28px 0;
+            font-size: 16px;
+            margin: 4px 0 22px 0;
             border-left: 4px solid #f0883e;
-            padding-left: 18px;
+            padding-left: 16px;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 22px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
         }
         .card h2 {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: #f6a85b;
             display: flex;
             align-items: center;
             gap: 10px;
-            letter-spacing: 0.3px;
         }
         table {
             width: 100%;
@@ -113,7 +95,7 @@
             border-collapse: collapse;
         }
         td {
-            padding: 7px 4px;
+            padding: 6px 4px;
             border-bottom: 1px solid #21262d;
         }
         tr:last-child td {
@@ -122,7 +104,7 @@
         .badge {
             display: inline-block;
             background: #21262d;
-            padding: 2px 14px;
+            padding: 2px 12px;
             border-radius: 30px;
             font-size: 12px;
             color: #8b949e;
@@ -140,15 +122,11 @@
             background: #1a2d3d;
             color: #58a6ff;
         }
-        .badge-pink {
-            background: #3d1a2d;
-            color: #f088b0;
-        }
         .checklist label {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 6px 0;
+            padding: 5px 0;
             font-size: 14px;
             cursor: pointer;
             border-bottom: 1px solid #21262d;
@@ -174,19 +152,11 @@
             color: #58a6ff;
             opacity: 0.7;
         }
-        .tag {
-            background: #21262d;
-            padding: 2px 14px;
-            border-radius: 40px;
-            font-size: 11px;
-            color: #8b949e;
-            white-space: nowrap;
-        }
         .progress-bar {
             background: #21262d;
             border-radius: 30px;
             height: 10px;
-            margin: 12px 0 6px;
+            margin: 10px 0 4px;
             overflow: hidden;
         }
         .progress-fill {
@@ -196,115 +166,163 @@
             width: 15%;
             transition: width 0.8s ease;
         }
-        .flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 18px;
-            margin-top: 8px;
-        }
         .sound-btn {
             background: #21262d;
             border: none;
             color: #e6edf3;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 40px;
             font-size: 13px;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 8px;
+            margin-top: 6px;
         }
         .sound-btn:hover {
             background: #30363d;
             transform: scale(1.03);
         }
-        .counter-number {
-            font-size: 32px;
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+        .stat-item {
+            background: #111820;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #21262d;
+        }
+        .stat-item .num {
+            font-size: 26px;
             font-weight: 700;
             color: #f6a85b;
-            letter-spacing: 1px;
+        }
+        .stat-item .label {
+            font-size: 11px;
+            color: #8b949e;
+            margin-top: 2px;
+        }
+        .stat-item .controls {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin-top: 4px;
+            align-items: center;
+        }
+        .stat-item input[type="number"] {
+            width: 50px;
+            background: #0b0f15;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            border-radius: 6px;
+            padding: 2px 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .stat-item input[type="number"]:focus {
+            outline: 1px solid #f0883e;
+        }
+        .btn-sm {
+            background: #21262d;
+            border: none;
+            color: #e6edf3;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-sm:hover {
+            background: #30363d;
+        }
+        .btn-sm.success {
+            color: #58c48b;
+        }
+        .btn-sm.success:hover {
+            background: #1b3a2b;
+        }
+        .btn-sm.danger {
+            color: #f08888;
+        }
+        .btn-sm.danger:hover {
+            background: #3d1a1a;
         }
         .map-container {
             background: #111820;
-            border-radius: 16px;
-            padding: 18px;
+            border-radius: 14px;
+            padding: 14px;
             border: 1px solid #30363d;
         }
         .map-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: space-around;
-            padding: 8px 0;
+            padding: 6px 0;
         }
         .map-point {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            font-size: 13px;
+            gap: 2px;
+            font-size: 12px;
             color: #8b949e;
             transition: 0.3s;
             cursor: pointer;
             text-decoration: none;
         }
         .map-point:hover {
-            transform: scale(1.12);
+            transform: scale(1.10);
             color: #f6a85b;
         }
         .map-point .dot {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #f0883e;
-            box-shadow: 0 0 24px rgba(240, 136, 62, 0.5);
-            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(240, 136, 62, 0.4);
         }
         .map-point .dot.green {
             background: #58c48b;
-            box-shadow: 0 0 24px rgba(88, 196, 139, 0.4);
+            box-shadow: 0 0 20px rgba(88, 196, 139, 0.3);
         }
         .map-point .dot.blue {
             background: #58a6ff;
-            box-shadow: 0 0 24px rgba(88, 166, 255, 0.4);
-        }
-        .map-point .dot.pink {
-            background: #f088b0;
-            box-shadow: 0 0 24px rgba(240, 136, 176, 0.4);
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
         }
         .map-point .dot.gray {
             background: #484f58;
-            box-shadow: 0 0 24px rgba(72, 79, 88, 0.3);
+            box-shadow: 0 0 20px rgba(72, 79, 88, 0.3);
         }
         .map-line {
             display: flex;
             align-items: center;
-            gap: 6px;
             color: #30363d;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 300;
         }
         .footer {
-            margin-top: 32px;
-            font-size: 14px;
+            margin-top: 24px;
+            font-size: 13px;
             color: #8b949e;
             text-align: center;
             border-top: 1px solid #21262d;
-            padding-top: 24px;
+            padding-top: 18px;
             background: rgba(11, 15, 21, 0.6);
-            border-radius: 18px;
-            padding: 24px;
+            border-radius: 14px;
+            padding: 18px;
         }
         .motivation-text {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             color: #f6a85b;
             text-align: center;
-            padding: 14px;
+            padding: 12px;
             background: rgba(240, 136, 62, 0.08);
             border-radius: 12px;
             border-left: 4px solid #f0883e;
-            margin: 10px 0;
-            min-height: 70px;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -313,13 +331,13 @@
             background: #1b3a2b;
             border: none;
             color: #58c48b;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 40px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 10px;
+            margin-top: 6px;
         }
         .export-btn:hover {
             background: #2a4d3a;
@@ -328,129 +346,35 @@
         .copy-msg {
             color: #58c48b;
             font-size: 13px;
-            margin-top: 6px;
+            margin-top: 4px;
             opacity: 0;
             transition: 0.3s;
         }
         .copy-msg.show {
             opacity: 1;
         }
-        .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .stat-item {
-            background: #111820;
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #21262d;
-        }
-        .stat-item .num {
-            font-size: 28px;
-            font-weight: 700;
-            color: #f6a85b;
-        }
-        .stat-item .label {
-            font-size: 12px;
-            color: #8b949e;
-            margin-top: 2px;
-        }
-        .stat-item input[type="number"] {
-            width: 70px;
-            background: #0b0f15;
-            border: 1px solid #30363d;
-            color: #e6edf3;
-            border-radius: 8px;
-            padding: 4px 8px;
-            font-size: 16px;
-            text-align: center;
-        }
-        .stat-item input[type="number"]:focus {
-            outline: 1px solid #f0883e;
-        }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-            justify-content: center;
-        }
-        .btn-sm {
-            background: #21262d;
-            border: none;
-            color: #e6edf3;
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-sm:hover {
-            background: #30363d;
-        }
-        .btn-sm.danger {
-            color: #f08888;
-        }
-        .btn-sm.danger:hover {
-            background: #3d1a1a;
-        }
-        .btn-sm.success {
-            color: #58c48b;
-        }
-        .btn-sm.success:hover {
-            background: #1b3a2b;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 12px;
-            }
-            h1 {
-                font-size: 26px;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .map-row {
-                flex-direction: column;
-                align-items: center;
-                gap: 6px;
-            }
-            .map-line {
-                transform: rotate(90deg);
-                font-size: 18px;
-            }
-            .stat-grid {
-                grid-template-columns: 1fr;
-            }
-            .motivation-text {
-                font-size: 15px;
-                min-height: 60px;
-            }
-        }
         .tab-bar {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
             background: rgba(22, 27, 34, 0.6);
-            border-radius: 16px;
-            padding: 6px;
+            border-radius: 14px;
+            padding: 4px;
             border: 1px solid #30363d;
         }
         .tab-btn {
             background: transparent;
             border: none;
             color: #8b949e;
-            padding: 10px 22px;
-            border-radius: 12px;
-            font-size: 14px;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
             flex: 1;
-            min-width: 100px;
+            min-width: 80px;
         }
         .tab-btn:hover {
             background: #21262d;
@@ -468,19 +392,64 @@
         .tab-content.active {
             display: block;
         }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+            justify-content: center;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .map-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+            }
+            .map-line {
+                transform: rotate(90deg);
+                font-size: 14px;
+            }
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .motivation-text {
+                font-size: 14px;
+                min-height: 50px;
+            }
+        }
+        .reset-check-btn {
+            background: #21262d;
+            border: none;
+            color: #8b949e;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-left: 8px;
+        }
+        .reset-check-btn:hover {
+            background: #30363d;
+            color: #e6edf3;
+        }
     </style>
 </head>
 <body>
 
     <!-- ===== ХЕДЕР ===== -->
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
         <div>
-            <h1>⛵ Кипр → Италия</h1>
-            <div class="subhead">🎯 Красный аттестат · B1 → B2 · IT Security · САП (Драйзер)</div>
-        </div>
-        <div style="text-align:right;">
-            <div class="counter-number" id="dayCounter">—</div>
-            <div style="font-size:13px;color:#8b949e;">дней до 11 класса</div>
+            <h1>⛵ Тимбул → Кипр → Италия</h1>
+            <div class="subhead">🎯 Красный аттестат · B1 → B2 · IT Security</div>
         </div>
     </div>
 
@@ -505,7 +474,7 @@
                     <tr><td>🇸🇰 Словакия <span class="badge">запас</span></td><td>€7,500</td></tr>
                     <tr><td>🇨🇳 Китай <span class="badge">сложно</span></td><td>$2,400</td></tr>
                 </table>
-                <div style="margin-top:14px;font-size:14px;color:#8b949e;">
+                <div style="margin-top:12px;font-size:14px;color:#8b949e;">
                     ✅ Бакалавриат: <strong style="color:#e6edf3;">EMU (IT Security)</strong><br>
                     ⏳ Магистратура: <strong style="color:#e6edf3;">Турин / Падуя</strong>
                 </div>
@@ -513,7 +482,9 @@
 
             <!-- ЧЕК-ЛИСТ -->
             <div class="card checklist">
-                <h2>✅ Чек-лист на сегодня</h2>
+                <h2>✅ Чек-лист на сегодня
+                    <button class="reset-check-btn" onclick="resetChecklist()">🔄 Сбросить</button>
+                </h2>
                 <label><input type="checkbox" /> <span>YouTube на английском (фон)</span></label>
                 <label><input type="checkbox" /> <span>5 IT-слов (Quizlet)</span></label>
                 <label><input type="checkbox" /> <span>Тренировка (отжимания / пресс)</span></label>
@@ -524,7 +495,7 @@
                 <label><input type="checkbox" /> <span>Повтор слов перед сном</span></label>
             </div>
 
-            <!-- ТРЕНИРОВКИ -->
+            <!-- ТРЕНИРОВКИ + ПИТАНИЕ -->
             <div class="card">
                 <h2>🏋️ Неделя</h2>
                 <table>
@@ -532,64 +503,43 @@
                     <tr><td><strong>Вт/Чт/Сб</strong></td><td>Кардио 30 мин</td></tr>
                     <tr><td><strong>Вс</strong></td><td>Отдых</td></tr>
                 </table>
-                <div style="margin-top:14px;font-size:14px;color:#8b949e;">
+                <div style="margin-top:12px;font-size:14px;color:#8b949e;">
                     🔥 Отжимания · V-скручивания · Планка · Бурпи
                 </div>
-            </div>
-
-            <!-- ПИТАНИЕ -->
-            <div class="card">
-                <h2>🍗 Питание (75 кг)</h2>
+                <hr style="border-color:#21262d;margin:12px 0;" />
+                <h2 style="margin-top:4px;">🍗 Питание (75 кг)</h2>
                 <table>
                     <tr><td>Белок</td><td><strong style="color:#f6a85b;">150 г</strong></td></tr>
                     <tr><td>Калории</td><td>2200–2400</td></tr>
                     <tr><td>Вода</td><td>2.5 л</td></tr>
-                    <tr><td>Жиры / Углеводы</td><td>55–65 г / 200–250 г</td></tr>
                 </table>
-                <div style="margin-top:12px;font-size:14px;color:#8b949e;">
-                    🍗 Курица · Яйца · Творог · Рыба · Гречка
-                </div>
+                <div style="margin-top:8px;font-size:13px;color:#8b949e;">🍗 Курица · Яйца · Творог · Рыба · Гречка</div>
             </div>
 
-            <!-- АНГЛИЙСКИЙ -->
+            <!-- АНГЛИЙСКИЙ + ЭКСПОРТ -->
             <div class="card">
                 <h2>🇬🇧 Английский B1 → B2</h2>
                 <table>
-                    <tr><td>Артикли</td><td class="tag">1–2 нед</td></tr>
-                    <tr><td>Past Continuous</td><td class="tag">3–4 нед</td></tr>
-                    <tr><td>Conditionals</td><td class="tag">5–6 нед</td></tr>
-                    <tr><td>Предлоги</td><td class="tag">7–8 нед</td></tr>
+                    <tr><td>Артикли</td><td class="badge">1–2 нед</td></tr>
+                    <tr><td>Past Continuous</td><td class="badge">3–4 нед</td></tr>
+                    <tr><td>Conditionals</td><td class="badge">5–6 нед</td></tr>
+                    <tr><td>Предлоги</td><td class="badge">7–8 нед</td></tr>
                 </table>
                 <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:15%;"></div></div>
                 <div style="font-size:13px;color:#8b949e;">Прогресс: ~15%</div>
                 <button class="sound-btn" onclick="playSound()">🔊 Прогресс +5%</button>
-            </div>
 
-            <!-- ПОМОЩНИКИ -->
-            <div class="card">
-                <h2>🔗 Помощники</h2>
-                <ul style="list-style:none;font-size:14px;">
-                    <li style="padding:5px 0;border-bottom:1px solid #21262d;">📱 <strong>Quizlet</strong> — слова IT</li>
-                    <li style="padding:5px 0;border-bottom:1px solid #21262d;">📘 <strong>Perfect English Grammar</strong> — упражнения</li>
-                    <li style="padding:5px 0;border-bottom:1px solid #21262d;">🎙️ <strong>Darknet Diaries</strong> — подкаст</li>
-                    <li style="padding:5px 0;border-bottom:1px solid #21262d;">🧠 <strong>ChatGPT</strong> — голосовое говорение</li>
-                    <li style="padding:5px 0;">🔬 <strong>sociotype.com</strong> — тест на САП</li>
-                </ul>
-            </div>
-
-            <!-- ЭКСПОРТ -->
-            <div class="card">
-                <h2>📤 Экспорт прогресса</h2>
-                <p style="font-size:14px;color:#8b949e;margin-bottom:10px;">Скопируй свой прогресс в одном клике</p>
+                <hr style="border-color:#21262d;margin:12px 0;" />
+                <h2 style="margin-top:4px;">📤 Экспорт</h2>
                 <button class="export-btn" onclick="exportProgress()">📋 Скопировать прогресс</button>
-                <div id="copyMsg" class="copy-msg">✅ Скопировано! Хуй пизда залупа волосатая, ты красавчик! 😂</div>
-                <button class="sound-btn" style="margin-top:10px;" onclick="clearAll()">🗑️ Сбросить всё</button>
+                <div id="copyMsg" class="copy-msg">✅ Скопировано! Тимбул, ты красавчик! 😂</div>
+                <button class="sound-btn" style="margin-top:8px;" onclick="clearAll()">🗑️ Сбросить всё</button>
             </div>
         </div>
     </div>
 
     <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА 2: СЧЁТЧИКИ ===== -->
+    <!-- ===== ВКЛАДКА 2: СЧЁТЧИКИ (только важное) ===== -->
     <div id="tab-counter" class="tab-content">
         <div class="grid">
             <div class="card" style="grid-column:1/-1;">
@@ -597,43 +547,55 @@
                 <div class="stat-grid">
                     <div class="stat-item">
                         <div class="num" id="statCalories">0</div>
-                        <div class="label">🔥 Калории (сегодня)</div>
-                        <input type="number" id="inputCalories" value="0" min="0" step="50" />
-                        <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
+                        <div class="label">🔥 Калории</div>
+                        <div class="controls">
+                            <input type="number" id="inputCalories" value="0" min="0" step="50" />
+                            <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
+                        </div>
                     </div>
                     <div class="stat-item">
                         <div class="num" id="statProtein">0</div>
                         <div class="label">🥩 Белок (г)</div>
-                        <input type="number" id="inputProtein" value="0" min="0" step="5" />
-                        <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
+                        <div class="controls">
+                            <input type="number" id="inputProtein" value="0" min="0" step="5" />
+                            <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
+                        </div>
                     </div>
                     <div class="stat-item">
                         <div class="num" id="statWords">0</div>
                         <div class="label">📚 Новых слов</div>
-                        <input type="number" id="inputWords" value="0" min="0" step="1" />
-                        <button class="btn-sm success" onclick="updateStat('words')">➕</button>
+                        <div class="controls">
+                            <input type="number" id="inputWords" value="0" min="0" step="1" />
+                            <button class="btn-sm success" onclick="updateStat('words')">➕</button>
+                        </div>
                     </div>
                     <div class="stat-item">
                         <div class="num" id="statWorkouts">0</div>
                         <div class="label">🏋️ Тренировок</div>
-                        <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
-                        <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
+                        <div class="controls">
+                            <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
+                            <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
+                        </div>
                     </div>
                     <div class="stat-item">
                         <div class="num" id="statWater">0</div>
-                        <div class="label">💧 Вода (литров)</div>
-                        <input type="number" id="inputWater" value="0" min="0" step="0.1" />
-                        <button class="btn-sm success" onclick="updateStat('water')">➕</button>
+                        <div class="label">💧 Вода (л)</div>
+                        <div class="controls">
+                            <input type="number" id="inputWater" value="0" min="0" step="0.1" />
+                            <button class="btn-sm success" onclick="updateStat('water')">➕</button>
+                        </div>
                     </div>
                     <div class="stat-item">
                         <div class="num" id="statFocus">0</div>
-                        <div class="label">🧠 Сессий фокуса (25 мин)</div>
-                        <input type="number" id="inputFocus" value="0" min="0" step="1" />
-                        <button class="btn-sm success" onclick="updateStat('focus')">➕</button>
+                        <div class="label">🧠 Сессий фокуса</div>
+                        <div class="controls">
+                            <input type="number" id="inputFocus" value="0" min="0" step="1" />
+                            <button class="btn-sm success" onclick="updateStat('focus')">➕</button>
+                        </div>
                     </div>
                 </div>
-                <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-                    <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить все счётчики</button>
+                <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+                    <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
                 </div>
             </div>
         </div>
@@ -644,65 +606,54 @@
     <div id="tab-map" class="tab-content">
         <div class="grid">
             <div class="card" style="grid-column:1/-1;">
-                <h2>🗺️ Карта вузов (Кипр + Италия + запас)</h2>
+                <h2>🗺️ Карта вузов</h2>
                 <div class="map-container">
                     <div class="map-row">
                         <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point">
                             <div class="dot green"></div>
                             <span>🇨🇾 EMU</span>
-                            <span style="font-size:11px;color:#58c48b;">IT Security</span>
                         </a>
                         <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point">
                             <div class="dot green"></div>
                             <span>🇨🇾 UON</span>
-                            <span style="font-size:11px;color:#58c48b;">Uni of Nicosia</span>
                         </a>
                         <a href="https://www.neu.edu.tr/en" target="_blank" class="map-point">
                             <div class="dot green"></div>
                             <span>🇨🇾 NEU</span>
-                            <span style="font-size:11px;color:#58c48b;">Near East Uni</span>
                         </a>
                         <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point">
                             <div class="dot green"></div>
                             <span>🇨🇾 CIU</span>
-                            <span style="font-size:11px;color:#58c48b;">Cyprus Int. Uni</span>
                         </a>
                         <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point">
                             <div class="dot green"></div>
                             <span>🇨🇾 EMI</span>
-                            <span style="font-size:11px;color:#58c48b;">EMI (English)</span>
                         </a>
                     </div>
-                    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:12px 0 6px;">
-                        <span style="color:#8b949e;font-size:13px;">⬇️ Твой маршрут ⬇️</span>
-                    </div>
+                    <div style="text-align:center;color:#8b949e;font-size:13px;margin:8px 0;">⬇️ Твой маршрут ⬇️</div>
                     <div class="map-row">
                         <div class="map-point" style="cursor:default;">
                             <div class="dot green"></div>
                             <span>🇨🇾 Кипр</span>
-                            <span style="font-size:11px;color:#58c48b;">Бакалавриат</span>
                         </div>
                         <div class="map-line">→</div>
                         <a href="https://www.polito.it/en" target="_blank" class="map-point">
                             <div class="dot blue"></div>
                             <span>🇮🇹 Турин</span>
-                            <span style="font-size:11px;color:#58a6ff;">Магистр</span>
                         </a>
                         <div class="map-line">→</div>
                         <a href="https://www.unipd.it/en" target="_blank" class="map-point">
                             <div class="dot blue"></div>
                             <span>🇮🇹 Падуя</span>
-                            <span style="font-size:11px;color:#58a6ff;">Магистр</span>
                         </a>
                         <div class="map-line">→</div>
                         <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point">
                             <div class="dot gray"></div>
                             <span>🇸🇰 STU</span>
-                            <span style="font-size:11px;color:#8b949e;">Запас</span>
                         </a>
                     </div>
-                    <div style="font-size:13px;color:#8b949e;text-align:center;margin-top:10px;">
-                        📍 <strong style="color:#e6edf3;">Твой путь:</strong> Кипр (EMU/UON/NEU/CIU/EMI) → Италия (Турин/Падуя)
+                    <div style="font-size:13px;color:#8b949e;text-align:center;margin-top:8px;">
+                        📍 <strong style="color:#e6edf3;">Твой путь:</strong> Кипр → Италия
                     </div>
                 </div>
             </div>
@@ -716,17 +667,16 @@
             <div class="card" style="grid-column:1/-1;">
                 <h2>🔥 Мотивация + Угар</h2>
                 <div class="motivation-text" id="motivationDisplay">
-                    «Я — САП. У меня есть план. Я делаю. Я там буду.»
+                    «Тимбул — это я. У меня есть план. Я делаю. Я там буду.»
                 </div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
-                    <button class="sound-btn" onclick="newMotivation()">🎲 Случайная мантра</button>
-                    <button class="sound-btn" onclick="playMotivation()">🎧 Вдохновение</button>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px;">
+                    <button class="sound-btn" onclick="newMotivation()">🎲 Мантра</button>
                     <button class="sound-btn" onclick="uglyMotivation()">💀 Угар с матами</button>
                 </div>
-                <div style="margin-top:16px;text-align:center;font-size:14px;color:#8b949e;">
+                <div style="margin-top:12px;text-align:center;font-size:14px;color:#8b949e;">
                     <span id="motivationCounter">💪 Ты выдержал 0 хуёвых мыслей сегодня</span>
                 </div>
-                <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-top:6px;">➕ Ещё одна победа</button>
+                <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-top:4px;">➕ Ещё победа</button>
             </div>
         </div>
     </div>
@@ -734,34 +684,11 @@
     <!-- ===== ФУТЕР ===== -->
     <div class="footer">
         ⚡ Твой путь: <strong>Кипр (бакалавриат)</strong> → <strong>Италия (магистратура)</strong><br />
-        🧠 Ты — <strong>САП (Драйзер)</strong>: практичный, ответственный, идёшь по плану<br />
-        🚀 «Я делаю. Я там буду.» · 2 года до старта
+        🧠 Ты — <strong>Тимбул</strong>: практичный, ответственный, идёшь по плану<br />
+        🚀 «Тимбул — это я. Я делаю. Я там буду.» · 2 года до старта
     </div>
 
     <script>
-        // ==========================================================
-        // ===== СЧЁТЧИК ДНЕЙ =====
-        function updateCounters() {
-            const now = new Date();
-            const target = new Date(2026, 8, 1);
-            const diff = target - now;
-            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('dayCounter').textContent = days > 0 ? days : '0';
-        }
-        updateCounters();
-        setInterval(updateCounters, 60000);
-
-        // ==========================================================
-        // ===== ВКЛАДКИ =====
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-                document.getElementById(this.dataset.tab).classList.add('active');
-            });
-        });
-
         // ==========================================================
         // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
         function playSound() {
@@ -783,13 +710,14 @@
                 const val = parseInt(localStorage.getItem('stat_' + key)) || 0;
                 document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = val;
                 const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-                if (input) input.value = val;
+                if (input) input.value = 0;
             });
         }
 
         function updateStat(key) {
             const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
             let val = parseInt(input.value) || 0;
+            if (val <= 0) return;
             const current = parseInt(localStorage.getItem('stat_' + key)) || 0;
             const newVal = current + val;
             localStorage.setItem('stat_' + key, newVal);
@@ -798,36 +726,44 @@
         }
 
         function resetStats() {
-            statKeys.forEach(key => {
-                localStorage.setItem('stat_' + key, 0);
-                document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
-                const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-                if (input) input.value = 0;
-            });
+            if (confirm('Сбросить все счётчики? Тимбул, уверен?')) {
+                statKeys.forEach(key => {
+                    localStorage.setItem('stat_' + key, 0);
+                    document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
+                    const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
+                    if (input) input.value = 0;
+                });
+            }
         }
 
         // ==========================================================
         // ===== МОТИВАЦИЯ =====
         const motivations = [
-            '«Я — САП. У меня есть план. Я делаю. Я там буду.»',
-            '«Хуй пизда залупа волосатая, но я иду дальше.»',
-            '«Красный аттестат — не понты, это база.»',
+            '«Тимбул — это я. У меня есть план. Я делаю. Я там буду.»',
+            '«Хуй пизда залупа волосатая, но Тимбул идёт дальше.»',
+            '«Красный аттестат — не понты, это база, Тимбул.»',
             '«B1 — это временно. Завтра будет B2, а послезавтра Кипр.»',
-            '«Ты не просто учишь английский — ты строишь будущее.»',
-            '«Страшно? А мне похуй. Я делаю.»',
-            '«Кипр ждёт, Италия ждёт, а ты лежишь? Вставай.»',
-            '«Ты — будущий IT-специалист. Даже хакеры боятся таких.»',
-            '«Чек-лист сделан? Молодец. Ещё один день — ещё один шаг.»',
-            '«Если не ты, то кто? Если не сейчас, то когда?»'
+            '«Ты не просто учишь английский — ты строишь будущее, Тимбул.»',
+            '«Страшно? А мне похуй. Я делаю. Я — Тимбул.»',
+            '«Кипр ждёт, Италия ждёт, а ты лежишь? Вставай, Тимбул.»',
+            '«Ты — будущий IT-специалист. Даже хакеры боятся таких, как Тимбул.»',
+            '«Чек-лист сделан? Молодец. Ещё один день — ещё один шаг, Тимбул.»',
+            '«Если не ты, то кто? Если не сейчас, то когда? Тимбул, вперёд!»',
+            '«Тимбул — это бренд. Бренд победы.»',
+            '«Тимбул не сдаётся. Тимбул идёт до конца.»'
         ];
 
         const uglyMotivations = [
-            '«Хуй пизда залупа волосатая, ты всё равно красавчик!»',
-            '«Залупа — она и в Африке залупа. А ты — молодец!»',
-            '«Пизда тебе, если не сделаешь. А сделаешь — красава.»',
-            '«Хуй там плавал, а ты на Кипр поедешь!»',
-            '«Волосатая залупа — не помеха для IT Security!»',
-            '«Ты — бог, даже если бог обосрался. Делай.»'
+            '«Хуй пизда залупа волосатая, Тимбул, ты всё равно красавчик!»',
+            '«Залупа — она и в Африке залупа. А Тимбул — молодец!»',
+            '«Пизда тебе, Тимбул, если не сделаешь. А сделаешь — красава.»',
+            '«Хуй там плавал, а Тимбул на Кипр поедет!»',
+            '«Волосатая залупа — не помеха для IT Security, Тимбул!»',
+            '«Тимбул — бог, даже если бог обосрался. Делай, Тимбул.»',
+            '«Тимбул, ты такой крутой, что у залупы волосы дыбом встают!»',
+            '«Пиздец, Тимбул, но ты справишься!»',
+            '«Хуй с горы, а Тимбул с планом — вот это сила!»',
+            '«Тимбул, ты настолько хорош, что даже хуй завидует!»'
         ];
 
         function newMotivation() {
@@ -838,14 +774,6 @@
         function uglyMotivation() {
             const idx = Math.floor(Math.random() * uglyMotivations.length);
             document.getElementById('motivationDisplay').textContent = uglyMotivations[idx];
-        }
-
-        function playMotivation() {
-            newMotivation();
-            document.getElementById('motivationDisplay').style.background = 'rgba(240,136,62,0.2)';
-            setTimeout(() => {
-                document.getElementById('motivationDisplay').style.background = '';
-            }, 300);
         }
 
         let motivationCounter = parseInt(localStorage.getItem('motivationCounter')) || 0;
@@ -871,7 +799,7 @@
             });
             const progress = document.getElementById('progressFill').style.width || '15%';
             const text = `
-        🚀 ТВОЙ ПРОГРЕСС (Хуй пизда залупа волосатая, ты красава!)
+        🚀 ПРОГРЕСС ТИМБУЛА (Хуй пизда залупа волосатая, ты красава!)
         📅 Дата: ${new Date().toLocaleDateString()}
         🔥 Калории: ${stats.calories}
         🥩 Белок: ${stats.protein} г
@@ -882,6 +810,7 @@
         📖 Английский: ${progress}
         💪 Хуёвых мыслей побеждено: ${motivationCounter}
         🎯 Цель: Кипр → Италия
+        🦾 Тимбул — это сила!
         `;
             navigator.clipboard.writeText(text).then(() => {
                 const msg = document.getElementById('copyMsg');
@@ -893,32 +822,57 @@
         }
 
         // ==========================================================
+        // ===== ЧЕК-ЛИСТ (localStorage) =====
+        function loadChecklist() {
+            document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
+                const key = 'check_' + cb.parentElement.textContent.trim();
+                if (localStorage.getItem(key) === 'true') {
+                    cb.checked = true;
+                }
+                cb.addEventListener('change', function() {
+                    const k = 'check_' + this.parentElement.textContent.trim();
+                    localStorage.setItem(k, this.checked);
+                });
+            });
+        }
+
+        function resetChecklist() {
+            if (confirm('Сбросить чек-лист? Тимбул, ты уверен? (Данные сохранятся в истории)')) {
+                document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
+                    cb.checked = false;
+                    const k = 'check_' + cb.parentElement.textContent.trim();
+                    localStorage.removeItem(k);
+                });
+            }
+        }
+
+        // ==========================================================
+        // ===== ВКЛАДКИ =====
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        // ==========================================================
         // ===== СБРОС ВСЕГО =====
         function clearAll() {
-            if (confirm('Точно сбросить всё? Хуй пизда залупа, но решать тебе.')) {
+            if (confirm('Точно сбросить всё? Хуй пизда залупа, Тимбул, но решать тебе.')) {
                 localStorage.clear();
                 location.reload();
             }
         }
 
         // ==========================================================
-        // ===== ЧЕК-ЛИСТ (localStorage) =====
-        document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
-            const key = 'check_' + cb.parentElement.textContent.trim();
-            if (localStorage.getItem(key) === 'true') {
-                cb.checked = true;
-            }
-            cb.addEventListener('change', function() {
-                const k = 'check_' + this.parentElement.textContent.trim();
-                localStorage.setItem(k, this.checked);
-            });
-        });
-
-        // ==========================================================
         // ===== ИНИЦИАЛИЗАЦИЯ =====
         loadStats();
         loadMotivationCounter();
-        console.log('🚀 Твой план загружен. Хуй пизда залупа, погнали!');
+        loadChecklist();
+        console.log('🚀 Тимбул, твой план загружен. Хуй пизда залупа, погнали!');
     </script>
 </body>
-  </html>
+</html>
+```
