@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>Тимбул | Ежедневник</title>
+    <title>Дисциплина Тимбула</title>
     <style>
         * {
             margin: 0;
@@ -12,23 +12,23 @@
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            background: #0f1724;
+            background: #0b1320;
             color: #d1d9e6;
             font-family: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
             padding: 10px;
             max-width: 700px;
             margin: 0 auto;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 20% 30%, #1a2538 0%, #0f1724 90%);
+            background-image: radial-gradient(circle at 20% 30%, #162033 0%, #0b1320 90%);
             font-size: 15px;
             line-height: 1.5;
         }
         .card {
-            background: rgba(20, 30, 44, 0.92);
+            background: rgba(18, 28, 42, 0.92);
             backdrop-filter: blur(4px);
             border-radius: 16px;
             padding: 14px 16px;
-            border: 1px solid #2a3a4f;
+            border: 1px solid #283a4f;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
             margin-bottom: 12px;
         }
@@ -40,6 +40,7 @@
             align-items: center;
             gap: 8px;
             margin-bottom: 10px;
+            letter-spacing: 0.2px;
         }
         .header {
             display: flex;
@@ -56,22 +57,23 @@
             background: linear-gradient(135deg, #6a9bc7, #8bb9e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
         .header .badge-day {
-            background: #1e2d40;
+            background: #1a2a3e;
             padding: 4px 14px;
             border-radius: 30px;
             font-size: 13px;
             color: #7fa9c9;
-            border: 1px solid #2a3a4f;
+            border: 1px solid #283a4f;
         }
         .tab-bar {
             display: flex;
             gap: 4px;
-            background: rgba(20, 30, 44, 0.6);
+            background: rgba(18, 28, 42, 0.6);
             border-radius: 14px;
             padding: 4px;
-            border: 1px solid #2a3a4f;
+            border: 1px solid #283a4f;
             margin-bottom: 14px;
             overflow-x: auto;
         }
@@ -90,7 +92,7 @@
             min-width: 50px;
         }
         .tab-btn.active {
-            background: #1e2d40;
+            background: #1a2a3e;
             color: #8bb9e0;
             box-shadow: 0 2px 10px rgba(60, 130, 200, 0.15);
         }
@@ -118,7 +120,7 @@
             padding: 5px 0;
             font-size: 14px;
             cursor: pointer;
-            border-bottom: 1px solid #1e2d40;
+            border-bottom: 1px solid #1a2a3e;
         }
         .checklist label:last-child {
             border-bottom: none;
@@ -135,19 +137,55 @@
             color: #5a7a99;
             opacity: 0.7;
         }
-        .checklist .reset-btn {
-            background: transparent;
-            border: 1px solid #2a3a4f;
-            color: #6a7f99;
+        .btn {
+            background: #1a2a3e;
+            border: 1px solid #283a4f;
+            color: #d1d9e6;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background: #253a52;
+        }
+        .btn-sm {
+            background: #1a2a3e;
+            border: none;
+            color: #7fa9c9;
             padding: 2px 12px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
-            margin-left: auto;
+            transition: 0.2s;
         }
-        .checklist .reset-btn:hover {
-            background: #1e2d40;
-            color: #8bb9e0;
+        .btn-sm:hover {
+            background: #253a52;
+        }
+        .btn-sm.success {
+            color: #6a9bc7;
+        }
+        .btn-sm.danger {
+            color: #b57a7a;
+        }
+        .btn-sm.danger:hover {
+            background: #2d1e1e;
+        }
+        .btn-export {
+            background: #1a2d2a;
+            border: 1px solid #2a4a3a;
+            color: #6aad8a;
+        }
+        .btn-export:hover {
+            background: #2a4a3a;
+        }
+        .flex-center {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 8px;
         }
         .stat-grid {
             display: grid;
@@ -159,7 +197,7 @@
             border-radius: 12px;
             padding: 10px 6px;
             text-align: center;
-            border: 1px solid #1e2d40;
+            border: 1px solid #1a2a3e;
         }
         .stat-item .num {
             font-size: 24px;
@@ -183,7 +221,7 @@
         .stat-item input[type="number"] {
             width: 44px;
             background: #0b1420;
-            border: 1px solid #1e2d40;
+            border: 1px solid #1a2a3e;
             color: #d1d9e6;
             border-radius: 6px;
             padding: 2px 4px;
@@ -192,64 +230,6 @@
         }
         .stat-item input[type="number"]:focus {
             outline: 1px solid #5a8db5;
-        }
-        .btn-sm {
-            background: #1e2d40;
-            border: none;
-            color: #7fa9c9;
-            padding: 2px 10px;
-            border-radius: 30px;
-            font-size: 11px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-sm:hover {
-            background: #2a3a4f;
-        }
-        .btn-sm.success {
-            color: #6a9bc7;
-        }
-        .btn-sm.danger {
-            color: #b57a7a;
-        }
-        .btn-sm.danger:hover {
-            background: #2d1e1e;
-        }
-        .btn {
-            background: #1e2d40;
-            border: 1px solid #2a3a4f;
-            color: #d1d9e6;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn:hover {
-            background: #2a3a4f;
-        }
-        .btn-export {
-            background: #1a2d2a;
-            border: 1px solid #2a4a3a;
-            color: #6aad8a;
-        }
-        .btn-export:hover {
-            background: #2a4a3a;
-        }
-        .btn-danger {
-            background: #2d1e1e;
-            border: 1px solid #4a2a2a;
-            color: #b57a7a;
-        }
-        .btn-danger:hover {
-            background: #3d2a2a;
-        }
-        .flex-center {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 10px;
         }
         .progress-bar {
             background: #111d2b;
@@ -278,13 +258,13 @@
             padding: 2px 8px;
             background: #111d2b;
             border-radius: 30px;
-            border: 1px solid #1e2d40;
+            border: 1px solid #1a2a3e;
         }
         .badge {
             font-size: 10px;
             padding: 1px 8px;
             border-radius: 30px;
-            background: #1e2d40;
+            background: #1a2a3e;
             color: #5a7a99;
         }
         .badge.green {
@@ -316,7 +296,7 @@
             min-width: 36px;
         }
         .map-point:hover {
-            background: #1e2d40;
+            background: #1a2a3e;
             color: #8bb9e0;
         }
         .map-point .dot {
@@ -347,7 +327,7 @@
             color: #8bb9e0;
             text-align: center;
             padding: 12px;
-            background: rgba(30, 45, 64, 0.4);
+            background: rgba(26, 42, 62, 0.4);
             border-radius: 12px;
             border-left: 3px solid #5a8db5;
             min-height: 60px;
@@ -355,18 +335,12 @@
             align-items: center;
             justify-content: center;
         }
-        .counter-win {
-            text-align: center;
-            font-size: 14px;
-            color: #5a7a99;
-            margin-top: 6px;
-        }
         .footer {
             margin-top: 14px;
             font-size: 12px;
             color: #4a5a6a;
             text-align: center;
-            border-top: 1px solid #1a2538;
+            border-top: 1px solid #162033;
             padding-top: 12px;
         }
         .footer strong {
@@ -382,6 +356,40 @@
         }
         .copy-msg.show {
             opacity: 1;
+        }
+        .workout-plan {
+            font-size: 13px;
+            color: #7fa9c9;
+            background: #111d2b;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #1a2a3e;
+        }
+        .workout-plan strong {
+            color: #8bb9e0;
+        }
+        .history-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+        .history-table th {
+            text-align: left;
+            color: #5a7a99;
+            font-weight: 500;
+            padding: 4px 2px;
+            border-bottom: 1px solid #1a2a3e;
+        }
+        .history-table td {
+            padding: 4px 2px;
+            border-bottom: 1px solid #1a2a3e;
+        }
+        .history-table tr:last-child td {
+            border-bottom: none;
+        }
+        .weekday {
+            color: #5a7a99;
+            font-size: 12px;
         }
         @media (max-width: 480px) {
             body {
@@ -412,6 +420,9 @@
                 min-width: 30px;
                 padding: 2px 4px;
             }
+            .history-table {
+                font-size: 12px;
+            }
         }
         @media (max-width: 380px) {
             .stat-grid {
@@ -428,7 +439,7 @@
 
     <!-- ===== ХЕДЕР ===== -->
     <div class="header">
-        <h1>⛵ Тимбул</h1>
+        <h1>⚡ Дисциплина Тимбула</h1>
         <span class="badge-day" id="dayDisplay">День 1</span>
     </div>
 
@@ -436,24 +447,33 @@
     <div class="tab-bar">
         <button class="tab-btn active" data-tab="tab-main">📋 Дела</button>
         <button class="tab-btn" data-tab="tab-stats">📊 Счёт</button>
+        <button class="tab-btn" data-tab="tab-history">📈 Итоги</button>
         <button class="tab-btn" data-tab="tab-map">🗺️ Вузы</button>
         <button class="tab-btn" data-tab="tab-fire">🔥 Кайф</button>
     </div>
 
+    <!-- ========================================================== -->
     <!-- ===== ВКЛАДКА: ДЕЛА ===== -->
     <div id="tab-main" class="tab-content active">
         <div class="card checklist">
             <h2>✅ Чек-лист
-                <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
+                <button class="btn-sm" onclick="resetChecklist()" style="margin-left:auto;">🔄 сброс</button>
             </h2>
-            <label><input type="checkbox" /> <span>YouTube на английском (фон)</span></label>
-            <label><input type="checkbox" /> <span>5 IT-слов (Quizlet)</span></label>
-            <label><input type="checkbox" /> <span>Тренировка</span></label>
-            <label><input type="checkbox" /> <span>150 г белка</span></label>
-            <label><input type="checkbox" /> <span>2.5 л воды</span></label>
-            <label><input type="checkbox" /> <span>Подкаст на прогулке</span></label>
-            <label><input type="checkbox" /> <span>Игры / сериалы на английском</span></label>
-            <label><input type="checkbox" /> <span>Повтор слов перед сном</span></label>
+            <label><input type="checkbox" /> <span>Тренировка (по плану)</span></label>
+            <label><input type="checkbox" /> <span>Полезное питание (белок/калории)</span></label>
+            <label><input type="checkbox" /> <span>Новые слова (минимум 5)</span></label>
+            <label><input type="checkbox" /> <span>Калории и белок записаны</span></label>
+            <label><input type="checkbox" /> <span>Разговорный ролик на английском</span></label>
+        </div>
+
+        <div class="card">
+            <h2>🏋️ План тренировок (через день)</h2>
+            <div class="workout-plan">
+                <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, отжимания узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
+                <div style="margin-top:6px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели к поясу 3×12, обратные отжимания от стула 3×12, подъем гантелей на бицепс 3×10, гиперэкстензия (на полу) 3×15</div>
+                <div style="margin-top:6px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног лёжа 3×12, отжимания с подъемом таза (плечи) 3×10, планка на вытянутых руках 3×40 сек</div>
+                <div style="margin-top:6px;color:#5a7a99;font-size:12px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
+            </div>
         </div>
 
         <div class="card">
@@ -464,27 +484,9 @@
                 <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
                 <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
             </div>
-            <div style="font-size:13px;color:#5a7a99;margin-top:6px;">
+            <div style="font-size:13px;color:#5a7a99;margin-top:4px;">
                 ✅ Бакалавриат: <strong style="color:#8bb9e0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#8bb9e0;">Турин / Падуя</strong>
             </div>
-        </div>
-
-        <div class="card">
-            <h2>🏋️ Неделя</h2>
-            <div style="display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;">
-                <span><strong>Пн/Ср/Пт</strong> Силовая</span>
-                <span><strong>Вт/Чт/Сб</strong> Кардио 30′</span>
-                <span><strong>Вс</strong> Отдых</span>
-            </div>
-            <div style="font-size:13px;color:#5a7a99;">🔥 Отжимания · V-скручивания · Планка · Бурпи</div>
-            <hr style="border-color:#1e2d40;margin:8px 0;" />
-            <h2 style="margin-top:2px;">🍗 Питание (75 кг)</h2>
-            <div style="display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;">
-                <span>Белок <strong style="color:#8bb9e0;">150 г</strong></span>
-                <span>Калории <strong style="color:#8bb9e0;">2200–2400</strong></span>
-                <span>Вода <strong style="color:#8bb9e0;">2.5 л</strong></span>
-            </div>
-            <div style="font-size:12px;color:#5a7a99;">🍗 Курица · Яйца · Творог · Рыба · Гречка</div>
         </div>
 
         <div class="card">
@@ -501,16 +503,9 @@
                 <button class="btn" onclick="addProgress()">➕ 5%</button>
             </div>
         </div>
-
-        <div class="card">
-            <h2>📤 Экспорт</h2>
-            <div class="flex-center">
-                <button class="btn btn-export" onclick="exportProgress()">📋 Скопировать прогресс</button>
-            </div>
-            <div id="copyMsg" class="copy-msg">✅ Скопировано, Тимбул!</div>
-        </div>
     </div>
 
+    <!-- ========================================================== -->
     <!-- ===== ВКЛАДКА: СЧЁТ ===== -->
     <div id="tab-stats" class="tab-content">
         <div class="card">
@@ -548,34 +543,40 @@
                         <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
                     </div>
                 </div>
-                <div class="stat-item">
-                    <div class="num" id="statWater">0</div>
-                    <div class="label">💧 Вода (л)</div>
-                    <div class="controls">
-                        <input type="number" id="inputWater" value="0" min="0" step="0.1" />
-                        <button class="btn-sm success" onclick="updateStat('water')">➕</button>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="num" id="statFocus">0</div>
-                    <div class="label">🧠 Сессий</div>
-                    <div class="controls">
-                        <input type="number" id="inputFocus" value="0" min="0" step="1" />
-                        <button class="btn-sm success" onclick="updateStat('focus')">➕</button>
-                    </div>
-                </div>
             </div>
             <div class="flex-center" style="margin-top:12px;">
-                <button class="btn btn-danger" onclick="resetStats()">🔄 Сбросить счётчики (на сегодня)</button>
+                <button class="btn btn-export" onclick="saveDayStats()">💾 Записать день в базу</button>
+                <button class="btn btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
             </div>
+            <div id="saveMsg" style="color:#6aad8a;font-size:13px;text-align:center;margin-top:4px;opacity:0;transition:0.3s;">✅ Данные сохранены!</div>
         </div>
     </div>
 
+    <!-- ========================================================== -->
+    <!-- ===== ВКЛАДКА: ИТОГИ ===== -->
+    <div id="tab-history" class="tab-content">
+        <div class="card">
+            <h2>📈 Итоги по дням</h2>
+            <div style="overflow-x:auto;">
+                <table class="history-table" id="historyTable">
+                    <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th></tr></thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+            </div>
+            <div class="flex-center" style="margin-top:10px;">
+                <button class="btn btn-sm danger" onclick="clearHistory()">🗑️ Очистить историю</button>
+                <button class="btn btn-export" onclick="exportHistory()">📋 Экспорт</button>
+            </div>
+            <div id="historyMsg" style="color:#6aad8a;font-size:13px;text-align:center;margin-top:4px;opacity:0;transition:0.3s;">✅ Скопировано!</div>
+        </div>
+    </div>
+
+    <!-- ========================================================== -->
     <!-- ===== ВКЛАДКА: КАРТА ВУЗОВ ===== -->
     <div id="tab-map" class="tab-content">
         <div class="card">
             <h2>🗺️ Карта вузов</h2>
-            <div style="background:#111d2b;border-radius:12px;padding:10px;border:1px solid #1e2d40;">
+            <div style="background:#111d2b;border-radius:12px;padding:10px;border:1px solid #1a2a3e;">
                 <div class="map-row">
                     <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMU</a>
                     <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point"><div class="dot green"></div>UON</a>
@@ -598,17 +599,18 @@
         </div>
     </div>
 
+    <!-- ========================================================== -->
     <!-- ===== ВКЛАДКА: КАЙФ ===== -->
     <div id="tab-fire" class="tab-content">
         <div class="card">
             <h2>🔥 Мотивация</h2>
-            <div class="motivation-text" id="motivationDisplay">«Тимбул — это я. У меня есть план.»</div>
+            <div class="motivation-text" id="motivationDisplay">«Тимбул — это дисциплина. Я делаю.»</div>
             <div class="flex-center">
                 <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
                 <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
             </div>
-            <div class="counter-win">
-                💪 Побеждено хуёвых мыслей: <strong id="motivationCounter">0</strong>
+            <div style="text-align:center;font-size:14px;color:#5a7a99;margin-top:8px;">
+                💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#8bb9e0;">0</strong>
                 <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:6px;">➕</button>
             </div>
         </div>
@@ -616,7 +618,7 @@
 
     <!-- ===== ФУТЕР ===== -->
     <div class="footer">
-        ⚡ <strong>Тимбул</strong> · Кипр → Италия · B1 → B2 · IT Security
+        ⚡ <strong>Дисциплина Тимбула</strong> · Кипр → Италия · B1 → B2 · IT Security
     </div>
 
     <script>
@@ -680,7 +682,7 @@
         }
 
         // ===== СЧЁТЧИКИ =====
-        const statKeys = ['calories', 'protein', 'words', 'workouts', 'water', 'focus'];
+        const statKeys = ['calories', 'protein', 'words', 'workouts'];
 
         function loadStats() {
             statKeys.forEach(key => {
@@ -709,17 +711,99 @@
             }
         }
 
+        // ===== СОХРАНЕНИЕ ДНЯ В ИСТОРИЮ =====
+        function saveDayStats() {
+            const day = document.getElementById('dayDisplay').textContent;
+            const data = {
+                day: day,
+                calories: parseInt(localStorage.getItem('stat_calories')) || 0,
+                protein: parseInt(localStorage.getItem('stat_protein')) || 0,
+                words: parseInt(localStorage.getItem('stat_words')) || 0,
+                workouts: parseInt(localStorage.getItem('stat_workouts')) || 0,
+                date: new Date().toLocaleDateString()
+            };
+
+            let history = JSON.parse(localStorage.getItem('history')) || [];
+            // проверяем, есть ли уже запись за сегодня
+            const today = new Date().toLocaleDateString();
+            const existing = history.findIndex(h => h.date === today);
+            if (existing !== -1) {
+                history[existing] = data;
+            } else {
+                history.push(data);
+            }
+            localStorage.setItem('history', JSON.stringify(history));
+            renderHistory();
+
+            const msg = document.getElementById('saveMsg');
+            msg.style.opacity = '1';
+            setTimeout(() => msg.style.opacity = '0', 2500);
+        }
+
+        // ===== ИСТОРИЯ =====
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            const tbody = document.getElementById('historyBody');
+            if (history.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#5a7a99;padding:12px;">Нет данных</td></tr>';
+                return;
+            }
+            const sorted = history.slice().reverse();
+            tbody.innerHTML = sorted.map(h =>
+                `<tr>
+                    <td><strong>${h.day}</strong> <span class="weekday">${h.date || ''}</span></td>
+                    <td>${h.calories || 0}</td>
+                    <td>${h.protein || 0}</td>
+                    <td>${h.words || 0}</td>
+                    <td>${h.workouts || 0}</td>
+                </tr>`
+            ).join('');
+        }
+
+        function clearHistory() {
+            if (confirm('Очистить всю историю?')) {
+                localStorage.removeItem('history');
+                renderHistory();
+            }
+        }
+
+        function exportHistory() {
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            if (history.length === 0) {
+                alert('Нет данных для экспорта');
+                return;
+            }
+            let text = '📊 ИТОГИ ТИМБУЛА\n';
+            text += `📅 Дата: ${new Date().toLocaleDateString()}\n`;
+            text += '═'.repeat(30) + '\n';
+            text += 'День | 🔥 | 🥩 | 📚 | 🏋️\n';
+            text += '─'.repeat(30) + '\n';
+            const sorted = history.slice().reverse();
+            sorted.forEach(h => {
+                text += `${h.day} | ${h.calories || 0} | ${h.protein || 0} | ${h.words || 0} | ${h.workouts || 0}\n`;
+            });
+            text += '═'.repeat(30) + '\n';
+            text += '🎯 Цель: Кипр → Италия · IT Security';
+
+            navigator.clipboard.writeText(text).then(() => {
+                const msg = document.getElementById('historyMsg');
+                msg.style.opacity = '1';
+                setTimeout(() => msg.style.opacity = '0', 2500);
+            }).catch(() => alert('Скопируй:\n' + text));
+        }
+
         // ===== МОТИВАЦИЯ =====
         const motivations = [
-            '«Тимбул — это я. У меня есть план. Я делаю.»',
+            '«Тимбул — это дисциплина. Я делаю.»',
             '«Хуй пизда залупа, но Тимбул идёт дальше.»',
             '«Красный аттестат — база, Тимбул.»',
             '«B1 — временно. Завтра B2, послезавтра Кипр.»',
             '«Страшно? Похуй. Я — Тимбул, я делаю.»',
             '«Кипр ждёт, Италия ждёт. Вставай, Тимбул.»',
-            '«Тимбул — бренд победы.»',
+            '«Тимбул — это бренд победы.»',
             '«Тимбул не сдаётся. Тимбул идёт до конца.»',
-            '«Если не я, то кто? Если не сейчас, то когда?»'
+            '«Если не я, то кто? Если не сейчас, то когда?»',
+            '«Тимбул, ты круче, чем думаешь.»'
         ];
         const ugly = [
             '«Хуй пизда залупа волосатая, Тимбул — красавчик!»',
@@ -751,18 +835,10 @@
             document.getElementById('motivationCounter').textContent = winCount;
         }
 
-        // ===== ЭКСПОРТ =====
-        function exportProgress() {
-            const stats = {};
-            statKeys.forEach(key => { stats[key] = localStorage.getItem('stat_' + key) || 0; });
-            const p = localStorage.getItem('progress') || 15;
-            const text =
-                `🚀 ТИМБУЛ: прогресс\n📅 ${new Date().toLocaleDateString()}\n🔥 Калории: ${stats.calories}\n🥩 Белок: ${stats.protein} г\n📚 Слов: ${stats.words}\n🏋️ Тренировок: ${stats.workouts}\n💧 Вода: ${stats.water} л\n🧠 Сессий: ${stats.focus}\n📖 Английский: ${p}%\n💪 Побед: ${winCount}\n🎯 Кипр → Италия`;
-            navigator.clipboard.writeText(text).then(() => {
-                document.getElementById('copyMsg').classList.add('show');
-                setTimeout(() => document.getElementById('copyMsg').classList.remove('show'), 2500);
-            }).catch(() => alert('Скопируй:\n' + text));
-        }
+        // ==========================================================
+        // ===== ЗАГРУЗКА =====
+        renderHistory();
+        console.log('⚡ Дисциплина Тимбула загружена!');
     </script>
 </body>
-        </html>
+</html>
