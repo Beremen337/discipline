@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Дисциплина Тимбула</title>
     <style>
-        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -15,48 +13,73 @@
         }
 
         body {
-            background: #0f1929;
+            background: #0b1424;
             color: #d6e2f0;
             font-family: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
-            padding: 12px;
+            padding: 10px;
             max-width: 700px;
             margin: 0 auto;
             min-height: 100vh;
-            background-image:
-                radial-gradient(ellipse at 10% 20%, #1a2c44 0%, #0f1929 70%);
-            font-size: 15px;
-            line-height: 1.5;
+            overflow-x: hidden;
+            position: relative;
             transition: background 0.3s;
+        }
+
+        /* ===== ЧАСТИЦЫ (canvas) ===== */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== КОНТЕНТ ПОВЕРХ ЧАСТИЦ ===== */
+        .content {
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== КАРТОЧКИ ===== */
         .card {
-            background: rgba(22, 36, 54, 0.7);
+            background: rgba(16, 30, 52, 0.55);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 16px 18px;
-            border: 1px solid rgba(70, 120, 180, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
-            margin-bottom: 12px;
+            padding: 14px 16px;
+            border: 1px solid rgba(80, 140, 200, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            margin-bottom: 10px;
             transition: all 0.3s ease;
+            animation: cardFloat 6s ease-in-out infinite;
         }
         .card:hover {
-            border-color: rgba(70, 140, 200, 0.25);
-            box-shadow: 0 8px 40px rgba(0, 20, 50, 0.4);
+            border-color: rgba(80, 140, 200, 0.15);
+            box-shadow: 0 8px 40px rgba(0, 20, 60, 0.3);
         }
         .card h2 {
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 600;
             color: #8dbae0;
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 10px;
-            letter-spacing: 0.3px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            font-size: 12px;
-            opacity: 0.8;
+            opacity: 0.7;
+        }
+
+        @keyframes cardFloat {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-2px);
+            }
         }
 
         /* ===== ХЕДЕР ===== */
@@ -66,74 +89,111 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 6px;
-            margin-bottom: 14px;
-            padding: 6px 4px;
+            margin-bottom: 12px;
+            padding: 4px 2px;
+            position: relative;
         }
         .header h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             color: #b5d6f0;
-            background: linear-gradient(135deg, #7ab0d8, #b5d6f0);
+            background: linear-gradient(135deg, #7ab0d8, #b5d6f0, #7ab0d8);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
             letter-spacing: -0.3px;
-            text-shadow: 0 0 40px rgba(90, 160, 220, 0.1);
+        }
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
         .header .badge-day {
-            background: rgba(26, 44, 68, 0.6);
+            background: rgba(26, 44, 68, 0.5);
             backdrop-filter: blur(8px);
-            padding: 4px 16px;
+            padding: 4px 14px;
             border-radius: 30px;
             font-size: 13px;
             color: #8dbae0;
-            border: 1px solid rgba(70, 120, 180, 0.2);
+            border: 1px solid rgba(70, 120, 180, 0.1);
             font-weight: 500;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(60, 130, 200, 0.05);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(60, 130, 200, 0.12);
+            }
         }
 
         /* ===== ТАБЫ ===== */
         .tab-bar {
             display: flex;
             gap: 4px;
-            background: rgba(18, 30, 48, 0.5);
+            background: rgba(16, 30, 52, 0.4);
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 4px;
-            border: 1px solid rgba(70, 120, 180, 0.1);
-            margin-bottom: 14px;
+            border: 1px solid rgba(70, 120, 180, 0.06);
+            margin-bottom: 12px;
             overflow-x: auto;
         }
         .tab-btn {
             background: transparent;
             border: none;
-            color: #6a8aaa;
-            padding: 8px 14px;
+            color: #5a7a9a;
+            padding: 7px 12px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             white-space: nowrap;
             flex: 1;
-            min-width: 50px;
+            min-width: 44px;
+            position: relative;
         }
         .tab-btn.active {
-            background: rgba(40, 80, 130, 0.3);
+            background: rgba(40, 80, 130, 0.25);
             color: #b5d6f0;
-            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.1);
+            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.08);
         }
         .tab-btn:hover {
             color: #b5d6f0;
         }
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #5a8db5, #8dbae0);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        .tab-btn.active::after {
+            width: 30%;
+        }
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .tab-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeSlide {
             0% {
                 opacity: 0;
                 transform: translateY(12px) scale(0.98);
@@ -149,15 +209,15 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 6px 4px;
+            padding: 5px 4px;
             font-size: 14px;
             cursor: pointer;
-            border-bottom: 1px solid rgba(40, 80, 130, 0.1);
-            transition: all 0.2s;
+            border-bottom: 1px solid rgba(40, 80, 130, 0.06);
+            transition: all 0.3s;
             border-radius: 8px;
         }
         .checklist label:hover {
-            background: rgba(40, 80, 130, 0.08);
+            background: rgba(40, 80, 130, 0.06);
             padding-left: 8px;
         }
         .checklist label:last-child {
@@ -170,29 +230,29 @@
             cursor: pointer;
             flex-shrink: 0;
             border-radius: 6px;
-            transition: all 0.2s;
+            transition: all 0.3s;
+        }
+        .checklist input[type="checkbox"]:checked {
+            transform: scale(1.05);
         }
         .checklist input[type="checkbox"]:checked+span {
             text-decoration: line-through;
-            color: #5a7a9a;
-            opacity: 0.6;
-        }
-        .checklist .label-text {
-            flex: 1;
+            color: #4a6a8a;
+            opacity: 0.5;
         }
         .checklist .reset-btn {
             background: transparent;
-            border: 1px solid rgba(70, 120, 180, 0.15);
-            color: #6a8aaa;
-            padding: 2px 14px;
+            border: 1px solid rgba(70, 120, 180, 0.08);
+            color: #5a7a9a;
+            padding: 2px 12px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
             margin-left: auto;
         }
         .checklist .reset-btn:hover {
-            background: rgba(40, 80, 130, 0.15);
+            background: rgba(40, 80, 130, 0.1);
             color: #b5d6f0;
         }
 
@@ -200,29 +260,30 @@
         .stat-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 6px;
         }
         .stat-item {
-            background: rgba(16, 30, 50, 0.5);
+            background: rgba(12, 26, 46, 0.4);
             backdrop-filter: blur(4px);
             border-radius: 14px;
-            padding: 12px 8px;
+            padding: 10px 6px;
             text-align: center;
-            border: 1px solid rgba(70, 120, 180, 0.08);
+            border: 1px solid rgba(70, 120, 180, 0.04);
             transition: all 0.3s;
         }
         .stat-item:hover {
-            border-color: rgba(70, 120, 180, 0.2);
+            border-color: rgba(70, 120, 180, 0.1);
+            transform: translateY(-1px);
         }
         .stat-item .num {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             color: #b5d6f0;
-            text-shadow: 0 0 30px rgba(90, 160, 220, 0.1);
+            text-shadow: 0 0 30px rgba(90, 160, 220, 0.05);
         }
         .stat-item .label {
-            font-size: 10px;
-            color: #5a7a9a;
+            font-size: 9px;
+            color: #4a6a8a;
             margin-top: 2px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -231,141 +292,141 @@
             display: flex;
             gap: 4px;
             justify-content: center;
-            margin-top: 6px;
+            margin-top: 4px;
             align-items: center;
         }
         .stat-item input[type="number"] {
-            width: 48px;
-            background: rgba(8, 18, 34, 0.6);
-            border: 1px solid rgba(70, 120, 180, 0.15);
+            width: 44px;
+            background: rgba(8, 18, 34, 0.5);
+            border: 1px solid rgba(70, 120, 180, 0.08);
             color: #d6e2f0;
             border-radius: 8px;
-            padding: 4px 6px;
+            padding: 3px 4px;
             font-size: 14px;
             text-align: center;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
         .stat-item input[type="number"]:focus {
             outline: none;
-            border-color: rgba(70, 140, 200, 0.4);
-            box-shadow: 0 0 20px rgba(60, 130, 200, 0.05);
+            border-color: rgba(70, 140, 200, 0.2);
+            box-shadow: 0 0 20px rgba(60, 130, 200, 0.03);
         }
 
         .btn-sm {
-            background: rgba(40, 80, 130, 0.2);
+            background: rgba(40, 80, 130, 0.12);
             border: none;
             color: #7ab0d8;
-            padding: 3px 12px;
+            padding: 2px 10px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.3s;
             font-weight: 600;
         }
         .btn-sm:hover {
-            background: rgba(40, 80, 130, 0.35);
+            background: rgba(40, 80, 130, 0.25);
             color: #b5d6f0;
+            transform: scale(1.05);
         }
         .btn-sm.success {
             color: #6aad8a;
         }
         .btn-sm.success:hover {
-            background: rgba(40, 100, 70, 0.25);
+            background: rgba(40, 100, 70, 0.2);
         }
         .btn-sm.danger {
             color: #b57a7a;
         }
         .btn-sm.danger:hover {
-            background: rgba(100, 40, 40, 0.2);
+            background: rgba(100, 40, 40, 0.15);
         }
 
         .btn {
-            background: rgba(40, 80, 130, 0.15);
-            border: 1px solid rgba(70, 120, 180, 0.15);
+            background: rgba(40, 80, 130, 0.1);
+            border: 1px solid rgba(70, 120, 180, 0.08);
             color: #d6e2f0;
-            padding: 6px 18px;
+            padding: 5px 16px;
             border-radius: 30px;
             font-size: 13px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             backdrop-filter: blur(4px);
         }
         .btn:hover {
-            background: rgba(40, 80, 130, 0.3);
-            border-color: rgba(70, 140, 200, 0.3);
+            background: rgba(40, 80, 130, 0.2);
+            border-color: rgba(70, 140, 200, 0.15);
+            transform: scale(1.02);
         }
         .btn-export {
-            background: rgba(40, 100, 70, 0.15);
-            border-color: rgba(70, 160, 120, 0.15);
+            background: rgba(40, 100, 70, 0.1);
+            border-color: rgba(70, 160, 120, 0.08);
             color: #6aad8a;
         }
         .btn-export:hover {
-            background: rgba(40, 100, 70, 0.25);
+            background: rgba(40, 100, 70, 0.2);
         }
 
         .flex-center {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
-        /* ===== ПРОГРЕСС АНГЛИЙСКОГО (НОВЫЙ) ===== */
+        /* ===== ПРОГРЕСС АНГЛИЙСКОГО ===== */
         .eng-progress {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            padding: 4px 0;
+            gap: 4px;
+            padding: 2px 0;
         }
         .eng-progress .level-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-size: 13px;
         }
         .eng-progress .level-row .level-label {
-            width: 28px;
+            width: 26px;
             font-weight: 600;
-            color: #5a7a9a;
+            color: #4a6a8a;
         }
         .eng-progress .level-row .level-bar {
             flex: 1;
-            height: 6px;
-            background: rgba(16, 30, 50, 0.5);
+            height: 5px;
+            background: rgba(16, 30, 50, 0.4);
             border-radius: 30px;
             overflow: hidden;
-            position: relative;
         }
         .eng-progress .level-row .level-bar .fill {
             height: 100%;
             border-radius: 30px;
-            background: linear-gradient(90deg, #3a7a9a, #7ab0d8);
-            transition: width 0.8s ease;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             width: 0%;
         }
         .eng-progress .level-row .level-bar .fill.b1 {
-            background: linear-gradient(90deg, #4a6a8a, #7ab0d8);
+            background: linear-gradient(90deg, #3a6a8a, #7ab0d8);
         }
         .eng-progress .level-row .level-bar .fill.b2 {
-            background: linear-gradient(90deg, #5a8aaa, #8ac0e8);
+            background: linear-gradient(90deg, #4a7a9a, #8ac0e8);
         }
         .eng-progress .level-row .level-bar .fill.c1 {
-            background: linear-gradient(90deg, #6a9aba, #9ad0f0);
+            background: linear-gradient(90deg, #5a8aaa, #9ad0f0);
         }
         .eng-progress .level-row .level-percent {
-            width: 36px;
+            width: 34px;
             text-align: right;
-            font-size: 12px;
-            color: #5a7a9a;
+            font-size: 11px;
+            color: #4a6a8a;
             font-weight: 500;
         }
         .eng-progress .current-level {
             text-align: center;
             font-size: 13px;
             color: #8dbae0;
-            padding: 4px 0;
-            background: rgba(40, 80, 130, 0.08);
+            padding: 3px 0;
+            background: rgba(40, 80, 130, 0.06);
             border-radius: 8px;
         }
         .eng-progress .current-level strong {
@@ -373,133 +434,143 @@
         }
         .eng-progress .btn-group {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             justify-content: center;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         /* ===== ИТОГИ ===== */
         .history-table {
             width: 100%;
-            font-size: 13px;
+            font-size: 12px;
             border-collapse: collapse;
         }
         .history-table th {
             text-align: left;
-            color: #5a7a9a;
+            color: #4a6a8a;
             font-weight: 500;
-            padding: 6px 4px;
-            border-bottom: 1px solid rgba(70, 120, 180, 0.08);
-            font-size: 11px;
+            padding: 4px 3px;
+            border-bottom: 1px solid rgba(70, 120, 180, 0.04);
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .history-table td {
-            padding: 6px 4px;
-            border-bottom: 1px solid rgba(70, 120, 180, 0.05);
+            padding: 4px 3px;
+            border-bottom: 1px solid rgba(70, 120, 180, 0.03);
         }
         .history-table tr:last-child td {
             border-bottom: none;
         }
         .history-table .day-row {
-            transition: 0.2s;
+            transition: 0.3s;
         }
         .history-table .day-row:hover {
-            background: rgba(40, 80, 130, 0.05);
+            background: rgba(40, 80, 130, 0.04);
         }
         .weekday {
-            color: #5a7a9a;
-            font-size: 11px;
-        }
-        .check-icon {
-            color: #6aad8a;
+            color: #4a6a8a;
+            font-size: 10px;
         }
 
         /* ===== СЕРИЯ ===== */
         .streak-box {
-            background: rgba(16, 30, 50, 0.4);
+            background: rgba(12, 26, 46, 0.3);
             border-radius: 14px;
-            padding: 12px 16px;
+            padding: 10px 14px;
             text-align: center;
-            border: 1px solid rgba(70, 120, 180, 0.08);
+            border: 1px solid rgba(70, 120, 180, 0.04);
         }
         .streak-box .streak-number {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
             color: #b5d6f0;
-            text-shadow: 0 0 40px rgba(90, 160, 220, 0.15);
+            text-shadow: 0 0 40px rgba(90, 160, 220, 0.08);
         }
         .streak-box .streak-label {
-            font-size: 12px;
-            color: #5a7a9a;
+            font-size: 11px;
+            color: #4a6a8a;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .streak-box .streak-days {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             justify-content: center;
-            margin-top: 8px;
+            margin-top: 6px;
             flex-wrap: wrap;
         }
         .streak-box .streak-days .day-dot {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 6px;
-            background: rgba(40, 80, 130, 0.15);
-            border: 1px solid rgba(70, 120, 180, 0.08);
+            background: rgba(40, 80, 130, 0.08);
+            border: 1px solid rgba(70, 120, 180, 0.04);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9px;
-            color: #5a7a9a;
-            transition: all 0.3s;
+            font-size: 8px;
+            color: #4a6a8a;
+            transition: all 0.4s;
         }
         .streak-box .streak-days .day-dot.done {
-            background: rgba(60, 160, 120, 0.2);
-            border-color: rgba(60, 160, 120, 0.2);
+            background: rgba(60, 160, 120, 0.15);
+            border-color: rgba(60, 160, 120, 0.1);
             color: #6aad8a;
+            animation: popDone 0.4s ease;
         }
         .streak-box .streak-days .day-dot.today {
-            border-color: #5a9ac8;
-            box-shadow: 0 0 20px rgba(60, 130, 200, 0.1);
+            border-color: #5a8db5;
+            box-shadow: 0 0 20px rgba(60, 130, 200, 0.06);
+        }
+        @keyframes popDone {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         .motivation-text {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 500;
             color: #b5d6f0;
             text-align: center;
-            padding: 14px;
-            background: rgba(26, 44, 68, 0.3);
+            padding: 12px;
+            background: rgba(26, 44, 68, 0.2);
             border-radius: 14px;
             border-left: 3px solid #5a8db5;
-            min-height: 60px;
+            min-height: 54px;
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
+            transition: all 0.5s;
         }
 
         .footer {
-            margin-top: 14px;
-            font-size: 12px;
-            color: #4a5a6a;
+            margin-top: 12px;
+            font-size: 11px;
+            color: #3a4a5a;
             text-align: center;
-            border-top: 1px solid rgba(70, 120, 180, 0.05);
-            padding-top: 12px;
+            border-top: 1px solid rgba(70, 120, 180, 0.03);
+            padding-top: 10px;
         }
         .footer strong {
-            color: #7fa9c9;
+            color: #6a8aaa;
         }
 
         .copy-msg {
             color: #6aad8a;
             font-size: 13px;
             text-align: center;
-            margin-top: 4px;
+            margin-top: 3px;
             opacity: 0;
-            transition: 0.3s;
+            transition: 0.4s;
         }
         .copy-msg.show {
             opacity: 1;
@@ -508,64 +579,66 @@
         .country-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px 10px;
-            font-size: 13px;
+            gap: 3px 8px;
+            font-size: 12px;
         }
         .country-row .country {
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 2px 10px;
-            background: rgba(16, 30, 50, 0.3);
+            gap: 3px;
+            padding: 2px 8px;
+            background: rgba(16, 30, 50, 0.2);
             border-radius: 30px;
-            border: 1px solid rgba(70, 120, 180, 0.08);
+            border: 1px solid rgba(70, 120, 180, 0.04);
         }
         .badge {
-            font-size: 10px;
-            padding: 1px 8px;
+            font-size: 9px;
+            padding: 1px 6px;
             border-radius: 30px;
-            background: rgba(26, 44, 68, 0.4);
-            color: #5a7a9a;
+            background: rgba(26, 44, 68, 0.3);
+            color: #4a6a8a;
         }
         .badge.green {
-            background: rgba(40, 100, 70, 0.2);
+            background: rgba(40, 100, 70, 0.15);
             color: #6aad8a;
         }
         .badge.orange {
-            background: rgba(100, 80, 40, 0.2);
+            background: rgba(100, 80, 40, 0.15);
             color: #c9a86a;
         }
 
         .map-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 3px;
             justify-content: center;
-            padding: 4px 0;
+            padding: 3px 0;
         }
         .map-point {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            font-size: 11px;
-            color: #6a7f99;
+            gap: 1px;
+            font-size: 10px;
+            color: #5a7a9a;
             text-decoration: none;
-            padding: 4px 6px;
+            padding: 3px 4px;
             border-radius: 8px;
-            transition: 0.2s;
-            min-width: 36px;
+            transition: 0.3s;
+            min-width: 32px;
         }
         .map-point:hover {
-            background: rgba(40, 80, 130, 0.1);
+            background: rgba(40, 80, 130, 0.08);
             color: #8dbae0;
+            transform: scale(1.05);
         }
         .map-point .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: #4a7a9f;
-            box-shadow: 0 0 16px rgba(60, 130, 200, 0.1);
+            box-shadow: 0 0 12px rgba(60, 130, 200, 0.06);
+            transition: 0.3s;
         }
         .map-point .dot.green {
             background: #5a9a7a;
@@ -578,18 +651,18 @@
         }
         .map-line {
             color: #2a3a4f;
-            font-size: 14px;
+            font-size: 12px;
             display: flex;
             align-items: center;
         }
 
         .workout-plan {
-            font-size: 13px;
+            font-size: 12px;
             color: #8dbae0;
-            background: rgba(16, 30, 50, 0.3);
+            background: rgba(16, 30, 50, 0.2);
             border-radius: 12px;
-            padding: 10px 12px;
-            border: 1px solid rgba(70, 120, 180, 0.06);
+            padding: 8px 10px;
+            border: 1px solid rgba(70, 120, 180, 0.04);
         }
         .workout-plan strong {
             color: #b5d6f0;
@@ -597,33 +670,35 @@
 
         @media (max-width: 480px) {
             body {
-                padding: 8px;
+                padding: 6px;
                 font-size: 14px;
             }
             .card {
-                padding: 12px 14px;
+                padding: 10px 12px;
                 border-radius: 16px;
             }
             .header h1 {
-                font-size: 20px;
+                font-size: 19px;
             }
             .stat-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 6px;
+                gap: 4px;
             }
             .tab-btn {
-                font-size: 12px;
-                padding: 6px 10px;
+                font-size: 11px;
+                padding: 5px 8px;
+                min-width: 36px;
             }
             .motivation-text {
-                font-size: 15px;
-                min-height: 50px;
+                font-size: 14px;
+                min-height: 46px;
+                padding: 10px;
             }
             .streak-box .streak-number {
-                font-size: 28px;
+                font-size: 26px;
             }
             .history-table {
-                font-size: 12px;
+                font-size: 11px;
             }
         }
         @media (max-width: 380px) {
@@ -631,223 +706,348 @@
                 grid-template-columns: 1fr 1fr;
             }
             .country-row {
-                font-size: 12px;
+                font-size: 11px;
             }
+            .map-point {
+                font-size: 9px;
+                min-width: 28px;
+                padding: 2px 3px;
+            }
+        }
+
+        /* ===== СКРОЛЛ ===== */
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(16, 30, 52, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(60, 130, 200, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(60, 130, 200, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== ХЕДЕР ===== -->
-    <div class="header">
-        <h1>✦ Дисциплина Тимбула</h1>
-        <span class="badge-day" id="dayDisplay">День 1</span>
-    </div>
+    <!-- ===== ЧАСТИЦЫ ===== -->
+    <canvas id="particles-canvas"></canvas>
 
-    <!-- ===== ТАБЫ ===== -->
-    <div class="tab-bar">
-        <button class="tab-btn active" data-tab="tab-main">📋 Дела</button>
-        <button class="tab-btn" data-tab="tab-stats">📊 Счёт</button>
-        <button class="tab-btn" data-tab="tab-history">📈 Итоги</button>
-        <button class="tab-btn" data-tab="tab-map">🗺️ Вузы</button>
-        <button class="tab-btn" data-tab="tab-fire">🔥 Кайф</button>
-    </div>
+    <!-- ===== КОНТЕНТ ===== -->
+    <div class="content">
 
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА: ДЕЛА ===== -->
-    <div id="tab-main" class="tab-content active">
-        <div class="card checklist">
-            <h2>✅ Чек-лист
-                <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
-            </h2>
-            <label><input type="checkbox" class="check-item" /> <span class="label-text">Тренировка (по плану)</span></label>
-            <label><input type="checkbox" class="check-item" /> <span class="label-text">Полезное питание (белок/калории)</span></label>
-            <label><input type="checkbox" class="check-item" /> <span class="label-text">Новые слова (минимум 5)</span></label>
-            <label><input type="checkbox" class="check-item" /> <span class="label-text">Калории и белок записаны</span></label>
-            <label><input type="checkbox" class="check-item" /> <span class="label-text">Разговорный ролик на английском</span></label>
+        <!-- ===== ХЕДЕР ===== -->
+        <div class="header">
+            <h1>✦ Дисциплина Тимбула</h1>
+            <span class="badge-day" id="dayDisplay">День 1</span>
         </div>
 
-        <div class="card">
-            <h2>🏋️ План тренировок (через день)</h2>
-            <div class="workout-plan">
-                <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, отжимания узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
-                <div style="margin-top:5px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели к поясу 3×12, обратные отжимания от стула 3×12, подъем гантелей на бицепс 3×10, гиперэкстензия (на полу) 3×15</div>
-                <div style="margin-top:5px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног лёжа 3×12, отжимания с подъемом таза (плечи) 3×10, планка на вытянутых руках 3×40 сек</div>
-                <div style="margin-top:5px;color:#5a7a9a;font-size:12px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
-            </div>
+        <!-- ===== ТАБЫ ===== -->
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="tab-main">📋 Дела</button>
+            <button class="tab-btn" data-tab="tab-stats">📊 Счёт</button>
+            <button class="tab-btn" data-tab="tab-history">📈 Итоги</button>
+            <button class="tab-btn" data-tab="tab-map">🗺️ Вузы</button>
+            <button class="tab-btn" data-tab="tab-fire">🔥 Кайф</button>
         </div>
 
-        <div class="card">
-            <h2>🌍 Страны</h2>
-            <div class="country-row">
-                <span class="country">🇨🇾 Кипр <span class="badge green">старт</span> $3,765</span>
-                <span class="country">🇮🇹 Италия <span class="badge orange">цель</span> от €161</span>
-                <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
-                <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
+        <!-- ========================================================== -->
+        <!-- ===== ВКЛАДКА: ДЕЛА ===== -->
+        <div id="tab-main" class="tab-content active">
+            <div class="card checklist">
+                <h2>✅ Чек-лист
+                    <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
+                </h2>
+                <label><input type="checkbox" class="check-item" /> <span class="label-text">Тренировка (по плану)</span></label>
+                <label><input type="checkbox" class="check-item" /> <span class="label-text">Полезное питание (белок/калории)</span></label>
+                <label><input type="checkbox" class="check-item" /> <span class="label-text">Новые слова (минимум 5)</span></label>
+                <label><input type="checkbox" class="check-item" /> <span class="label-text">Калории и белок записаны</span></label>
+                <label><input type="checkbox" class="check-item" /> <span class="label-text">Разговорный ролик на английском</span></label>
             </div>
-            <div style="font-size:13px;color:#5a7a9a;margin-top:4px;">
-                ✅ Бакалавриат: <strong style="color:#b5d6f0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#b5d6f0;">Турин / Падуя</strong>
-            </div>
-        </div>
 
-        <div class="card">
-            <h2>🇬🇧 Английский B1 → B2</h2>
-            <div class="eng-progress">
-                <div class="current-level">
-                    Текущий уровень: <strong id="currentLevelDisplay">B1</strong> · Прогресс до B2: <strong id="levelProgressText">0%</strong>
-                </div>
-                <div class="level-row">
-                    <span class="level-label">B1</span>
-                    <div class="level-bar"><div class="fill b1" id="b1Fill" style="width:100%;"></div></div>
-                    <span class="level-percent" id="b1Percent">100%</span>
-                </div>
-                <div class="level-row">
-                    <span class="level-label">B2</span>
-                    <div class="level-bar"><div class="fill b2" id="b2Fill" style="width:0%;"></div></div>
-                    <span class="level-percent" id="b2Percent">0%</span>
-                </div>
-                <div class="level-row">
-                    <span class="level-label">C1</span>
-                    <div class="level-bar"><div class="fill c1" id="c1Fill" style="width:0%;"></div></div>
-                    <span class="level-percent" id="c1Percent">0%</span>
-                </div>
-                <div class="btn-group">
-                    <button class="btn" onclick="addProgress(5)">➕ 5%</button>
-                    <button class="btn" onclick="addProgress(10)">➕ 10%</button>
-                    <button class="btn-sm" onclick="resetProgress()" style="color:#b57a7a;">Сброс</button>
+            <div class="card">
+                <h2>🏋️ План тренировок (через день)</h2>
+                <div class="workout-plan">
+                    <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, отжимания узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
+                    <div style="margin-top:4px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели 3×12, обратные отжимания 3×12, подъем гантелей 3×10, гиперэкстензия 3×15</div>
+                    <div style="margin-top:4px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног 3×12, отжимания с подъемом таза 3×10, планка 3×40 сек</div>
+                    <div style="margin-top:4px;color:#4a6a8a;font-size:11px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА: СЧЁТ ===== -->
-    <div id="tab-stats" class="tab-content">
-        <div class="card">
-            <h2>📊 Счётчики (сегодня)</h2>
-            <div class="stat-grid">
-                <div class="stat-item">
-                    <div class="num" id="statCalories">0</div>
-                    <div class="label">🔥 Калории</div>
-                    <div class="controls">
-                        <input type="number" id="inputCalories" value="0" min="0" step="50" />
-                        <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
+            <div class="card">
+                <h2>🌍 Страны</h2>
+                <div class="country-row">
+                    <span class="country">🇨🇾 Кипр <span class="badge green">старт</span> $3,765</span>
+                    <span class="country">🇮🇹 Италия <span class="badge orange">цель</span> от €161</span>
+                    <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
+                    <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
+                </div>
+                <div style="font-size:12px;color:#4a6a8a;margin-top:4px;">
+                    ✅ Бакалавриат: <strong style="color:#b5d6f0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#b5d6f0;">Турин / Падуя</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🇬🇧 Английский B1 → B2</h2>
+                <div class="eng-progress">
+                    <div class="current-level">
+                        Текущий уровень: <strong id="currentLevelDisplay">B1</strong> · До B2: <strong id="levelProgressText">0%</strong>
                     </div>
-                </div>
-                <div class="stat-item">
-                    <div class="num" id="statProtein">0</div>
-                    <div class="label">🥩 Белок (г)</div>
-                    <div class="controls">
-                        <input type="number" id="inputProtein" value="0" min="0" step="5" />
-                        <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
+                    <div class="level-row">
+                        <span class="level-label">B1</span>
+                        <div class="level-bar"><div class="fill b1" id="b1Fill" style="width:100%;"></div></div>
+                        <span class="level-percent" id="b1Percent">100%</span>
                     </div>
-                </div>
-                <div class="stat-item">
-                    <div class="num" id="statWords">0</div>
-                    <div class="label">📚 Новых слов</div>
-                    <div class="controls">
-                        <input type="number" id="inputWords" value="0" min="0" step="1" />
-                        <button class="btn-sm success" onclick="updateStat('words')">➕</button>
+                    <div class="level-row">
+                        <span class="level-label">B2</span>
+                        <div class="level-bar"><div class="fill b2" id="b2Fill" style="width:0%;"></div></div>
+                        <span class="level-percent" id="b2Percent">0%</span>
                     </div>
-                </div>
-                <div class="stat-item">
-                    <div class="num" id="statWorkouts">0</div>
-                    <div class="label">🏋️ Тренировок</div>
-                    <div class="controls">
-                        <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
-                        <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
+                    <div class="level-row">
+                        <span class="level-label">C1</span>
+                        <div class="level-bar"><div class="fill c1" id="c1Fill" style="width:0%;"></div></div>
+                        <span class="level-percent" id="c1Percent">0%</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn" onclick="addProgress(5)">➕ 5%</button>
+                        <button class="btn" onclick="addProgress(10)">➕ 10%</button>
+                        <button class="btn-sm" onclick="resetProgress()" style="color:#b57a7a;">Сброс</button>
                     </div>
                 </div>
             </div>
-            <div class="flex-center" style="margin-top:12px;">
-                <button class="btn btn-export" onclick="saveDayStats()">💾 Записать день</button>
-                <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
-            </div>
-            <div id="saveMsg" class="copy-msg">✅ Данные сохранены!</div>
-        </div>
-    </div>
-
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА: ИТОГИ ===== -->
-    <div id="tab-history" class="tab-content">
-        <div class="card">
-            <h2>📈 Итоги по дням</h2>
-            <div style="overflow-x:auto;">
-                <table class="history-table" id="historyTable">
-                    <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th><th>✅</th></tr></thead>
-                    <tbody id="historyBody"></tbody>
-                </table>
-            </div>
-            <div class="flex-center" style="margin-top:10px;">
-                <button class="btn-sm danger" onclick="clearHistory()">🗑️ Очистить</button>
-                <button class="btn btn-export" onclick="exportHistory()">📋 Экспорт</button>
-            </div>
-            <div id="historyMsg" class="copy-msg">✅ Скопировано!</div>
         </div>
 
-        <!-- ===== СЕРИЯ ДИСЦИПЛИНЫ ===== -->
-        <div class="card">
-            <h2>🔥 Серия дисциплины</h2>
-            <div class="streak-box">
-                <div class="streak-number" id="streakCount">0</div>
-                <div class="streak-label">дней подряд</div>
-                <div class="streak-days" id="streakDays"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА: КАРТА ВУЗОВ ===== -->
-    <div id="tab-map" class="tab-content">
-        <div class="card">
-            <h2>🗺️ Карта вузов</h2>
-            <div style="background:rgba(16,30,50,0.3);border-radius:14px;padding:10px;border:1px solid rgba(70,120,180,0.06);">
-                <div class="map-row">
-                    <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMU</a>
-                    <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point"><div class="dot green"></div>UON</a>
-                    <a href="https://www.neu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>NEU</a>
-                    <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>CIU</a>
-                    <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMI</a>
+        <!-- ========================================================== -->
+        <!-- ===== ВКЛАДКА: СЧЁТ ===== -->
+        <div id="tab-stats" class="tab-content">
+            <div class="card">
+                <h2>📊 Счётчики (сегодня)</h2>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="num" id="statCalories">0</div>
+                        <div class="label">🔥 Калории</div>
+                        <div class="controls">
+                            <input type="number" id="inputCalories" value="0" min="0" step="50" />
+                            <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num" id="statProtein">0</div>
+                        <div class="label">🥩 Белок (г)</div>
+                        <div class="controls">
+                            <input type="number" id="inputProtein" value="0" min="0" step="5" />
+                            <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num" id="statWords">0</div>
+                        <div class="label">📚 Новых слов</div>
+                        <div class="controls">
+                            <input type="number" id="inputWords" value="0" min="0" step="1" />
+                            <button class="btn-sm success" onclick="updateStat('words')">➕</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num" id="statWorkouts">0</div>
+                        <div class="label">🏋️ Тренировок</div>
+                        <div class="controls">
+                            <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
+                            <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
+                        </div>
+                    </div>
                 </div>
-                <div style="text-align:center;color:#5a7a9a;font-size:12px;margin:6px 0;">⬇️ Твой маршрут ⬇️</div>
-                <div class="map-row">
-                    <span class="map-point" style="cursor:default;"><div class="dot green"></div>🇨🇾 Кипр</span>
-                    <span class="map-line">→</span>
-                    <a href="https://www.polito.it/en" target="_blank" class="map-point"><div class="dot blue"></div>🇮🇹 Турин</a>
-                    <span class="map-line">→</span>
-                    <a href="https://www.unipd.it/en" target="_blank" class="map-point"><div class="dot blue"></div>🇮🇹 Падуя</a>
-                    <span class="map-line">→</span>
-                    <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point"><div class="dot gray"></div>🇸🇰 STU</a>
+                <div class="flex-center" style="margin-top:10px;">
+                    <button class="btn btn-export" onclick="saveDayStats()">💾 Записать день</button>
+                    <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
                 </div>
-                <div style="font-size:12px;color:#5a7a9a;text-align:center;margin-top:4px;">📍 <strong style="color:#b5d6f0;">Кипр → Италия</strong></div>
+                <div id="saveMsg" class="copy-msg">✅ Данные сохранены!</div>
             </div>
         </div>
-    </div>
 
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА: КАЙФ ===== -->
-    <div id="tab-fire" class="tab-content">
-        <div class="card">
-            <h2>🔥 Мотивация</h2>
-            <div class="motivation-text" id="motivationDisplay">«Тимбул — это дисциплина. Я делаю.»</div>
-            <div class="flex-center">
-                <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
-                <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
+        <!-- ========================================================== -->
+        <!-- ===== ВКЛАДКА: ИТОГИ ===== -->
+        <div id="tab-history" class="tab-content">
+            <div class="card">
+                <h2>📈 Итоги по дням</h2>
+                <div style="overflow-x:auto;">
+                    <table class="history-table" id="historyTable">
+                        <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th><th>✅</th></tr></thead>
+                        <tbody id="historyBody"></tbody>
+                    </table>
+                </div>
+                <div class="flex-center" style="margin-top:8px;">
+                    <button class="btn-sm danger" onclick="clearHistory()">🗑️ Очистить</button>
+                    <button class="btn btn-export" onclick="exportHistory()">📋 Экспорт</button>
+                </div>
+                <div id="historyMsg" class="copy-msg">✅ Скопировано!</div>
             </div>
-            <div style="text-align:center;font-size:14px;color:#5a7a9a;margin-top:8px;">
-                💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#b5d6f0;">0</strong>
-                <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:6px;">➕</button>
+
+            <div class="card">
+                <h2>🔥 Серия дисциплины</h2>
+                <div class="streak-box">
+                    <div class="streak-number" id="streakCount">0</div>
+                    <div class="streak-label">дней подряд</div>
+                    <div class="streak-days" id="streakDays"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ===== ФУТЕР ===== -->
-    <div class="footer">
-        ⚡ <strong>Дисциплина Тимбула</strong> · Кипр → Италия · B1 → B2 · IT Security
+        <!-- ========================================================== -->
+        <!-- ===== ВКЛАДКА: КАРТА ВУЗОВ ===== -->
+        <div id="tab-map" class="tab-content">
+            <div class="card">
+                <h2>🗺️ Карта вузов</h2>
+                <div style="background:rgba(16,30,50,0.2);border-radius:14px;padding:8px;border:1px solid rgba(70,120,180,0.04);">
+                    <div class="map-row">
+                        <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMU</a>
+                        <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point"><div class="dot green"></div>UON</a>
+                        <a href="https://www.neu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>NEU</a>
+                        <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>CIU</a>
+                        <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMI</a>
+                    </div>
+                    <div style="text-align:center;color:#4a6a8a;font-size:11px;margin:4px 0;">⬇️ Твой маршрут ⬇️</div>
+                    <div class="map-row">
+                        <span class="map-point" style="cursor:default;"><div class="dot green"></div>🇨🇾 Кипр</span>
+                        <span class="map-line">→</span>
+                        <a href="https://www.polito.it/en" target="_blank" class="map-point"><div class="dot blue"></div>🇮🇹 Турин</a>
+                        <span class="map-line">→</span>
+                        <a href="https://www.unipd.it/en" target="_blank" class="map-point"><div class="dot blue"></div>🇮🇹 Падуя</a>
+                        <span class="map-line">→</span>
+                        <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point"><div class="dot gray"></div>🇸🇰 STU</a>
+                    </div>
+                    <div style="font-size:11px;color:#4a6a8a;text-align:center;margin-top:4px;">📍 <strong style="color:#b5d6f0;">Кипр → Италия</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== ВКЛАДКА: КАЙФ ===== -->
+        <div id="tab-fire" class="tab-content">
+            <div class="card">
+                <h2>🔥 Мотивация</h2>
+                <div class="motivation-text" id="motivationDisplay">«Тимбул — это дисциплина. Я делаю.»</div>
+                <div class="flex-center">
+                    <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
+                    <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
+                </div>
+                <div style="text-align:center;font-size:13px;color:#4a6a8a;margin-top:6px;">
+                    💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#b5d6f0;">0</strong>
+                    <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:4px;">➕</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ФУТЕР ===== -->
+        <div class="footer">
+            ⚡ <strong>Дисциплина Тимбула</strong> · Кипр → Италия · B1 → B2 · IT Security
+        </div>
+
     </div>
+    <!-- ===== КОНЕЦ КОНТЕНТА ===== -->
 
     <script>
         // ==========================================================
+        // ===== ЧАСТИЦЫ (антистресс) =====
+        (function() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const COUNT = 55;
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 2.5 + 1.2;
+                    this.speedX = (Math.random() - 0.5) * 0.4;
+                    this.speedY = (Math.random() - 0.5) * 0.4;
+                    this.opacity = Math.random() * 0.35 + 0.1;
+                    this.hue = 200 + Math.random() * 40;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(120, 190, 240, ${this.opacity})`;
+                    ctx.fill();
+                    // свечение
+                    ctx.shadowColor = `rgba(100, 180, 230, ${this.opacity * 0.2})`;
+                    ctx.shadowBlur = 15;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            for (let i = 0; i < COUNT; i++) {
+                particles.push(new Particle());
+            }
+
+            function connectParticles() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 130) {
+                            const opacity = (1 - dist / 130) * 0.12;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(130, 200, 240, ${opacity})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                connectParticles();
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            // ===== ПАУЗА ПРИ СКРОЛЛЕ =====
+            let timeout;
+            document.addEventListener('scroll', () => {
+                clearTimeout(timeout);
+                canvas.style.opacity = '0.4';
+                timeout = setTimeout(() => {
+                    canvas.style.opacity = '1';
+                }, 300);
+            });
+        })();
+
+        // ==========================================================
+        // ===== ОСТАЛЬНОЙ JS =====
+
         // ===== ДЕНЬ =====
         (function() {
             let start = localStorage.getItem('startDate');
@@ -869,7 +1069,6 @@
             });
         });
 
-        // ==========================================================
         // ===== ЧЕК-ЛИСТ =====
         function loadChecklist() {
             document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
@@ -892,14 +1091,11 @@
             }
         }
 
-        // ==========================================================
-        // ===== НОВЫЙ ПРОГРЕСС АНГЛИЙСКОГО =====
-        // Храним прогресс как число от 0 до 100 (где 0 = B1, 100 = C1)
+        // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
         let engProgress = parseInt(localStorage.getItem('engProgress')) || 0;
 
         function updateEngDisplay() {
             const p = engProgress;
-            // B1: 0-33, B2: 34-66, C1: 67-100
             const b1 = Math.min(100, Math.round((p / 33) * 100));
             const b2 = Math.min(100, Math.round(((p - 33) / 33) * 100));
             const c1 = Math.min(100, Math.round(((p - 66) / 34) * 100));
@@ -937,10 +1133,8 @@
                 updateEngDisplay();
             }
         }
-
         updateEngDisplay();
 
-        // ==========================================================
         // ===== СЧЁТЧИКИ =====
         const statKeys = ['calories', 'protein', 'words', 'workouts'];
 
@@ -971,7 +1165,6 @@
             }
         }
 
-        // ==========================================================
         // ===== СОХРАНЕНИЕ ДНЯ =====
         function getChecklistData() {
             const checks = document.querySelectorAll('.checklist input[type="checkbox"]');
@@ -1011,13 +1204,12 @@
             setTimeout(() => msg.classList.remove('show'), 2500);
         }
 
-        // ==========================================================
         // ===== ИСТОРИЯ =====
         function renderHistory() {
             const history = JSON.parse(localStorage.getItem('history')) || [];
             const tbody = document.getElementById('historyBody');
             if (history.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#5a7a9a;padding:12px;">Нет данных</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#4a6a8a;padding:10px;">Нет данных</td></tr>';
                 return;
             }
             const sorted = history.slice().reverse();
@@ -1067,8 +1259,7 @@
             }).catch(() => alert('Скопируй:\n' + text));
         }
 
-        // ==========================================================
-        // ===== СЕРИЯ ДИСЦИПЛИНЫ =====
+        // ===== СЕРИЯ =====
         function renderStreak() {
             const history = JSON.parse(localStorage.getItem('history')) || [];
             if (history.length === 0) {
@@ -1076,14 +1267,11 @@
                 document.getElementById('streakDays').innerHTML = '';
                 return;
             }
-
-            // сортируем по дате
             const sorted = history.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
             let streak = 0;
             let today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            // считаем серию с конца
             for (let i = sorted.length - 1; i >= 0; i--) {
                 const d = new Date(sorted[i].date);
                 d.setHours(0, 0, 0, 0);
@@ -1097,7 +1285,6 @@
 
             document.getElementById('streakCount').textContent = streak;
 
-            // показываем последние 7 дней
             const daysContainer = document.getElementById('streakDays');
             daysContainer.innerHTML = '';
             const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -1122,7 +1309,6 @@
             }
         }
 
-        // ==========================================================
         // ===== МОТИВАЦИЯ =====
         const motivations = [
             '«Тимбул — это дисциплина. Я делаю.»',
@@ -1166,12 +1352,10 @@
             document.getElementById('motivationCounter').textContent = winCount;
         }
 
-        // ==========================================================
         // ===== ЗАГРУЗКА =====
         renderHistory();
         renderStreak();
         console.log('⚡ Дисциплина Тимбула загружена!');
     </script>
 </body>
-</html>
-```
+    </html>
