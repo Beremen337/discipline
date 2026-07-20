@@ -1,126 +1,115 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Тимбул | Кипр → Италия</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Тимбул | Ежедневник</title>
     <style>
-        /* ===== RESET & GLOBAL ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
-            background: #0b0f15;
-            color: #e6edf3;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            padding: 16px;
-            max-width: 1200px;
+            background: #0f1724;
+            color: #d1d9e6;
+            font-family: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
+            padding: 10px;
+            max-width: 700px;
             margin: 0 auto;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 20% 30%, #151e2a 0%, #0b0f15 80%);
+            background-image: radial-gradient(circle at 20% 30%, #1a2538 0%, #0f1724 90%);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .card {
+            background: rgba(20, 30, 44, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            padding: 14px 16px;
+            border: 1px solid #2a3a4f;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 12px;
+        }
+        .card h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #7fa9c9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #8bb9e0;
+            background: linear-gradient(135deg, #6a9bc7, #8bb9e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .badge-day {
+            background: #1e2d40;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #7fa9c9;
+            border: 1px solid #2a3a4f;
+        }
+        .tab-bar {
+            display: flex;
+            gap: 4px;
+            background: rgba(20, 30, 44, 0.6);
+            border-radius: 14px;
+            padding: 4px;
+            border: 1px solid #2a3a4f;
+            margin-bottom: 14px;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #6a7f99;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 50px;
+        }
+        .tab-btn.active {
+            background: #1e2d40;
+            color: #8bb9e0;
+            box-shadow: 0 2px 10px rgba(60, 130, 200, 0.15);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
         }
         @keyframes fadeUp {
             0% {
                 opacity: 0;
-                transform: translateY(18px);
+                transform: translateY(10px);
             }
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px rgba(240, 136, 62, 0.2);
-            }
-            50% {
-                text-shadow: 0 0 30px rgba(240, 136, 62, 0.6);
-            }
-            100% {
-                text-shadow: 0 0 5px rgba(240, 136, 62, 0.2);
-            }
-        }
-        .card {
-            animation: fadeUp 0.5s ease forwards;
-            transition: transform 0.2s, box-shadow 0.3s;
-            background: rgba(22, 27, 34, 0.9);
-            backdrop-filter: blur(4px);
-            border-radius: 18px;
-            padding: 20px 22px 22px;
-            border: 1px solid #30363d;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
-        }
-        .card:hover {
-            transform: scale(1.01);
-            box-shadow: 0 10px 40px rgba(240, 136, 62, 0.15);
-        }
-        h1 {
-            font-size: 34px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #f0883e, #f6a85b, #f0883e);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 3s infinite;
-            display: inline-block;
-        }
-        .subhead {
-            color: #8b949e;
-            font-size: 16px;
-            margin: 4px 0 22px 0;
-            border-left: 4px solid #f0883e;
-            padding-left: 16px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 18px;
-            margin-bottom: 24px;
-        }
-        .card h2 {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 14px;
-            color: #f6a85b;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        table {
-            width: 100%;
-            font-size: 14px;
-            border-collapse: collapse;
-        }
-        td {
-            padding: 6px 4px;
-            border-bottom: 1px solid #21262d;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        .badge {
-            display: inline-block;
-            background: #21262d;
-            padding: 2px 12px;
-            border-radius: 30px;
-            font-size: 12px;
-            color: #8b949e;
-            white-space: nowrap;
-        }
-        .badge-green {
-            background: #1b3a2b;
-            color: #58c48b;
-        }
-        .badge-orange {
-            background: #3d2c1a;
-            color: #f6a85b;
-        }
-        .badge-blue {
-            background: #1a2d3d;
-            color: #58a6ff;
         }
         .checklist label {
             display: flex;
@@ -129,57 +118,36 @@
             padding: 5px 0;
             font-size: 14px;
             cursor: pointer;
-            border-bottom: 1px solid #21262d;
-            transition: 0.2s;
+            border-bottom: 1px solid #1e2d40;
         }
         .checklist label:last-child {
             border-bottom: none;
         }
-        .checklist label:hover {
-            background: #1c2128;
-            border-radius: 8px;
-            padding-left: 6px;
-        }
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #f0883e;
+        .checklist input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #5a8db5;
             cursor: pointer;
             flex-shrink: 0;
         }
-        input[type="checkbox"]:checked+span {
+        .checklist input[type="checkbox"]:checked+span {
             text-decoration: line-through;
-            color: #58a6ff;
+            color: #5a7a99;
             opacity: 0.7;
         }
-        .progress-bar {
-            background: #21262d;
+        .checklist .reset-btn {
+            background: transparent;
+            border: 1px solid #2a3a4f;
+            color: #6a7f99;
+            padding: 2px 12px;
             border-radius: 30px;
-            height: 10px;
-            margin: 10px 0 4px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 10px;
-            border-radius: 30px;
-            background: linear-gradient(90deg, #f0883e, #f6a85b);
-            width: 15%;
-            transition: width 0.8s ease;
-        }
-        .sound-btn {
-            background: #21262d;
-            border: none;
-            color: #e6edf3;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 13px;
+            font-size: 11px;
             cursor: pointer;
-            transition: 0.3s;
-            margin-top: 6px;
+            margin-left: auto;
         }
-        .sound-btn:hover {
-            background: #30363d;
-            transform: scale(1.03);
+        .checklist .reset-btn:hover {
+            background: #1e2d40;
+            color: #8bb9e0;
         }
         .stat-grid {
             display: grid;
@@ -187,21 +155,23 @@
             gap: 8px;
         }
         .stat-item {
-            background: #111820;
+            background: #111d2b;
             border-radius: 12px;
-            padding: 10px;
+            padding: 10px 6px;
             text-align: center;
-            border: 1px solid #21262d;
+            border: 1px solid #1e2d40;
         }
         .stat-item .num {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            color: #f6a85b;
+            color: #8bb9e0;
         }
         .stat-item .label {
-            font-size: 11px;
-            color: #8b949e;
+            font-size: 10px;
+            color: #5a7a99;
             margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
         .stat-item .controls {
             display: flex;
@@ -211,141 +181,201 @@
             align-items: center;
         }
         .stat-item input[type="number"] {
-            width: 50px;
-            background: #0b0f15;
-            border: 1px solid #30363d;
-            color: #e6edf3;
+            width: 44px;
+            background: #0b1420;
+            border: 1px solid #1e2d40;
+            color: #d1d9e6;
             border-radius: 6px;
             padding: 2px 4px;
             font-size: 14px;
             text-align: center;
         }
         .stat-item input[type="number"]:focus {
-            outline: 1px solid #f0883e;
+            outline: 1px solid #5a8db5;
         }
         .btn-sm {
-            background: #21262d;
+            background: #1e2d40;
             border: none;
-            color: #e6edf3;
-            padding: 2px 12px;
+            color: #7fa9c9;
+            padding: 2px 10px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
             transition: 0.2s;
         }
         .btn-sm:hover {
-            background: #30363d;
+            background: #2a3a4f;
         }
         .btn-sm.success {
-            color: #58c48b;
-        }
-        .btn-sm.success:hover {
-            background: #1b3a2b;
+            color: #6a9bc7;
         }
         .btn-sm.danger {
-            color: #f08888;
+            color: #b57a7a;
         }
         .btn-sm.danger:hover {
-            background: #3d1a1a;
+            background: #2d1e1e;
         }
-        .map-container {
-            background: #111820;
-            border-radius: 14px;
-            padding: 14px;
-            border: 1px solid #30363d;
+        .btn {
+            background: #1e2d40;
+            border: 1px solid #2a3a4f;
+            color: #d1d9e6;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background: #2a3a4f;
+        }
+        .btn-export {
+            background: #1a2d2a;
+            border: 1px solid #2a4a3a;
+            color: #6aad8a;
+        }
+        .btn-export:hover {
+            background: #2a4a3a;
+        }
+        .btn-danger {
+            background: #2d1e1e;
+            border: 1px solid #4a2a2a;
+            color: #b57a7a;
+        }
+        .btn-danger:hover {
+            background: #3d2a2a;
+        }
+        .flex-center {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .progress-bar {
+            background: #111d2b;
+            border-radius: 30px;
+            height: 8px;
+            margin: 8px 0 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 8px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #4a7a9f, #8bb9e0);
+            width: 15%;
+            transition: width 0.6s ease;
+        }
+        .country-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            font-size: 13px;
+        }
+        .country-row .country {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: #111d2b;
+            border-radius: 30px;
+            border: 1px solid #1e2d40;
+        }
+        .badge {
+            font-size: 10px;
+            padding: 1px 8px;
+            border-radius: 30px;
+            background: #1e2d40;
+            color: #5a7a99;
+        }
+        .badge.green {
+            background: #1a2d2a;
+            color: #6aad8a;
+        }
+        .badge.orange {
+            background: #2d2a1a;
+            color: #c9a86a;
         }
         .map-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            justify-content: space-around;
-            padding: 6px 0;
+            gap: 4px;
+            justify-content: center;
+            padding: 4px 0;
         }
         .map-point {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 2px;
-            font-size: 12px;
-            color: #8b949e;
-            transition: 0.3s;
-            cursor: pointer;
+            font-size: 11px;
+            color: #6a7f99;
             text-decoration: none;
+            padding: 4px 6px;
+            border-radius: 8px;
+            transition: 0.2s;
+            min-width: 36px;
         }
         .map-point:hover {
-            transform: scale(1.10);
-            color: #f6a85b;
+            background: #1e2d40;
+            color: #8bb9e0;
         }
         .map-point .dot {
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: #f0883e;
-            box-shadow: 0 0 20px rgba(240, 136, 62, 0.4);
+            background: #4a7a9f;
+            box-shadow: 0 0 12px rgba(60, 130, 200, 0.2);
         }
         .map-point .dot.green {
-            background: #58c48b;
-            box-shadow: 0 0 20px rgba(88, 196, 139, 0.3);
+            background: #5a9a7a;
         }
         .map-point .dot.blue {
-            background: #58a6ff;
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+            background: #4a7a9f;
         }
         .map-point .dot.gray {
-            background: #484f58;
-            box-shadow: 0 0 20px rgba(72, 79, 88, 0.3);
+            background: #3a4a5a;
         }
         .map-line {
+            color: #2a3a4f;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            color: #30363d;
-            font-size: 18px;
-            font-weight: 300;
-        }
-        .footer {
-            margin-top: 24px;
-            font-size: 13px;
-            color: #8b949e;
-            text-align: center;
-            border-top: 1px solid #21262d;
-            padding-top: 18px;
-            background: rgba(11, 15, 21, 0.6);
-            border-radius: 14px;
-            padding: 18px;
         }
         .motivation-text {
             font-size: 17px;
-            font-weight: 600;
-            color: #f6a85b;
+            font-weight: 500;
+            color: #8bb9e0;
             text-align: center;
             padding: 12px;
-            background: rgba(240, 136, 62, 0.08);
+            background: rgba(30, 45, 64, 0.4);
             border-radius: 12px;
-            border-left: 4px solid #f0883e;
+            border-left: 3px solid #5a8db5;
             min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .export-btn {
-            background: #1b3a2b;
-            border: none;
-            color: #58c48b;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
+        .counter-win {
+            text-align: center;
+            font-size: 14px;
+            color: #5a7a99;
             margin-top: 6px;
         }
-        .export-btn:hover {
-            background: #2a4d3a;
-            transform: scale(1.03);
+        .footer {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #4a5a6a;
+            text-align: center;
+            border-top: 1px solid #1a2538;
+            padding-top: 12px;
+        }
+        .footer strong {
+            color: #7fa9c9;
         }
         .copy-msg {
-            color: #58c48b;
+            color: #6aad8a;
             font-size: 13px;
+            text-align: center;
             margin-top: 4px;
             opacity: 0;
             transition: 0.3s;
@@ -353,500 +383,255 @@
         .copy-msg.show {
             opacity: 1;
         }
-        .tab-bar {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-            background: rgba(22, 27, 34, 0.6);
-            border-radius: 14px;
-            padding: 4px;
-            border: 1px solid #30363d;
-        }
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: #8b949e;
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            flex: 1;
-            min-width: 80px;
-        }
-        .tab-btn:hover {
-            background: #21262d;
-            color: #e6edf3;
-        }
-        .tab-btn.active {
-            background: #21262d;
-            color: #f6a85b;
-            box-shadow: 0 2px 12px rgba(240, 136, 62, 0.2);
-        }
-        .tab-content {
-            display: none;
-            animation: fadeUp 0.4s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-            justify-content: center;
-        }
-        @media (max-width: 600px) {
+        @media (max-width: 480px) {
             body {
-                padding: 10px;
-            }
-            h1 {
-                font-size: 24px;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .map-row {
-                flex-direction: column;
-                align-items: center;
-                gap: 4px;
-            }
-            .map-line {
-                transform: rotate(90deg);
+                padding: 6px;
                 font-size: 14px;
+            }
+            .card {
+                padding: 10px 12px;
+            }
+            .header h1 {
+                font-size: 22px;
             }
             .stat-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .tab-btn {
+                font-size: 12px;
+                padding: 6px 8px;
+                min-width: 40px;
             }
             .motivation-text {
-                font-size: 14px;
+                font-size: 15px;
                 min-height: 50px;
             }
+            .map-point {
+                font-size: 10px;
+                min-width: 30px;
+                padding: 2px 4px;
+            }
         }
-        .reset-check-btn {
-            background: #21262d;
-            border: none;
-            color: #8b949e;
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-left: 8px;
-        }
-        .reset-check-btn:hover {
-            background: #30363d;
-            color: #e6edf3;
+        @media (max-width: 380px) {
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .country-row {
+                font-size: 12px;
+                gap: 4px 6px;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- ===== ХЕДЕР ===== -->
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <div>
-            <h1>⛵ Тимбул → Кипр → Италия</h1>
-            <div class="subhead">🎯 Красный аттестат · B1 → B2 · IT Security</div>
-        </div>
+    <div class="header">
+        <h1>⛵ Тимбул</h1>
+        <span class="badge-day" id="dayDisplay">День 1</span>
     </div>
 
-    <!-- ===== ВКЛАДКИ ===== -->
+    <!-- ===== ТАБЫ ===== -->
     <div class="tab-bar">
-        <button class="tab-btn active" data-tab="tab-dashboard">📊 Главная</button>
-        <button class="tab-btn" data-tab="tab-counter">📈 Счётчики</button>
-        <button class="tab-btn" data-tab="tab-map">🗺️ Карта вузов</button>
-        <button class="tab-btn" data-tab="tab-motivation">🔥 Мотивация</button>
+        <button class="tab-btn active" data-tab="tab-main">📋 Дела</button>
+        <button class="tab-btn" data-tab="tab-stats">📊 Счёт</button>
+        <button class="tab-btn" data-tab="tab-map">🗺️ Вузы</button>
+        <button class="tab-btn" data-tab="tab-fire">🔥 Кайф</button>
     </div>
 
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА 1: ГЛАВНАЯ ===== -->
-    <div id="tab-dashboard" class="tab-content active">
-        <div class="grid">
-            <!-- СТРАНЫ -->
-            <div class="card">
-                <h2>🌍 Страны</h2>
-                <table>
-                    <tr><td>🇨🇾 Кипр <span class="badge badge-green">старт</span></td><td>$3,765</td></tr>
-                    <tr><td>🇮🇹 Италия <span class="badge badge-orange">цель</span></td><td>от €161</td></tr>
-                    <tr><td>🇸🇰 Словакия <span class="badge">запас</span></td><td>€7,500</td></tr>
-                    <tr><td>🇨🇳 Китай <span class="badge">сложно</span></td><td>$2,400</td></tr>
-                </table>
-                <div style="margin-top:12px;font-size:14px;color:#8b949e;">
-                    ✅ Бакалавриат: <strong style="color:#e6edf3;">EMU (IT Security)</strong><br>
-                    ⏳ Магистратура: <strong style="color:#e6edf3;">Турин / Падуя</strong>
+    <!-- ===== ВКЛАДКА: ДЕЛА ===== -->
+    <div id="tab-main" class="tab-content active">
+        <div class="card checklist">
+            <h2>✅ Чек-лист
+                <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
+            </h2>
+            <label><input type="checkbox" /> <span>YouTube на английском (фон)</span></label>
+            <label><input type="checkbox" /> <span>5 IT-слов (Quizlet)</span></label>
+            <label><input type="checkbox" /> <span>Тренировка</span></label>
+            <label><input type="checkbox" /> <span>150 г белка</span></label>
+            <label><input type="checkbox" /> <span>2.5 л воды</span></label>
+            <label><input type="checkbox" /> <span>Подкаст на прогулке</span></label>
+            <label><input type="checkbox" /> <span>Игры / сериалы на английском</span></label>
+            <label><input type="checkbox" /> <span>Повтор слов перед сном</span></label>
+        </div>
+
+        <div class="card">
+            <h2>🌍 Страны</h2>
+            <div class="country-row">
+                <span class="country">🇨🇾 Кипр <span class="badge green">старт</span> $3,765</span>
+                <span class="country">🇮🇹 Италия <span class="badge orange">цель</span> от €161</span>
+                <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
+                <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
+            </div>
+            <div style="font-size:13px;color:#5a7a99;margin-top:6px;">
+                ✅ Бакалавриат: <strong style="color:#8bb9e0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#8bb9e0;">Турин / Падуя</strong>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🏋️ Неделя</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;">
+                <span><strong>Пн/Ср/Пт</strong> Силовая</span>
+                <span><strong>Вт/Чт/Сб</strong> Кардио 30′</span>
+                <span><strong>Вс</strong> Отдых</span>
+            </div>
+            <div style="font-size:13px;color:#5a7a99;">🔥 Отжимания · V-скручивания · Планка · Бурпи</div>
+            <hr style="border-color:#1e2d40;margin:8px 0;" />
+            <h2 style="margin-top:2px;">🍗 Питание (75 кг)</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;">
+                <span>Белок <strong style="color:#8bb9e0;">150 г</strong></span>
+                <span>Калории <strong style="color:#8bb9e0;">2200–2400</strong></span>
+                <span>Вода <strong style="color:#8bb9e0;">2.5 л</strong></span>
+            </div>
+            <div style="font-size:12px;color:#5a7a99;">🍗 Курица · Яйца · Творог · Рыба · Гречка</div>
+        </div>
+
+        <div class="card">
+            <h2>🇬🇧 Английский B1 → B2</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:#5a7a99;">
+                <span>Артикли <span class="badge">1–2 нед</span></span>
+                <span>Past Continuous <span class="badge">3–4 нед</span></span>
+                <span>Conditionals <span class="badge">5–6 нед</span></span>
+                <span>Предлоги <span class="badge">7–8 нед</span></span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:15%;"></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:12px;color:#5a7a99;">Прогресс: ~<span id="progressPercent">15</span>%</span>
+                <button class="btn" onclick="addProgress()">➕ 5%</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📤 Экспорт</h2>
+            <div class="flex-center">
+                <button class="btn btn-export" onclick="exportProgress()">📋 Скопировать прогресс</button>
+            </div>
+            <div id="copyMsg" class="copy-msg">✅ Скопировано, Тимбул!</div>
+        </div>
+    </div>
+
+    <!-- ===== ВКЛАДКА: СЧЁТ ===== -->
+    <div id="tab-stats" class="tab-content">
+        <div class="card">
+            <h2>📊 Счётчики (сегодня)</h2>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="num" id="statCalories">0</div>
+                    <div class="label">🔥 Калории</div>
+                    <div class="controls">
+                        <input type="number" id="inputCalories" value="0" min="0" step="50" />
+                        <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statProtein">0</div>
+                    <div class="label">🥩 Белок (г)</div>
+                    <div class="controls">
+                        <input type="number" id="inputProtein" value="0" min="0" step="5" />
+                        <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statWords">0</div>
+                    <div class="label">📚 Новых слов</div>
+                    <div class="controls">
+                        <input type="number" id="inputWords" value="0" min="0" step="1" />
+                        <button class="btn-sm success" onclick="updateStat('words')">➕</button>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statWorkouts">0</div>
+                    <div class="label">🏋️ Тренировок</div>
+                    <div class="controls">
+                        <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
+                        <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statWater">0</div>
+                    <div class="label">💧 Вода (л)</div>
+                    <div class="controls">
+                        <input type="number" id="inputWater" value="0" min="0" step="0.1" />
+                        <button class="btn-sm success" onclick="updateStat('water')">➕</button>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statFocus">0</div>
+                    <div class="label">🧠 Сессий</div>
+                    <div class="controls">
+                        <input type="number" id="inputFocus" value="0" min="0" step="1" />
+                        <button class="btn-sm success" onclick="updateStat('focus')">➕</button>
+                    </div>
                 </div>
             </div>
-
-            <!-- ЧЕК-ЛИСТ -->
-            <div class="card checklist">
-                <h2>✅ Чек-лист на сегодня
-                    <button class="reset-check-btn" onclick="resetChecklist()">🔄 Сбросить</button>
-                </h2>
-                <label><input type="checkbox" /> <span>YouTube на английском (фон)</span></label>
-                <label><input type="checkbox" /> <span>5 IT-слов (Quizlet)</span></label>
-                <label><input type="checkbox" /> <span>Тренировка (отжимания / пресс)</span></label>
-                <label><input type="checkbox" /> <span>150 г белка</span></label>
-                <label><input type="checkbox" /> <span>2.5 л воды</span></label>
-                <label><input type="checkbox" /> <span>Подкаст на прогулке</span></label>
-                <label><input type="checkbox" /> <span>Игры / сериалы на английском</span></label>
-                <label><input type="checkbox" /> <span>Повтор слов перед сном</span></label>
-            </div>
-
-            <!-- ТРЕНИРОВКИ + ПИТАНИЕ -->
-            <div class="card">
-                <h2>🏋️ Неделя</h2>
-                <table>
-                    <tr><td><strong>Пн/Ср/Пт</strong></td><td>Силовая (3 круга)</td></tr>
-                    <tr><td><strong>Вт/Чт/Сб</strong></td><td>Кардио 30 мин</td></tr>
-                    <tr><td><strong>Вс</strong></td><td>Отдых</td></tr>
-                </table>
-                <div style="margin-top:12px;font-size:14px;color:#8b949e;">
-                    🔥 Отжимания · V-скручивания · Планка · Бурпи
-                </div>
-                <hr style="border-color:#21262d;margin:12px 0;" />
-                <h2 style="margin-top:4px;">🍗 Питание (75 кг)</h2>
-                <table>
-                    <tr><td>Белок</td><td><strong style="color:#f6a85b;">150 г</strong></td></tr>
-                    <tr><td>Калории</td><td>2200–2400</td></tr>
-                    <tr><td>Вода</td><td>2.5 л</td></tr>
-                </table>
-                <div style="margin-top:8px;font-size:13px;color:#8b949e;">🍗 Курица · Яйца · Творог · Рыба · Гречка</div>
-            </div>
-
-            <!-- АНГЛИЙСКИЙ + ЭКСПОРТ -->
-            <div class="card">
-                <h2>🇬🇧 Английский B1 → B2</h2>
-                <table>
-                    <tr><td>Артикли</td><td class="badge">1–2 нед</td></tr>
-                    <tr><td>Past Continuous</td><td class="badge">3–4 нед</td></tr>
-                    <tr><td>Conditionals</td><td class="badge">5–6 нед</td></tr>
-                    <tr><td>Предлоги</td><td class="badge">7–8 нед</td></tr>
-                </table>
-                <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:15%;"></div></div>
-                <div style="font-size:13px;color:#8b949e;">Прогресс: ~15%</div>
-                <button class="sound-btn" onclick="playSound()">🔊 Прогресс +5%</button>
-
-                <hr style="border-color:#21262d;margin:12px 0;" />
-                <h2 style="margin-top:4px;">📤 Экспорт</h2>
-                <button class="export-btn" onclick="exportProgress()">📋 Скопировать прогресс</button>
-                <div id="copyMsg" class="copy-msg">✅ Скопировано! Тимбул, ты красавчик! 😂</div>
-                <button class="sound-btn" style="margin-top:8px;" onclick="clearAll()">🗑️ Сбросить всё</button>
+            <div class="flex-center" style="margin-top:12px;">
+                <button class="btn btn-danger" onclick="resetStats()">🔄 Сбросить счётчики (на сегодня)</button>
             </div>
         </div>
     </div>
 
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА 2: СЧЁТЧИКИ (только важное) ===== -->
-    <div id="tab-counter" class="tab-content">
-        <div class="grid">
-            <div class="card" style="grid-column:1/-1;">
-                <h2>📈 Твои счётчики</h2>
-                <div class="stat-grid">
-                    <div class="stat-item">
-                        <div class="num" id="statCalories">0</div>
-                        <div class="label">🔥 Калории</div>
-                        <div class="controls">
-                            <input type="number" id="inputCalories" value="0" min="0" step="50" />
-                            <button class="btn-sm success" onclick="updateStat('calories')">➕</button>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="num" id="statProtein">0</div>
-                        <div class="label">🥩 Белок (г)</div>
-                        <div class="controls">
-                            <input type="number" id="inputProtein" value="0" min="0" step="5" />
-                            <button class="btn-sm success" onclick="updateStat('protein')">➕</button>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="num" id="statWords">0</div>
-                        <div class="label">📚 Новых слов</div>
-                        <div class="controls">
-                            <input type="number" id="inputWords" value="0" min="0" step="1" />
-                            <button class="btn-sm success" onclick="updateStat('words')">➕</button>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="num" id="statWorkouts">0</div>
-                        <div class="label">🏋️ Тренировок</div>
-                        <div class="controls">
-                            <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
-                            <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="num" id="statWater">0</div>
-                        <div class="label">💧 Вода (л)</div>
-                        <div class="controls">
-                            <input type="number" id="inputWater" value="0" min="0" step="0.1" />
-                            <button class="btn-sm success" onclick="updateStat('water')">➕</button>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="num" id="statFocus">0</div>
-                        <div class="label">🧠 Сессий фокуса</div>
-                        <div class="controls">
-                            <input type="number" id="inputFocus" value="0" min="0" step="1" />
-                            <button class="btn-sm success" onclick="updateStat('focus')">➕</button>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-                    <button class="btn-sm danger" onclick="resetStats()">🔄 Сбросить счётчики</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА 3: КАРТА ВУЗОВ ===== -->
+    <!-- ===== ВКЛАДКА: КАРТА ВУЗОВ ===== -->
     <div id="tab-map" class="tab-content">
-        <div class="grid">
-            <div class="card" style="grid-column:1/-1;">
-                <h2>🗺️ Карта вузов</h2>
-                <div class="map-container">
-                    <div class="map-row">
-                        <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point">
-                            <div class="dot green"></div>
-                            <span>🇨🇾 EMU</span>
-                        </a>
-                        <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point">
-                            <div class="dot green"></div>
-                            <span>🇨🇾 UON</span>
-                        </a>
-                        <a href="https://www.neu.edu.tr/en" target="_blank" class="map-point">
-                            <div class="dot green"></div>
-                            <span>🇨🇾 NEU</span>
-                        </a>
-                        <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point">
-                            <div class="dot green"></div>
-                            <span>🇨🇾 CIU</span>
-                        </a>
-                        <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point">
-                            <div class="dot green"></div>
-                            <span>🇨🇾 EMI</span>
-                        </a>
-                    </div>
-                    <div style="text-align:center;color:#8b949e;font-size:13px;margin:8px 0;">⬇️ Твой маршрут ⬇️</div>
-                    <div class="map-row">
-                        <div class="map-point" style="cursor:default;">
-                            <div class="dot green"></div>
-                            <span>🇨🇾 Кипр</span>
-                        </div>
-                        <div class="map-line">→</div>
-                        <a href="https://www.polito.it/en" target="_blank" class="map-point">
-                            <div class="dot blue"></div>
-                            <span>🇮🇹 Турин</span>
-                        </a>
-                        <div class="map-line">→</div>
-                        <a href="https://www.unipd.it/en" target="_blank" class="map-point">
-                            <div class="dot blue"></div>
-                            <span>🇮🇹 Падуя</span>
-                        </a>
-                        <div class="map-line">→</div>
-                        <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point">
-                            <div class="dot gray"></div>
-                            <span>🇸🇰 STU</span>
-                        </a>
-                    </div>
-                    <div style="font-size:13px;color:#8b949e;text-align:center;margin-top:8px;">
-                        📍 <strong style="color:#e6edf3;">Твой путь:</strong> Кипр → Италия
-                    </div>
+        <div class="card">
+            <h2>🗺️ Карта вузов</h2>
+            <div style="background:#111d2b;border-radius:12px;padding:10px;border:1px solid #1e2d40;">
+                <div class="map-row">
+                    <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMU</a>
+                    <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point"><div class="dot green"></div>UON</a>
+                    <a href="https://www.neu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>NEU</a>
+                    <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>CIU</a>
+                    <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMI</a>
                 </div>
+                <div style="text-align:center;color:#5a7a99;font-size:12px;margin:6px 0;">⬇️ Твой маршрут ⬇️</div>
+                <div class="map-row">
+                    <span class="map-point" style="cursor:default;"><div class="dot green"></div>🇨🇾 Кипр</span>
+                    <span class="map-line">→</span>
+                    <a href="https://www.polito.it/en" target="_blank" class="map-point"><div class="dot blue"></div>🇮🇹 Турин</a>
+                    <span class="map-line">→</span>
+                    <a href="https://www.unipd.it/en" target="_blank" class="map-point"><div class="dot blue"></div>🇮🇹 Падуя</a>
+                    <span class="map-line">→</span>
+                    <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point"><div class="dot gray"></div>🇸🇰 STU</a>
+                </div>
+                <div style="font-size:12px;color:#5a7a99;text-align:center;margin-top:4px;">📍 <strong style="color:#8bb9e0;">Кипр → Италия</strong></div>
             </div>
         </div>
     </div>
 
-    <!-- ========================================================== -->
-    <!-- ===== ВКЛАДКА 4: МОТИВАЦИЯ ===== -->
-    <div id="tab-motivation" class="tab-content">
-        <div class="grid">
-            <div class="card" style="grid-column:1/-1;">
-                <h2>🔥 Мотивация + Угар</h2>
-                <div class="motivation-text" id="motivationDisplay">
-                    «Тимбул — это я. У меня есть план. Я делаю. Я там буду.»
-                </div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px;">
-                    <button class="sound-btn" onclick="newMotivation()">🎲 Мантра</button>
-                    <button class="sound-btn" onclick="uglyMotivation()">💀 Угар с матами</button>
-                </div>
-                <div style="margin-top:12px;text-align:center;font-size:14px;color:#8b949e;">
-                    <span id="motivationCounter">💪 Ты выдержал 0 хуёвых мыслей сегодня</span>
-                </div>
-                <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-top:4px;">➕ Ещё победа</button>
+    <!-- ===== ВКЛАДКА: КАЙФ ===== -->
+    <div id="tab-fire" class="tab-content">
+        <div class="card">
+            <h2>🔥 Мотивация</h2>
+            <div class="motivation-text" id="motivationDisplay">«Тимбул — это я. У меня есть план.»</div>
+            <div class="flex-center">
+                <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
+                <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
+            </div>
+            <div class="counter-win">
+                💪 Побеждено хуёвых мыслей: <strong id="motivationCounter">0</strong>
+                <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:6px;">➕</button>
             </div>
         </div>
     </div>
 
     <!-- ===== ФУТЕР ===== -->
     <div class="footer">
-        ⚡ Твой путь: <strong>Кипр (бакалавриат)</strong> → <strong>Италия (магистратура)</strong><br />
-        🧠 Ты — <strong>Тимбул</strong>: практичный, ответственный, идёшь по плану<br />
-        🚀 «Тимбул — это я. Я делаю. Я там буду.» · 2 года до старта
+        ⚡ <strong>Тимбул</strong> · Кипр → Италия · B1 → B2 · IT Security
     </div>
 
     <script>
         // ==========================================================
-        // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
-        function playSound() {
-            const fill = document.getElementById('progressFill');
-            let w = parseInt(fill.style.width) || 15;
-            if (w < 95) {
-                w += 5;
-                fill.style.width = w + '%';
-                fill.closest('.card').querySelector('.progress-bar + div').textContent = 'Прогресс: ~' + w + '%';
+        // ===== ДЕНЬ =====
+        (function() {
+            let start = localStorage.getItem('startDate');
+            if (!start) {
+                start = new Date().toISOString();
+                localStorage.setItem('startDate', start);
             }
-        }
+            const diff = Math.floor((Date.now() - new Date(start)) / (1000 * 60 * 60 * 24)) + 1;
+            document.getElementById('dayDisplay').textContent = 'День ' + diff;
+        })();
 
-        // ==========================================================
-        // ===== СЧЁТЧИКИ СТАТИСТИКИ (localStorage) =====
-        const statKeys = ['calories', 'protein', 'words', 'workouts', 'water', 'focus'];
-
-        function loadStats() {
-            statKeys.forEach(key => {
-                const val = parseInt(localStorage.getItem('stat_' + key)) || 0;
-                document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = val;
-                const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-                if (input) input.value = 0;
-            });
-        }
-
-        function updateStat(key) {
-            const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-            let val = parseInt(input.value) || 0;
-            if (val <= 0) return;
-            const current = parseInt(localStorage.getItem('stat_' + key)) || 0;
-            const newVal = current + val;
-            localStorage.setItem('stat_' + key, newVal);
-            document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = newVal;
-            input.value = 0;
-        }
-
-        function resetStats() {
-            if (confirm('Сбросить все счётчики? Тимбул, уверен?')) {
-                statKeys.forEach(key => {
-                    localStorage.setItem('stat_' + key, 0);
-                    document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
-                    const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-                    if (input) input.value = 0;
-                });
-            }
-        }
-
-        // ==========================================================
-        // ===== МОТИВАЦИЯ =====
-        const motivations = [
-            '«Тимбул — это я. У меня есть план. Я делаю. Я там буду.»',
-            '«Хуй пизда залупа волосатая, но Тимбул идёт дальше.»',
-            '«Красный аттестат — не понты, это база, Тимбул.»',
-            '«B1 — это временно. Завтра будет B2, а послезавтра Кипр.»',
-            '«Ты не просто учишь английский — ты строишь будущее, Тимбул.»',
-            '«Страшно? А мне похуй. Я делаю. Я — Тимбул.»',
-            '«Кипр ждёт, Италия ждёт, а ты лежишь? Вставай, Тимбул.»',
-            '«Ты — будущий IT-специалист. Даже хакеры боятся таких, как Тимбул.»',
-            '«Чек-лист сделан? Молодец. Ещё один день — ещё один шаг, Тимбул.»',
-            '«Если не ты, то кто? Если не сейчас, то когда? Тимбул, вперёд!»',
-            '«Тимбул — это бренд. Бренд победы.»',
-            '«Тимбул не сдаётся. Тимбул идёт до конца.»'
-        ];
-
-        const uglyMotivations = [
-            '«Хуй пизда залупа волосатая, Тимбул, ты всё равно красавчик!»',
-            '«Залупа — она и в Африке залупа. А Тимбул — молодец!»',
-            '«Пизда тебе, Тимбул, если не сделаешь. А сделаешь — красава.»',
-            '«Хуй там плавал, а Тимбул на Кипр поедет!»',
-            '«Волосатая залупа — не помеха для IT Security, Тимбул!»',
-            '«Тимбул — бог, даже если бог обосрался. Делай, Тимбул.»',
-            '«Тимбул, ты такой крутой, что у залупы волосы дыбом встают!»',
-            '«Пиздец, Тимбул, но ты справишься!»',
-            '«Хуй с горы, а Тимбул с планом — вот это сила!»',
-            '«Тимбул, ты настолько хорош, что даже хуй завидует!»'
-        ];
-
-        function newMotivation() {
-            const idx = Math.floor(Math.random() * motivations.length);
-            document.getElementById('motivationDisplay').textContent = motivations[idx];
-        }
-
-        function uglyMotivation() {
-            const idx = Math.floor(Math.random() * uglyMotivations.length);
-            document.getElementById('motivationDisplay').textContent = uglyMotivations[idx];
-        }
-
-        let motivationCounter = parseInt(localStorage.getItem('motivationCounter')) || 0;
-
-        function incMotivationCounter() {
-            motivationCounter++;
-            localStorage.setItem('motivationCounter', motivationCounter);
-            document.getElementById('motivationCounter').textContent = '💪 Ты выдержал ' + motivationCounter +
-                ' хуёвых мыслей сегодня';
-        }
-
-        function loadMotivationCounter() {
-            document.getElementById('motivationCounter').textContent = '💪 Ты выдержал ' + motivationCounter +
-                ' хуёвых мыслей сегодня';
-        }
-
-        // ==========================================================
-        // ===== ЭКСПОРТ ПРОГРЕССА =====
-        function exportProgress() {
-            const stats = {};
-            statKeys.forEach(key => {
-                stats[key] = localStorage.getItem('stat_' + key) || 0;
-            });
-            const progress = document.getElementById('progressFill').style.width || '15%';
-            const text = `
-        🚀 ПРОГРЕСС ТИМБУЛА (Хуй пизда залупа волосатая, ты красава!)
-        📅 Дата: ${new Date().toLocaleDateString()}
-        🔥 Калории: ${stats.calories}
-        🥩 Белок: ${stats.protein} г
-        📚 Новых слов: ${stats.words}
-        🏋️ Тренировок: ${stats.workouts}
-        💧 Вода: ${stats.water} л
-        🧠 Сессий фокуса: ${stats.focus}
-        📖 Английский: ${progress}
-        💪 Хуёвых мыслей побеждено: ${motivationCounter}
-        🎯 Цель: Кипр → Италия
-        🦾 Тимбул — это сила!
-        `;
-            navigator.clipboard.writeText(text).then(() => {
-                const msg = document.getElementById('copyMsg');
-                msg.classList.add('show');
-                setTimeout(() => msg.classList.remove('show'), 3000);
-            }).catch(() => {
-                alert('Не удалось скопировать, но вот твой прогресс:\n' + text);
-            });
-        }
-
-        // ==========================================================
-        // ===== ЧЕК-ЛИСТ (localStorage) =====
-        function loadChecklist() {
-            document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
-                const key = 'check_' + cb.parentElement.textContent.trim();
-                if (localStorage.getItem(key) === 'true') {
-                    cb.checked = true;
-                }
-                cb.addEventListener('change', function() {
-                    const k = 'check_' + this.parentElement.textContent.trim();
-                    localStorage.setItem(k, this.checked);
-                });
-            });
-        }
-
-        function resetChecklist() {
-            if (confirm('Сбросить чек-лист? Тимбул, ты уверен? (Данные сохранятся в истории)')) {
-                document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
-                    cb.checked = false;
-                    const k = 'check_' + cb.parentElement.textContent.trim();
-                    localStorage.removeItem(k);
-                });
-            }
-        }
-
-        // ==========================================================
         // ===== ВКЛАДКИ =====
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -857,22 +642,127 @@
             });
         });
 
-        // ==========================================================
-        // ===== СБРОС ВСЕГО =====
-        function clearAll() {
-            if (confirm('Точно сбросить всё? Хуй пизда залупа, Тимбул, но решать тебе.')) {
-                localStorage.clear();
-                location.reload();
+        // ===== ЧЕК-ЛИСТ =====
+        function loadChecklist() {
+            document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
+                const key = 'check_' + cb.parentElement.textContent.trim().slice(0, 30);
+                if (localStorage.getItem(key) === 'true') cb.checked = true;
+                cb.addEventListener('change', function() {
+                    localStorage.setItem('check_' + this.parentElement.textContent.trim().slice(0, 30), this
+                        .checked);
+                });
+            });
+        }
+        loadChecklist();
+
+        function resetChecklist() {
+            if (confirm('Сбросить чек-лист?')) {
+                document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
+                    cb.checked = false;
+                    localStorage.removeItem('check_' + cb.parentElement.textContent.trim().slice(0, 30));
+                });
             }
         }
 
-        // ==========================================================
-        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
+        let progress = parseInt(localStorage.getItem('progress')) || 15;
+        if (progress > 95) progress = 95;
+        document.getElementById('progressFill').style.width = progress + '%';
+        document.getElementById('progressPercent').textContent = progress;
+
+        function addProgress() {
+            if (progress < 95) {
+                progress += 5;
+                localStorage.setItem('progress', progress);
+                document.getElementById('progressFill').style.width = progress + '%';
+                document.getElementById('progressPercent').textContent = progress;
+            }
+        }
+
+        // ===== СЧЁТЧИКИ =====
+        const statKeys = ['calories', 'protein', 'words', 'workouts', 'water', 'focus'];
+
+        function loadStats() {
+            statKeys.forEach(key => {
+                const val = parseInt(localStorage.getItem('stat_' + key)) || 0;
+                document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = val;
+            });
+        }
         loadStats();
-        loadMotivationCounter();
-        loadChecklist();
-        console.log('🚀 Тимбул, твой план загружен. Хуй пизда залупа, погнали!');
+
+        function updateStat(key) {
+            const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
+            let val = parseInt(input.value) || 0;
+            if (val <= 0) return;
+            const current = parseInt(localStorage.getItem('stat_' + key)) || 0;
+            localStorage.setItem('stat_' + key, current + val);
+            document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = current + val;
+            input.value = 0;
+        }
+
+        function resetStats() {
+            if (confirm('Сбросить счётчики на сегодня?')) {
+                statKeys.forEach(key => {
+                    localStorage.setItem('stat_' + key, 0);
+                    document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
+                });
+            }
+        }
+
+        // ===== МОТИВАЦИЯ =====
+        const motivations = [
+            '«Тимбул — это я. У меня есть план. Я делаю.»',
+            '«Хуй пизда залупа, но Тимбул идёт дальше.»',
+            '«Красный аттестат — база, Тимбул.»',
+            '«B1 — временно. Завтра B2, послезавтра Кипр.»',
+            '«Страшно? Похуй. Я — Тимбул, я делаю.»',
+            '«Кипр ждёт, Италия ждёт. Вставай, Тимбул.»',
+            '«Тимбул — бренд победы.»',
+            '«Тимбул не сдаётся. Тимбул идёт до конца.»',
+            '«Если не я, то кто? Если не сейчас, то когда?»'
+        ];
+        const ugly = [
+            '«Хуй пизда залупа волосатая, Тимбул — красавчик!»',
+            '«Залупа — она и в Африке залупа. А Тимбул — молодец!»',
+            '«Пизда тебе, Тимбул, если не сделаешь. А сделаешь — красава.»',
+            '«Хуй там плавал, а Тимбул на Кипр поедет!»',
+            '«Волосатая залупа — не помеха IT Security, Тимбул!»',
+            '«Тимбул — бог, даже если бог обосрался. Делай.»',
+            '«Тимбул, ты такой крутой, что у залупы волосы дыбом!»',
+            '«Пиздец, Тимбул, но ты справишься!»',
+            '«Хуй с горы, а Тимбул с планом — вот это сила!»'
+        ];
+
+        function newMotivation() {
+            document.getElementById('motivationDisplay').textContent = motivations[Math.floor(Math.random() * motivations
+            .length)];
+        }
+
+        function uglyMotivation() {
+            document.getElementById('motivationDisplay').textContent = ugly[Math.floor(Math.random() * ugly.length)];
+        }
+
+        let winCount = parseInt(localStorage.getItem('winCount')) || 0;
+        document.getElementById('motivationCounter').textContent = winCount;
+
+        function incMotivationCounter() {
+            winCount++;
+            localStorage.setItem('winCount', winCount);
+            document.getElementById('motivationCounter').textContent = winCount;
+        }
+
+        // ===== ЭКСПОРТ =====
+        function exportProgress() {
+            const stats = {};
+            statKeys.forEach(key => { stats[key] = localStorage.getItem('stat_' + key) || 0; });
+            const p = localStorage.getItem('progress') || 15;
+            const text =
+                `🚀 ТИМБУЛ: прогресс\n📅 ${new Date().toLocaleDateString()}\n🔥 Калории: ${stats.calories}\n🥩 Белок: ${stats.protein} г\n📚 Слов: ${stats.words}\n🏋️ Тренировок: ${stats.workouts}\n💧 Вода: ${stats.water} л\n🧠 Сессий: ${stats.focus}\n📖 Английский: ${p}%\n💪 Побед: ${winCount}\n🎯 Кипр → Италия`;
+            navigator.clipboard.writeText(text).then(() => {
+                document.getElementById('copyMsg').classList.add('show');
+                setTimeout(() => document.getElementById('copyMsg').classList.remove('show'), 2500);
+            }).catch(() => alert('Скопируй:\n' + text));
+        }
     </script>
 </body>
-</html>
-```
+        </html>
