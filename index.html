@@ -22,47 +22,44 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            transition: background 0.3s;
+            background-image:
+                radial-gradient(ellipse at 20% 30%, #14263e 0%, #0b1424 80%);
         }
 
-        /* ===== ЧАСТИЦЫ (canvas) ===== */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ===== КОНТЕНТ ПОВЕРХ ЧАСТИЦ ===== */
-        .content {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ===== КАРТОЧКИ ===== */
+        /* ===== ПЛАВНЫЕ АНИМАЦИИ (антистресс) ===== */
         .card {
-            background: rgba(16, 30, 52, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(16, 30, 52, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 14px 16px;
-            border: 1px solid rgba(80, 140, 200, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(80, 140, 200, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             margin-bottom: 10px;
-            transition: all 0.3s ease;
-            animation: cardFloat 6s ease-in-out infinite;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: cardFade 0.8s ease forwards;
         }
         .card:hover {
-            border-color: rgba(80, 140, 200, 0.15);
-            box-shadow: 0 8px 40px rgba(0, 20, 60, 0.3);
+            border-color: rgba(80, 140, 200, 0.12);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 48px rgba(0, 20, 60, 0.15);
         }
+
+        @keyframes cardFade {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .card h2 {
             font-size: 12px;
             font-weight: 600;
-            color: #8dbae0;
+            color: #7aaac8;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -70,16 +67,6 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             opacity: 0.7;
-        }
-
-        @keyframes cardFloat {
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-2px);
-            }
         }
 
         /* ===== ХЕДЕР ===== */
@@ -91,18 +78,27 @@
             gap: 6px;
             margin-bottom: 12px;
             padding: 4px 2px;
-            position: relative;
+            animation: headerFade 0.8s ease;
+        }
+        @keyframes headerFade {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .header h1 {
             font-size: 22px;
             font-weight: 700;
             color: #b5d6f0;
-            background: linear-gradient(135deg, #7ab0d8, #b5d6f0, #7ab0d8);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #7ab0d8, #b5d6f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer 4s ease-in-out infinite;
             letter-spacing: -0.3px;
+            animation: shimmer 5s ease-in-out infinite;
         }
         @keyframes shimmer {
             0%,
@@ -114,23 +110,24 @@
             }
         }
         .header .badge-day {
-            background: rgba(26, 44, 68, 0.5);
+            background: rgba(26, 44, 68, 0.4);
             backdrop-filter: blur(8px);
             padding: 4px 14px;
             border-radius: 30px;
             font-size: 13px;
-            color: #8dbae0;
-            border: 1px solid rgba(70, 120, 180, 0.1);
+            color: #7aaac8;
+            border: 1px solid rgba(70, 120, 180, 0.06);
             font-weight: 500;
-            animation: pulseGlow 3s ease-in-out infinite;
+            transition: all 0.3s;
+            animation: pulseGlow 4s ease-in-out infinite;
         }
         @keyframes pulseGlow {
             0%,
             100% {
-                box-shadow: 0 0 10px rgba(60, 130, 200, 0.05);
+                box-shadow: 0 0 10px rgba(60, 130, 200, 0.02);
             }
             50% {
-                box-shadow: 0 0 25px rgba(60, 130, 200, 0.12);
+                box-shadow: 0 0 25px rgba(60, 130, 200, 0.06);
             }
         }
 
@@ -138,33 +135,44 @@
         .tab-bar {
             display: flex;
             gap: 4px;
-            background: rgba(16, 30, 52, 0.4);
+            background: rgba(16, 30, 52, 0.3);
             backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 4px;
-            border: 1px solid rgba(70, 120, 180, 0.06);
+            border: 1px solid rgba(70, 120, 180, 0.04);
             margin-bottom: 12px;
             overflow-x: auto;
+            animation: tabFade 0.6s ease;
+        }
+        @keyframes tabFade {
+            0% {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         .tab-btn {
             background: transparent;
             border: none;
-            color: #5a7a9a;
+            color: #4a6a8a;
             padding: 7px 12px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             white-space: nowrap;
             flex: 1;
             min-width: 44px;
             position: relative;
         }
         .tab-btn.active {
-            background: rgba(40, 80, 130, 0.25);
+            background: rgba(40, 80, 130, 0.2);
             color: #b5d6f0;
-            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.08);
+            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.04);
         }
         .tab-btn:hover {
             color: #b5d6f0;
@@ -177,9 +185,9 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #5a8db5, #8dbae0);
+            background: linear-gradient(90deg, #4a7a9a, #8dbae0);
             border-radius: 10px;
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .tab-btn.active::after {
             width: 30%;
@@ -187,16 +195,15 @@
 
         .tab-content {
             display: none;
-            animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: contentFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .tab-content.active {
             display: block;
         }
-
-        @keyframes fadeSlide {
+        @keyframes contentFade {
             0% {
                 opacity: 0;
-                transform: translateY(12px) scale(0.98);
+                transform: translateY(10px) scale(0.98);
             }
             100% {
                 opacity: 1;
@@ -212,12 +219,12 @@
             padding: 5px 4px;
             font-size: 14px;
             cursor: pointer;
-            border-bottom: 1px solid rgba(40, 80, 130, 0.06);
-            transition: all 0.3s;
+            border-bottom: 1px solid rgba(40, 80, 130, 0.04);
+            transition: all 0.4s ease;
             border-radius: 8px;
         }
         .checklist label:hover {
-            background: rgba(40, 80, 130, 0.06);
+            background: rgba(40, 80, 130, 0.04);
             padding-left: 8px;
         }
         .checklist label:last-child {
@@ -230,29 +237,29 @@
             cursor: pointer;
             flex-shrink: 0;
             border-radius: 6px;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
         }
         .checklist input[type="checkbox"]:checked {
             transform: scale(1.05);
         }
         .checklist input[type="checkbox"]:checked+span {
             text-decoration: line-through;
-            color: #4a6a8a;
+            color: #3a5a7a;
             opacity: 0.5;
         }
         .checklist .reset-btn {
             background: transparent;
-            border: 1px solid rgba(70, 120, 180, 0.08);
-            color: #5a7a9a;
+            border: 1px solid rgba(70, 120, 180, 0.06);
+            color: #4a6a8a;
             padding: 2px 12px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             margin-left: auto;
         }
         .checklist .reset-btn:hover {
-            background: rgba(40, 80, 130, 0.1);
+            background: rgba(40, 80, 130, 0.08);
             color: #b5d6f0;
         }
 
@@ -263,27 +270,28 @@
             gap: 6px;
         }
         .stat-item {
-            background: rgba(12, 26, 46, 0.4);
+            background: rgba(12, 26, 46, 0.3);
             backdrop-filter: blur(4px);
             border-radius: 14px;
             padding: 10px 6px;
             text-align: center;
-            border: 1px solid rgba(70, 120, 180, 0.04);
-            transition: all 0.3s;
+            border: 1px solid rgba(70, 120, 180, 0.03);
+            transition: all 0.5s ease;
         }
         .stat-item:hover {
-            border-color: rgba(70, 120, 180, 0.1);
+            border-color: rgba(70, 120, 180, 0.08);
             transform: translateY(-1px);
         }
         .stat-item .num {
             font-size: 26px;
             font-weight: 700;
             color: #b5d6f0;
-            text-shadow: 0 0 30px rgba(90, 160, 220, 0.05);
+            text-shadow: 0 0 30px rgba(90, 160, 220, 0.03);
+            transition: all 0.3s;
         }
         .stat-item .label {
             font-size: 9px;
-            color: #4a6a8a;
+            color: #3a5a7a;
             margin-top: 2px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -297,73 +305,73 @@
         }
         .stat-item input[type="number"] {
             width: 44px;
-            background: rgba(8, 18, 34, 0.5);
-            border: 1px solid rgba(70, 120, 180, 0.08);
+            background: rgba(8, 18, 34, 0.4);
+            border: 1px solid rgba(70, 120, 180, 0.06);
             color: #d6e2f0;
             border-radius: 8px;
             padding: 3px 4px;
             font-size: 14px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
         }
         .stat-item input[type="number"]:focus {
             outline: none;
-            border-color: rgba(70, 140, 200, 0.2);
-            box-shadow: 0 0 20px rgba(60, 130, 200, 0.03);
+            border-color: rgba(70, 140, 200, 0.15);
+            box-shadow: 0 0 20px rgba(60, 130, 200, 0.02);
         }
 
         .btn-sm {
-            background: rgba(40, 80, 130, 0.12);
+            background: rgba(40, 80, 130, 0.1);
             border: none;
-            color: #7ab0d8;
+            color: #6a9aba;
             padding: 2px 10px;
             border-radius: 30px;
             font-size: 11px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
             font-weight: 600;
         }
         .btn-sm:hover {
-            background: rgba(40, 80, 130, 0.25);
+            background: rgba(40, 80, 130, 0.2);
             color: #b5d6f0;
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
         .btn-sm.success {
-            color: #6aad8a;
+            color: #5a9a7a;
         }
         .btn-sm.success:hover {
-            background: rgba(40, 100, 70, 0.2);
+            background: rgba(40, 100, 70, 0.15);
         }
         .btn-sm.danger {
             color: #b57a7a;
         }
         .btn-sm.danger:hover {
-            background: rgba(100, 40, 40, 0.15);
+            background: rgba(100, 40, 40, 0.1);
         }
 
         .btn {
-            background: rgba(40, 80, 130, 0.1);
-            border: 1px solid rgba(70, 120, 180, 0.08);
+            background: rgba(40, 80, 130, 0.08);
+            border: 1px solid rgba(70, 120, 180, 0.06);
             color: #d6e2f0;
             padding: 5px 16px;
             border-radius: 30px;
             font-size: 13px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
             backdrop-filter: blur(4px);
         }
         .btn:hover {
-            background: rgba(40, 80, 130, 0.2);
-            border-color: rgba(70, 140, 200, 0.15);
+            background: rgba(40, 80, 130, 0.18);
+            border-color: rgba(70, 140, 200, 0.1);
             transform: scale(1.02);
         }
         .btn-export {
-            background: rgba(40, 100, 70, 0.1);
-            border-color: rgba(70, 160, 120, 0.08);
-            color: #6aad8a;
+            background: rgba(40, 100, 70, 0.08);
+            border-color: rgba(70, 160, 120, 0.06);
+            color: #5a9a7a;
         }
         .btn-export:hover {
-            background: rgba(40, 100, 70, 0.2);
+            background: rgba(40, 100, 70, 0.16);
         }
 
         .flex-center {
@@ -390,19 +398,19 @@
         .eng-progress .level-row .level-label {
             width: 26px;
             font-weight: 600;
-            color: #4a6a8a;
+            color: #3a5a7a;
         }
         .eng-progress .level-row .level-bar {
             flex: 1;
             height: 5px;
-            background: rgba(16, 30, 50, 0.4);
+            background: rgba(16, 30, 50, 0.3);
             border-radius: 30px;
             overflow: hidden;
         }
         .eng-progress .level-row .level-bar .fill {
             height: 100%;
             border-radius: 30px;
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 1s cubic-bezier(0.23, 1, 0.32, 1);
             width: 0%;
         }
         .eng-progress .level-row .level-bar .fill.b1 {
@@ -418,16 +426,17 @@
             width: 34px;
             text-align: right;
             font-size: 11px;
-            color: #4a6a8a;
+            color: #3a5a7a;
             font-weight: 500;
         }
         .eng-progress .current-level {
             text-align: center;
             font-size: 13px;
-            color: #8dbae0;
+            color: #7aaac8;
             padding: 3px 0;
-            background: rgba(40, 80, 130, 0.06);
+            background: rgba(40, 80, 130, 0.04);
             border-radius: 8px;
+            transition: all 0.5s ease;
         }
         .eng-progress .current-level strong {
             color: #b5d6f0;
@@ -447,49 +456,55 @@
         }
         .history-table th {
             text-align: left;
-            color: #4a6a8a;
+            color: #3a5a7a;
             font-weight: 500;
             padding: 4px 3px;
-            border-bottom: 1px solid rgba(70, 120, 180, 0.04);
+            border-bottom: 1px solid rgba(70, 120, 180, 0.03);
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .history-table td {
             padding: 4px 3px;
-            border-bottom: 1px solid rgba(70, 120, 180, 0.03);
+            border-bottom: 1px solid rgba(70, 120, 180, 0.02);
+            transition: all 0.3s;
         }
         .history-table tr:last-child td {
             border-bottom: none;
         }
         .history-table .day-row {
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
         .history-table .day-row:hover {
-            background: rgba(40, 80, 130, 0.04);
+            background: rgba(40, 80, 130, 0.03);
         }
         .weekday {
-            color: #4a6a8a;
+            color: #3a5a7a;
             font-size: 10px;
         }
 
         /* ===== СЕРИЯ ===== */
         .streak-box {
-            background: rgba(12, 26, 46, 0.3);
+            background: rgba(12, 26, 46, 0.25);
             border-radius: 14px;
             padding: 10px 14px;
             text-align: center;
-            border: 1px solid rgba(70, 120, 180, 0.04);
+            border: 1px solid rgba(70, 120, 180, 0.03);
+            transition: all 0.5s ease;
+        }
+        .streak-box:hover {
+            border-color: rgba(70, 120, 180, 0.06);
         }
         .streak-box .streak-number {
             font-size: 32px;
             font-weight: 700;
             color: #b5d6f0;
-            text-shadow: 0 0 40px rgba(90, 160, 220, 0.08);
+            text-shadow: 0 0 40px rgba(90, 160, 220, 0.04);
+            transition: all 0.5s ease;
         }
         .streak-box .streak-label {
             font-size: 11px;
-            color: #4a6a8a;
+            color: #3a5a7a;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -504,24 +519,24 @@
             width: 18px;
             height: 18px;
             border-radius: 6px;
-            background: rgba(40, 80, 130, 0.08);
-            border: 1px solid rgba(70, 120, 180, 0.04);
+            background: rgba(40, 80, 130, 0.06);
+            border: 1px solid rgba(70, 120, 180, 0.03);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 8px;
-            color: #4a6a8a;
-            transition: all 0.4s;
+            color: #3a5a7a;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .streak-box .streak-days .day-dot.done {
-            background: rgba(60, 160, 120, 0.15);
-            border-color: rgba(60, 160, 120, 0.1);
-            color: #6aad8a;
-            animation: popDone 0.4s ease;
+            background: rgba(60, 160, 120, 0.12);
+            border-color: rgba(60, 160, 120, 0.08);
+            color: #5a9a7a;
+            animation: popDone 0.5s ease;
         }
         .streak-box .streak-days .day-dot.today {
             border-color: #5a8db5;
-            box-shadow: 0 0 20px rgba(60, 130, 200, 0.06);
+            box-shadow: 0 0 20px rgba(60, 130, 200, 0.04);
         }
         @keyframes popDone {
             0% {
@@ -541,36 +556,45 @@
             color: #b5d6f0;
             text-align: center;
             padding: 12px;
-            background: rgba(26, 44, 68, 0.2);
+            background: rgba(26, 44, 68, 0.15);
             border-radius: 14px;
-            border-left: 3px solid #5a8db5;
+            border-left: 3px solid #4a7a9a;
             min-height: 54px;
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
-            transition: all 0.5s;
+            transition: all 0.6s ease;
         }
 
         .footer {
             margin-top: 12px;
             font-size: 11px;
-            color: #3a4a5a;
+            color: #2a4a5a;
             text-align: center;
-            border-top: 1px solid rgba(70, 120, 180, 0.03);
+            border-top: 1px solid rgba(70, 120, 180, 0.02);
             padding-top: 10px;
+            animation: footerFade 1s ease;
+        }
+        @keyframes footerFade {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         .footer strong {
-            color: #6a8aaa;
+            color: #5a7a9a;
         }
 
         .copy-msg {
-            color: #6aad8a;
+            color: #5a9a7a;
             font-size: 13px;
             text-align: center;
             margin-top: 3px;
             opacity: 0;
-            transition: 0.4s;
+            transition: all 0.5s ease;
         }
         .copy-msg.show {
             opacity: 1;
@@ -587,23 +611,27 @@
             align-items: center;
             gap: 3px;
             padding: 2px 8px;
-            background: rgba(16, 30, 50, 0.2);
+            background: rgba(16, 30, 50, 0.15);
             border-radius: 30px;
-            border: 1px solid rgba(70, 120, 180, 0.04);
+            border: 1px solid rgba(70, 120, 180, 0.03);
+            transition: all 0.3s ease;
+        }
+        .country-row .country:hover {
+            background: rgba(16, 30, 50, 0.25);
         }
         .badge {
             font-size: 9px;
             padding: 1px 6px;
             border-radius: 30px;
-            background: rgba(26, 44, 68, 0.3);
-            color: #4a6a8a;
+            background: rgba(26, 44, 68, 0.2);
+            color: #3a5a7a;
         }
         .badge.green {
-            background: rgba(40, 100, 70, 0.15);
-            color: #6aad8a;
+            background: rgba(40, 100, 70, 0.1);
+            color: #5a9a7a;
         }
         .badge.orange {
-            background: rgba(100, 80, 40, 0.15);
+            background: rgba(100, 80, 40, 0.1);
             color: #c9a86a;
         }
 
@@ -620,37 +648,37 @@
             align-items: center;
             gap: 1px;
             font-size: 10px;
-            color: #5a7a9a;
+            color: #4a6a8a;
             text-decoration: none;
             padding: 3px 4px;
             border-radius: 8px;
-            transition: 0.3s;
+            transition: all 0.4s ease;
             min-width: 32px;
         }
         .map-point:hover {
-            background: rgba(40, 80, 130, 0.08);
-            color: #8dbae0;
-            transform: scale(1.05);
+            background: rgba(40, 80, 130, 0.06);
+            color: #7aaac8;
+            transform: scale(1.04);
         }
         .map-point .dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #4a7a9f;
-            box-shadow: 0 0 12px rgba(60, 130, 200, 0.06);
-            transition: 0.3s;
+            background: #3a6a8a;
+            box-shadow: 0 0 12px rgba(60, 130, 200, 0.04);
+            transition: all 0.3s ease;
         }
         .map-point .dot.green {
-            background: #5a9a7a;
+            background: #4a8a6a;
         }
         .map-point .dot.blue {
-            background: #4a7a9f;
+            background: #3a6a8a;
         }
         .map-point .dot.gray {
-            background: #3a4a5a;
+            background: #2a3a4a;
         }
         .map-line {
-            color: #2a3a4f;
+            color: #1a2a3a;
             font-size: 12px;
             display: flex;
             align-items: center;
@@ -658,11 +686,12 @@
 
         .workout-plan {
             font-size: 12px;
-            color: #8dbae0;
-            background: rgba(16, 30, 50, 0.2);
+            color: #7aaac8;
+            background: rgba(16, 30, 50, 0.15);
             border-radius: 12px;
             padding: 8px 10px;
-            border: 1px solid rgba(70, 120, 180, 0.04);
+            border: 1px solid rgba(70, 120, 180, 0.03);
+            transition: all 0.3s ease;
         }
         .workout-plan strong {
             color: #b5d6f0;
@@ -721,22 +750,40 @@
             height: 3px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(16, 30, 52, 0.2);
+            background: rgba(16, 30, 52, 0.1);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(60, 130, 200, 0.2);
+            background: rgba(60, 130, 200, 0.1);
             border-radius: 10px;
+            transition: all 0.3s;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(60, 130, 200, 0.3);
+            background: rgba(60, 130, 200, 0.2);
+        }
+
+        /* ===== ГРАФИК (SVG) ===== */
+        .chart-container {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 12px;
+            padding: 10px;
+            border: 1px solid rgba(70, 120, 180, 0.03);
+            margin-top: 6px;
+        }
+        .chart-container svg {
+            width: 100%;
+            height: 80px;
+            display: block;
+        }
+        .chart-container .chart-label {
+            font-size: 10px;
+            color: #3a5a7a;
+            text-align: center;
+            margin-top: 4px;
         }
     </style>
 </head>
 <body>
-
-    <!-- ===== ЧАСТИЦЫ ===== -->
-    <canvas id="particles-canvas"></canvas>
 
     <!-- ===== КОНТЕНТ ===== -->
     <div class="content">
@@ -763,11 +810,11 @@
                 <h2>✅ Чек-лист
                     <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
                 </h2>
-                <label><input type="checkbox" class="check-item" /> <span class="label-text">Тренировка (по плану)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span class="label-text">Полезное питание (белок/калории)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span class="label-text">Новые слова (минимум 5)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span class="label-text">Калории и белок записаны</span></label>
-                <label><input type="checkbox" class="check-item" /> <span class="label-text">Разговорный ролик на английском</span></label>
+                <label><input type="checkbox" class="check-item" data-label="Тренировка" /> <span class="label-text">Тренировка (по плану)</span></label>
+                <label><input type="checkbox" class="check-item" data-label="Питание" /> <span class="label-text">Полезное питание (белок/калории)</span></label>
+                <label><input type="checkbox" class="check-item" data-label="Слова" /> <span class="label-text">Новые слова (минимум 5)</span></label>
+                <label><input type="checkbox" class="check-item" data-label="Запись" /> <span class="label-text">Калории и белок записаны</span></label>
+                <label><input type="checkbox" class="check-item" data-label="Английский" /> <span class="label-text">Разговорный ролик на английском</span></label>
             </div>
 
             <div class="card">
@@ -776,7 +823,7 @@
                     <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, отжимания узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
                     <div style="margin-top:4px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели 3×12, обратные отжимания 3×12, подъем гантелей 3×10, гиперэкстензия 3×15</div>
                     <div style="margin-top:4px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног 3×12, отжимания с подъемом таза 3×10, планка 3×40 сек</div>
-                    <div style="margin-top:4px;color:#4a6a8a;font-size:11px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
+                    <div style="margin-top:4px;color:#3a5a7a;font-size:11px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка каждый день</div>
                 </div>
             </div>
 
@@ -788,7 +835,7 @@
                     <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
                     <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
                 </div>
-                <div style="font-size:12px;color:#4a6a8a;margin-top:4px;">
+                <div style="font-size:12px;color:#3a5a7a;margin-top:4px;">
                     ✅ Бакалавриат: <strong style="color:#b5d6f0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#b5d6f0;">Турин / Падуя</strong>
                 </div>
             </div>
@@ -888,12 +935,24 @@
                 <div id="historyMsg" class="copy-msg">✅ Скопировано!</div>
             </div>
 
+            <!-- ===== ГРАФИК ПРОГРЕССА ===== -->
+            <div class="card">
+                <h2>📊 График прогресса</h2>
+                <div class="chart-container" id="chartContainer">
+                    <svg id="progressChart" viewBox="0 0 600 80" preserveAspectRatio="xMidYMid meet"></svg>
+                    <div class="chart-label">последние 10 дней</div>
+                </div>
+            </div>
+
             <div class="card">
                 <h2>🔥 Серия дисциплины</h2>
                 <div class="streak-box">
                     <div class="streak-number" id="streakCount">0</div>
                     <div class="streak-label">дней подряд</div>
                     <div class="streak-days" id="streakDays"></div>
+                    <div style="margin-top:6px;font-size:11px;color:#3a5a7a;">
+                        🏆 Рекорд: <strong id="streakRecord" style="color:#b5d6f0;">0</strong> дней
+                    </div>
                 </div>
             </div>
         </div>
@@ -903,7 +962,7 @@
         <div id="tab-map" class="tab-content">
             <div class="card">
                 <h2>🗺️ Карта вузов</h2>
-                <div style="background:rgba(16,30,50,0.2);border-radius:14px;padding:8px;border:1px solid rgba(70,120,180,0.04);">
+                <div style="background:rgba(16,30,50,0.15);border-radius:14px;padding:8px;border:1px solid rgba(70,120,180,0.03);">
                     <div class="map-row">
                         <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMU</a>
                         <a href="https://www.uon.ac.cy/en/" target="_blank" class="map-point"><div class="dot green"></div>UON</a>
@@ -911,7 +970,7 @@
                         <a href="https://www.ciu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>CIU</a>
                         <a href="https://www.emu.edu.tr/en" target="_blank" class="map-point"><div class="dot green"></div>EMI</a>
                     </div>
-                    <div style="text-align:center;color:#4a6a8a;font-size:11px;margin:4px 0;">⬇️ Твой маршрут ⬇️</div>
+                    <div style="text-align:center;color:#3a5a7a;font-size:11px;margin:4px 0;">⬇️ Твой маршрут ⬇️</div>
                     <div class="map-row">
                         <span class="map-point" style="cursor:default;"><div class="dot green"></div>🇨🇾 Кипр</span>
                         <span class="map-line">→</span>
@@ -921,7 +980,7 @@
                         <span class="map-line">→</span>
                         <a href="https://www.stuba.sk/english.html" target="_blank" class="map-point"><div class="dot gray"></div>🇸🇰 STU</a>
                     </div>
-                    <div style="font-size:11px;color:#4a6a8a;text-align:center;margin-top:4px;">📍 <strong style="color:#b5d6f0;">Кипр → Италия</strong></div>
+                    <div style="font-size:11px;color:#3a5a7a;text-align:center;margin-top:4px;">📍 <strong style="color:#b5d6f0;">Кипр → Италия</strong></div>
                 </div>
             </div>
         </div>
@@ -936,7 +995,7 @@
                     <button class="btn" onclick="newMotivation()">🎲 Мантра</button>
                     <button class="btn" onclick="uglyMotivation()">💀 Угар</button>
                 </div>
-                <div style="text-align:center;font-size:13px;color:#4a6a8a;margin-top:6px;">
+                <div style="text-align:center;font-size:13px;color:#3a5a7a;margin-top:6px;">
                     💪 Побеждено хуёвых мыслей: <strong id="motivationCounter" style="color:#b5d6f0;">0</strong>
                     <button class="btn-sm success" onclick="incMotivationCounter()" style="margin-left:4px;">➕</button>
                 </div>
@@ -949,104 +1008,10 @@
         </div>
 
     </div>
-    <!-- ===== КОНЕЦ КОНТЕНТА ===== -->
 
     <script>
         // ==========================================================
-        // ===== ЧАСТИЦЫ (антистресс) =====
-        (function() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            let width, height;
-            let particles = [];
-            const COUNT = 55;
-
-            function resize() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * width;
-                    this.y = Math.random() * height;
-                    this.size = Math.random() * 2.5 + 1.2;
-                    this.speedX = (Math.random() - 0.5) * 0.4;
-                    this.speedY = (Math.random() - 0.5) * 0.4;
-                    this.opacity = Math.random() * 0.35 + 0.1;
-                    this.hue = 200 + Math.random() * 40;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.x < 0 || this.x > width) this.speedX *= -1;
-                    if (this.y < 0 || this.y > height) this.speedY *= -1;
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(120, 190, 240, ${this.opacity})`;
-                    ctx.fill();
-                    // свечение
-                    ctx.shadowColor = `rgba(100, 180, 230, ${this.opacity * 0.2})`;
-                    ctx.shadowBlur = 15;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
-            }
-
-            for (let i = 0; i < COUNT; i++) {
-                particles.push(new Particle());
-            }
-
-            function connectParticles() {
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 130) {
-                            const opacity = (1 - dist / 130) * 0.12;
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = `rgba(130, 200, 240, ${opacity})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.stroke();
-                        }
-                    }
-                }
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                connectParticles();
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-
-            // ===== ПАУЗА ПРИ СКРОЛЛЕ =====
-            let timeout;
-            document.addEventListener('scroll', () => {
-                clearTimeout(timeout);
-                canvas.style.opacity = '0.4';
-                timeout = setTimeout(() => {
-                    canvas.style.opacity = '1';
-                }, 300);
-            });
-        })();
-
-        // ==========================================================
-        // ===== ОСТАЛЬНОЙ JS =====
+        // ===== ОСНОВНОЙ JS =====
 
         // ===== ДЕНЬ =====
         (function() {
@@ -1069,7 +1034,8 @@
             });
         });
 
-        // ===== ЧЕК-ЛИСТ =====
+        // ==========================================================
+        // ===== ЧЕК-ЛИСТ (автосохранение) =====
         function loadChecklist() {
             document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb) => {
                 const key = 'check_' + cb.parentElement.textContent.trim().slice(0, 30);
@@ -1077,6 +1043,7 @@
                 cb.addEventListener('change', function() {
                     localStorage.setItem('check_' + this.parentElement.textContent.trim().slice(0, 30), this
                         .checked);
+                    autoSaveDay();
                 });
             });
         }
@@ -1088,9 +1055,41 @@
                     cb.checked = false;
                     localStorage.removeItem('check_' + cb.parentElement.textContent.trim().slice(0, 30));
                 });
+                autoSaveDay();
             }
         }
 
+        // ==========================================================
+        // ===== АВТОСОХРАНЕНИЕ ДНЯ =====
+        function autoSaveDay() {
+            const day = document.getElementById('dayDisplay').textContent;
+            const checks = getChecklistData();
+            const data = {
+                day: day,
+                calories: parseInt(localStorage.getItem('stat_calories')) || 0,
+                protein: parseInt(localStorage.getItem('stat_protein')) || 0,
+                words: parseInt(localStorage.getItem('stat_words')) || 0,
+                workouts: parseInt(localStorage.getItem('stat_workouts')) || 0,
+                checks_done: checks.done,
+                checks_total: checks.total,
+                date: new Date().toLocaleDateString()
+            };
+
+            let history = JSON.parse(localStorage.getItem('history')) || [];
+            const today = new Date().toLocaleDateString();
+            const existing = history.findIndex(h => h.date === today);
+            if (existing !== -1) {
+                history[existing] = data;
+            } else {
+                history.push(data);
+            }
+            localStorage.setItem('history', JSON.stringify(history));
+            renderHistory();
+            renderStreak();
+            renderChart();
+        }
+
+        // ==========================================================
         // ===== ПРОГРЕСС АНГЛИЙСКОГО =====
         let engProgress = parseInt(localStorage.getItem('engProgress')) || 0;
 
@@ -1135,6 +1134,7 @@
         }
         updateEngDisplay();
 
+        // ==========================================================
         // ===== СЧЁТЧИКИ =====
         const statKeys = ['calories', 'protein', 'words', 'workouts'];
 
@@ -1154,6 +1154,7 @@
             localStorage.setItem('stat_' + key, current + val);
             document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = current + val;
             input.value = 0;
+            autoSaveDay();
         }
 
         function resetStats() {
@@ -1162,10 +1163,12 @@
                     localStorage.setItem('stat_' + key, 0);
                     document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
                 });
+                autoSaveDay();
             }
         }
 
-        // ===== СОХРАНЕНИЕ ДНЯ =====
+        // ==========================================================
+        // ===== СОХРАНЕНИЕ ДНЯ (ручное) =====
         function getChecklistData() {
             const checks = document.querySelectorAll('.checklist input[type="checkbox"]');
             let done = 0;
@@ -1174,42 +1177,19 @@
         }
 
         function saveDayStats() {
-            const day = document.getElementById('dayDisplay').textContent;
-            const checks = getChecklistData();
-            const data = {
-                day: day,
-                calories: parseInt(localStorage.getItem('stat_calories')) || 0,
-                protein: parseInt(localStorage.getItem('stat_protein')) || 0,
-                words: parseInt(localStorage.getItem('stat_words')) || 0,
-                workouts: parseInt(localStorage.getItem('stat_workouts')) || 0,
-                checks_done: checks.done,
-                checks_total: checks.total,
-                date: new Date().toLocaleDateString()
-            };
-
-            let history = JSON.parse(localStorage.getItem('history')) || [];
-            const today = new Date().toLocaleDateString();
-            const existing = history.findIndex(h => h.date === today);
-            if (existing !== -1) {
-                history[existing] = data;
-            } else {
-                history.push(data);
-            }
-            localStorage.setItem('history', JSON.stringify(history));
-            renderHistory();
-            renderStreak();
-
+            autoSaveDay();
             const msg = document.getElementById('saveMsg');
             msg.classList.add('show');
             setTimeout(() => msg.classList.remove('show'), 2500);
         }
 
+        // ==========================================================
         // ===== ИСТОРИЯ =====
         function renderHistory() {
             const history = JSON.parse(localStorage.getItem('history')) || [];
             const tbody = document.getElementById('historyBody');
             if (history.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#4a6a8a;padding:10px;">Нет данных</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#3a5a7a;padding:10px;">Нет данных</td></tr>';
                 return;
             }
             const sorted = history.slice().reverse();
@@ -1230,6 +1210,7 @@
                 localStorage.removeItem('history');
                 renderHistory();
                 renderStreak();
+                renderChart();
             }
         }
 
@@ -1259,19 +1240,64 @@
             }).catch(() => alert('Скопируй:\n' + text));
         }
 
+        // ==========================================================
+        // ===== ГРАФИК =====
+        function renderChart() {
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            const svg = document.getElementById('progressChart');
+            if (history.length === 0) {
+                svg.innerHTML =
+                    `<text x="300" y="45" text-anchor="middle" fill="#3a5a7a" font-size="12">Нет данных для графика</text>`;
+                return;
+            }
+
+            const sorted = history.slice().slice(-10);
+            const maxVal = Math.max(5, ...sorted.map(h => Math.max(h.calories || 0, h.protein || 0, h.words || 0, h
+            .workouts || 0)));
+
+            let points = '';
+            let labels = '';
+            const w = 600,
+                h = 80,
+                pad = 20;
+            const step = (w - pad * 2) / Math.max(1, sorted.length - 1);
+
+            sorted.forEach((item, i) => {
+                const x = pad + i * step;
+                const val = (item.checks_done || 0) / Math.max(1, item.checks_total || 5);
+                const y = h - pad - val * (h - pad * 2);
+                points += `${x},${y} `;
+                labels += `<text x="${x}" y="${h - 4}" text-anchor="middle" fill="#3a5a7a" font-size="7">${item.day}</text>`;
+            });
+
+            svg.innerHTML = `
+                <polyline points="${points}" fill="none" stroke="#5a8db5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                ${points.split(' ').map((p, i) => {
+                    const [x, y] = p.split(',');
+                    return `<circle cx="${x}" cy="${y}" r="3" fill="#5a8db5" opacity="0.8"/>`;
+                }).join('')}
+                ${labels}
+            `;
+        }
+
+        // ==========================================================
         // ===== СЕРИЯ =====
         function renderStreak() {
             const history = JSON.parse(localStorage.getItem('history')) || [];
             if (history.length === 0) {
                 document.getElementById('streakCount').textContent = '0';
                 document.getElementById('streakDays').innerHTML = '';
+                document.getElementById('streakRecord').textContent = '0';
                 return;
             }
+
             const sorted = history.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
             let streak = 0;
+            let record = parseInt(localStorage.getItem('streakRecord')) || 0;
             let today = new Date();
             today.setHours(0, 0, 0, 0);
 
+            // считаем текущую серию
             for (let i = sorted.length - 1; i >= 0; i--) {
                 const d = new Date(sorted[i].date);
                 d.setHours(0, 0, 0, 0);
@@ -1283,8 +1309,16 @@
                 }
             }
 
-            document.getElementById('streakCount').textContent = streak;
+            // обновляем рекорд
+            if (streak > record) {
+                record = streak;
+                localStorage.setItem('streakRecord', record);
+            }
 
+            document.getElementById('streakCount').textContent = streak;
+            document.getElementById('streakRecord').textContent = record;
+
+            // отображаем последние 7 дней
             const daysContainer = document.getElementById('streakDays');
             daysContainer.innerHTML = '';
             const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -1309,6 +1343,7 @@
             }
         }
 
+        // ==========================================================
         // ===== МОТИВАЦИЯ =====
         const motivations = [
             '«Тимбул — это дисциплина. Я делаю.»',
@@ -1352,10 +1387,16 @@
             document.getElementById('motivationCounter').textContent = winCount;
         }
 
+        // ==========================================================
         // ===== ЗАГРУЗКА =====
         renderHistory();
         renderStreak();
+        renderChart();
+
+        // автосохранение при загрузке
+        setTimeout(autoSaveDay, 500);
+
         console.log('⚡ Дисциплина Тимбула загружена!');
     </script>
 </body>
-    </html>
+                        </html>
