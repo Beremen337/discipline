@@ -17,14 +17,14 @@
             color: #d6e2f0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
-            padding: 14px;
+            padding: 12px;
             display: flex;
             justify-content: center;
             background-image: radial-gradient(ellipse at 20% 30%, #151f32 0%, #0c111d 90%);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
         }
 
@@ -34,20 +34,19 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 8px;
+            margin-bottom: 14px;
         }
         .header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
             background: linear-gradient(135deg, #7ab0d8, #b5d6f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
         }
         .header .badge {
             background: rgba(26, 44, 68, 0.5);
-            padding: 4px 16px;
+            padding: 4px 14px;
             border-radius: 30px;
             font-size: 13px;
             color: #7aaac8;
@@ -58,19 +57,18 @@
         .tab-bar {
             display: flex;
             gap: 4px;
-            background: rgba(16, 30, 52, 0.25);
+            background: rgba(16, 30, 52, 0.2);
             border-radius: 14px;
             padding: 4px;
             border: 1px solid rgba(70, 120, 180, 0.05);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             overflow-x: auto;
-            flex-wrap: nowrap;
         }
         .tab-btn {
             background: transparent;
             border: none;
             color: #4a6a8a;
-            padding: 8px 14px;
+            padding: 7px 14px;
             border-radius: 10px;
             font-size: 13px;
             font-weight: 600;
@@ -78,13 +76,12 @@
             transition: all 0.3s ease;
             white-space: nowrap;
             flex: 1;
-            min-width: 50px;
+            min-width: 44px;
             text-align: center;
         }
         .tab-btn.active {
             background: rgba(40, 80, 130, 0.25);
             color: #b5d6f0;
-            box-shadow: 0 2px 20px rgba(60, 130, 200, 0.06);
         }
         .tab-btn:hover {
             color: #b5d6f0;
@@ -92,7 +89,7 @@
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.35s ease;
+            animation: fadeIn 0.3s ease;
         }
         .tab-content.active {
             display: block;
@@ -101,7 +98,7 @@
         @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(8px);
+                transform: translateY(6px);
             }
             100% {
                 opacity: 1;
@@ -111,98 +108,82 @@
 
         /* ===== CARDS ===== */
         .card {
-            background: rgba(16, 30, 52, 0.45);
-            backdrop-filter: blur(8px);
-            border-radius: 16px;
-            padding: 16px 18px;
+            background: rgba(16, 30, 52, 0.4);
+            backdrop-filter: blur(6px);
+            border-radius: 14px;
+            padding: 14px 16px;
             border: 1px solid rgba(80, 140, 200, 0.06);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            border-color: rgba(80, 140, 200, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 10px;
         }
         .card h2 {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: #5a7a9a;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 6px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        .card h2 .icon {
-            font-size: 16px;
         }
 
         /* ===== GRIDS ===== */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
         .grid-5 {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
 
         /* ===== STAT CARDS ===== */
         .stat-card {
-            background: rgba(12, 26, 46, 0.25);
-            border-radius: 12px;
-            padding: 12px 10px;
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            padding: 10px 8px;
             text-align: center;
             border: 1px solid rgba(70, 120, 180, 0.04);
-            transition: all 0.3s ease;
-        }
-        .stat-card:hover {
-            border-color: rgba(70, 120, 180, 0.08);
         }
         .stat-card .num {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
             color: #b5d6f0;
         }
         .stat-card .label {
-            font-size: 10px;
+            font-size: 9px;
             color: #3a5a7a;
             margin-top: 2px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        .stat-card .sub {
-            font-size: 11px;
-            color: #5a7a9a;
-            margin-top: 2px;
-        }
 
         /* ===== PROGRESS BAR ===== */
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: rgba(16, 30, 50, 0.3);
             border-radius: 30px;
             overflow: hidden;
-            margin: 4px 0;
+            margin: 3px 0;
         }
         .progress-bar .fill {
             height: 100%;
             border-radius: 30px;
-            transition: width 0.8s ease;
+            transition: width 0.6s ease;
             width: 0%;
         }
         .progress-bar .fill.green {
@@ -217,14 +198,11 @@
         .progress-bar .fill.purple {
             background: linear-gradient(90deg, #6a3a8a, #b57aed);
         }
-        .progress-bar .fill.red {
-            background: linear-gradient(90deg, #8a3a3a, #ed5a5a);
-        }
 
         .progress-label {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 11px;
             color: #5a7a9a;
         }
         .progress-label strong {
@@ -235,25 +213,25 @@
         .char-stats {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            margin: 8px 0;
+            gap: 6px;
+            margin: 6px 0;
         }
         .char-stat {
             text-align: center;
-            padding: 6px 4px;
-            background: rgba(12, 26, 46, 0.2);
-            border-radius: 10px;
+            padding: 5px 2px;
+            background: rgba(12, 26, 46, 0.15);
+            border-radius: 8px;
             border: 1px solid rgba(70, 120, 180, 0.04);
         }
         .char-stat .icon {
-            font-size: 20px;
+            font-size: 18px;
         }
         .char-stat .name {
-            font-size: 10px;
+            font-size: 9px;
             color: #5a7a9a;
         }
         .char-stat .val {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: #b5d6f0;
         }
@@ -261,32 +239,27 @@
         /* ===== QUICK ACTIONS ===== */
         .quick-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin-top: 6px;
         }
         .quick-btn {
-            background: rgba(40, 80, 130, 0.12);
+            background: rgba(40, 80, 130, 0.1);
             border: 1px solid rgba(70, 120, 180, 0.06);
             color: #d6e2f0;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             font-weight: 500;
         }
         .quick-btn:hover {
-            background: rgba(40, 80, 130, 0.25);
-            border-color: rgba(70, 140, 200, 0.1);
+            background: rgba(40, 80, 130, 0.2);
         }
         .quick-btn.success {
             background: rgba(40, 120, 70, 0.15);
             border-color: rgba(60, 200, 120, 0.08);
             color: #5aed8a;
-        }
-        .quick-btn.success:hover {
-            background: rgba(40, 120, 70, 0.25);
         }
         .quick-btn.danger {
             background: rgba(120, 40, 40, 0.15);
@@ -294,21 +267,21 @@
             color: #ed5a5a;
         }
 
-        /* ===== BODY ===== */
+        /* ===== BODY MUSCLES ===== */
         .muscle-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 5px;
         }
         .muscle-item {
-            background: rgba(12, 26, 46, 0.2);
-            border-radius: 10px;
-            padding: 8px 6px;
+            background: rgba(12, 26, 46, 0.15);
+            border-radius: 8px;
+            padding: 6px 4px;
             text-align: center;
             border: 1px solid rgba(70, 120, 180, 0.04);
         }
         .muscle-item .name {
-            font-size: 11px;
+            font-size: 10px;
             color: #5a7a9a;
         }
         .muscle-item .val {
@@ -317,41 +290,12 @@
             color: #b5d6f0;
         }
 
-        /* ===== PROJECTS ===== */
-        .project-item {
-            background: rgba(12, 26, 46, 0.2);
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 6px;
-            border: 1px solid rgba(70, 120, 180, 0.04);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .project-item .name {
-            font-weight: 500;
-            color: #b5d6f0;
-            font-size: 14px;
-        }
-        .project-item .status {
-            font-size: 12px;
-            color: #5a7a9a;
-        }
-        .project-item .status.done {
-            color: #5aed8a;
-        }
-        .project-item .status.inprogress {
-            color: #edba5a;
-        }
-
         /* ===== UNI ===== */
         .uni-item {
-            background: rgba(12, 26, 46, 0.2);
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 6px;
+            background: rgba(12, 26, 46, 0.15);
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 4px;
             border: 1px solid rgba(70, 120, 180, 0.04);
         }
         .uni-item .name {
@@ -360,24 +304,23 @@
             font-size: 14px;
         }
         .uni-item .detail {
-            font-size: 12px;
+            font-size: 11px;
             color: #5a7a9a;
         }
 
         /* ===== ACHIEVEMENTS ===== */
         .ach-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 6px;
         }
         .ach-item {
-            background: rgba(12, 26, 46, 0.2);
-            border-radius: 10px;
-            padding: 10px 8px;
+            background: rgba(12, 26, 46, 0.15);
+            border-radius: 8px;
+            padding: 8px 4px;
             text-align: center;
             border: 1px solid rgba(70, 120, 180, 0.04);
-            transition: all 0.3s ease;
-            font-size: 12px;
+            font-size: 11px;
             color: #5a7a9a;
         }
         .ach-item.unlocked {
@@ -385,27 +328,26 @@
             color: #b5d6f0;
         }
         .ach-item .icon {
-            font-size: 24px;
+            font-size: 20px;
             display: block;
-            margin-bottom: 2px;
         }
         .ach-item.locked {
             filter: grayscale(1);
-            opacity: 0.35;
+            opacity: 0.3;
         }
 
         /* ===== SETTINGS ===== */
         .setting-row {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 6px 0;
+            gap: 10px;
+            padding: 5px 0;
             border-bottom: 1px solid rgba(40, 80, 130, 0.04);
             flex-wrap: wrap;
         }
         .setting-row label {
-            min-width: 100px;
-            font-size: 13px;
+            min-width: 90px;
+            font-size: 12px;
             color: #7aaac8;
         }
         .setting-row input,
@@ -413,10 +355,10 @@
             background: rgba(8, 18, 34, 0.4);
             border: 1px solid rgba(70, 120, 180, 0.06);
             color: #d6e2f0;
-            border-radius: 8px;
-            padding: 4px 10px;
-            font-size: 13px;
-            width: 100px;
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 12px;
+            width: 80px;
         }
         .setting-row input:focus,
         .setting-row select:focus {
@@ -428,15 +370,14 @@
             background: rgba(40, 80, 130, 0.1);
             border: 1px solid rgba(70, 120, 180, 0.06);
             color: #d6e2f0;
-            padding: 6px 18px;
+            padding: 5px 16px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
         .btn:hover {
             background: rgba(40, 80, 130, 0.2);
-            border-color: rgba(70, 140, 200, 0.1);
         }
         .btn-success {
             background: rgba(40, 120, 70, 0.12);
@@ -449,19 +390,19 @@
 
         .flex-center {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 8px;
             }
             .header h1 {
-                font-size: 22px;
+                font-size: 20px;
             }
             .grid-2,
             .grid-3,
@@ -477,21 +418,18 @@
             }
             .tab-btn {
                 font-size: 11px;
-                padding: 6px 10px;
-                min-width: 40px;
+                padding: 5px 10px;
+                min-width: 36px;
             }
             .stat-card .num {
-                font-size: 20px;
-            }
-            .quick-actions {
-                gap: 4px;
+                font-size: 18px;
             }
             .quick-btn {
-                padding: 4px 12px;
-                font-size: 12px;
+                font-size: 11px;
+                padding: 4px 10px;
             }
             .ach-grid {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
             }
         }
 
@@ -509,26 +447,26 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .header h1 {
-                font-size: 20px;
-            }
-            .card {
-                padding: 12px 14px;
-            }
-            .stat-card .num {
                 font-size: 18px;
             }
-            .setting-row {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 4px;
+            .card {
+                padding: 10px 12px;
             }
-            .setting-row input {
-                width: 100%;
+            .stat-card .num {
+                font-size: 16px;
             }
             .tab-btn {
                 font-size: 10px;
                 padding: 4px 8px;
-                min-width: 34px;
+                min-width: 30px;
+            }
+            .setting-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 3px;
+            }
+            .setting-row input {
+                width: 100%;
             }
         }
 
@@ -544,9 +482,6 @@
             background: rgba(60, 130, 200, 0.15);
             border-radius: 10px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(60, 130, 200, 0.25);
-        }
     </style>
 </head>
 <body>
@@ -560,50 +495,46 @@
 
         <!-- ===== TAB BAR ===== -->
         <div class="tab-bar">
-            <button class="tab-btn active" data-tab="tab-main">🏠 Главная</button>
-            <button class="tab-btn" data-tab="tab-body">💪 Тело</button>
-            <button class="tab-btn" data-tab="tab-english">🇬🇧 Английский</button>
-            <button class="tab-btn" data-tab="tab-uni">🎓 Поступление</button>
-            <button class="tab-btn" data-tab="tab-projects">🚀 Проекты</button>
-            <button class="tab-btn" data-tab="tab-stats">📊 Статистика</button>
-            <button class="tab-btn" data-tab="tab-achievements">🏆 Достижения</button>
-            <button class="tab-btn" data-tab="tab-settings">⚙️ Настройки</button>
+            <button class="tab-btn active" data-tab="tab-main">🏠</button>
+            <button class="tab-btn" data-tab="tab-body">💪</button>
+            <button class="tab-btn" data-tab="tab-english">🇬🇧</button>
+            <button class="tab-btn" data-tab="tab-uni">🎓</button>
+            <button class="tab-btn" data-tab="tab-stats">📊</button>
+            <button class="tab-btn" data-tab="tab-achievements">🏆</button>
+            <button class="tab-btn" data-tab="tab-settings">⚙️</button>
         </div>
 
         <!-- ========================================================== -->
         <!-- ===== TAB: ГЛАВНАЯ ===== -->
         <div id="tab-main" class="tab-content active">
 
-            <!-- УРОВЕНЬ + XP -->
-            <div class="card" style="background:rgba(16,30,52,0.6);border-color:rgba(80,140,200,0.08);">
-                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div class="card" style="background:rgba(16,30,52,0.55);border-color:rgba(80,140,200,0.08);">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
                     <div>
-                        <div style="font-size:13px;color:#5a7a9a;">Уровень</div>
-                        <div style="font-size:36px;font-weight:700;color:#b5d6f0;" id="levelDisplay">1</div>
+                        <div style="font-size:11px;color:#5a7a9a;">Уровень</div>
+                        <div style="font-size:30px;font-weight:700;color:#b5d6f0;" id="levelDisplay">1</div>
                     </div>
                     <div style="text-align:right;flex:1;">
-                        <div style="font-size:13px;color:#5a7a9a;">XP</div>
-                        <div style="font-size:18px;font-weight:600;color:#edba5a;" id="xpDisplay">0 / 100</div>
-                        <div class="progress-bar" style="height:6px;width:100%;"><div class="fill orange" id="xpBar" style="width:0%;"></div></div>
+                        <div style="font-size:11px;color:#5a7a9a;">XP</div>
+                        <div style="font-size:15px;font-weight:600;color:#edba5a;" id="xpDisplay">0 / 100</div>
+                        <div class="progress-bar" style="height:4px;"><div class="fill orange" id="xpBar" style="width:0%;"></div></div>
                     </div>
-                    <div style="text-align:center;min-width:80px;">
-                        <div style="font-size:13px;color:#5a7a9a;">Прогресс дня</div>
-                        <div style="font-size:28px;font-weight:700;color:#5aed8a;" id="dayProgressText">0%</div>
-                        <div class="progress-bar" style="height:4px;width:80px;margin:2px auto;"><div class="fill green" id="dayProgressBar" style="width:0%;"></div></div>
+                    <div style="text-align:center;min-width:60px;">
+                        <div style="font-size:11px;color:#5a7a9a;">День</div>
+                        <div style="font-size:22px;font-weight:700;color:#5aed8a;" id="dayProgressText">0%</div>
+                        <div class="progress-bar" style="height:3px;width:50px;margin:2px auto;"><div class="fill green" id="dayProgressBar" style="width:0%;"></div></div>
                     </div>
                 </div>
             </div>
 
-            <!-- ХАРАКТЕРИСТИКИ -->
             <div class="char-stats" id="charStats">
                 <div class="char-stat"><div class="icon">💪</div><div class="name">Тело</div><div class="val" id="statBody">0%</div></div>
                 <div class="char-stat"><div class="icon">🧠</div><div class="name">Учёба</div><div class="val" id="statStudy">0%</div></div>
                 <div class="char-stat"><div class="icon">🇬🇧</div><div class="name">Английский</div><div class="val" id="statEnglish">0%</div></div>
-                <div class="char-stat"><div class="icon">💻</div><div class="name">Проекты</div><div class="val" id="statProjects">0%</div></div>
                 <div class="char-stat"><div class="icon">🔥</div><div class="name">Дисциплина</div><div class="val" id="statDiscipline">0%</div></div>
+                <div class="char-stat"><div class="icon">🎯</div><div class="name">Поступление</div><div class="val" id="statUni">0%</div></div>
             </div>
 
-            <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
             <div class="card">
                 <h2>⚡ Быстрые действия</h2>
                 <div class="quick-actions">
@@ -612,16 +543,15 @@
                     <button class="quick-btn" onclick="quickAction('study')">🧠 Учёба</button>
                     <button class="quick-btn success" onclick="quickAction('protein')">🥩 +10г белка</button>
                     <button class="quick-btn" onclick="quickAction('calories')">🔥 +200 калорий</button>
-                    <button class="quick-btn danger" onclick="quickAction('reset')">🔄 Сброс дня</button>
+                    <button class="quick-btn danger" onclick="quickAction('reset')">🔄 Сброс</button>
                 </div>
             </div>
 
-            <!-- БЫСТРАЯ СТАТИСТИКА -->
             <div class="grid-4">
                 <div class="stat-card"><div class="num" id="qsWorkouts">0</div><div class="label">Тренировки</div></div>
                 <div class="stat-card"><div class="num" id="qsWords">0</div><div class="label">Слов</div></div>
-                <div class="stat-card"><div class="num" id="qsStreak">0</div><div class="label">Дней подряд</div></div>
-                <div class="stat-card"><div class="num" id="qsProtein">0</div><div class="label">Средний белок</div></div>
+                <div class="stat-card"><div class="num" id="qsStreak">0</div><div class="label">Серия</div></div>
+                <div class="stat-card"><div class="num" id="qsProtein">0</div><div class="label">Белок</div></div>
             </div>
         </div>
 
@@ -629,14 +559,14 @@
         <!-- ===== TAB: ТЕЛО ===== -->
         <div id="tab-body" class="tab-content">
             <div class="card">
-                <h2><span class="icon">💪</span> Тело</h2>
+                <h2>💪 Тело</h2>
                 <div class="grid-2">
                     <div class="stat-card"><div class="num" id="bodyWeight">0</div><div class="label">Вес (кг)</div></div>
-                    <div class="stat-card"><div class="num" id="bodyProtein">0</div><div class="label">Белок (г) сегодня</div></div>
-                    <div class="stat-card"><div class="num" id="bodyWorkouts">0</div><div class="label">Тренировок всего</div></div>
+                    <div class="stat-card"><div class="num" id="bodyProtein">0</div><div class="label">Белок сегодня</div></div>
+                    <div class="stat-card"><div class="num" id="bodyWorkouts">0</div><div class="label">Тренировок</div></div>
                     <div class="stat-card"><div class="num" id="bodyCalories">0</div><div class="label">Калории сегодня</div></div>
                 </div>
-                <div style="margin-top:8px;">
+                <div style="margin-top:6px;">
                     <div class="progress-label"><span>Прогресс мышц</span><strong id="muscleTotal">0%</strong></div>
                     <div class="muscle-grid">
                         <div class="muscle-item"><div class="name">Грудные</div><div class="val" id="muscleChest">0%</div></div>
@@ -645,10 +575,10 @@
                         <div class="muscle-item"><div class="name">Пресс</div><div class="val" id="muscleAbs">0%</div></div>
                     </div>
                 </div>
-                <div class="flex-center" style="margin-top:8px;">
+                <div class="flex-center">
                     <button class="btn btn-success" onclick="addWorkout()">🏋️ + Тренировка</button>
-                    <button class="btn" onclick="addProtein(10)">🥩 +10г белка</button>
-                    <button class="btn" onclick="addCalories(100)">🔥 +100 калорий</button>
+                    <button class="btn" onclick="addProtein(10)">🥩 +10г</button>
+                    <button class="btn" onclick="addCalories(100)">🔥 +100</button>
                 </div>
             </div>
         </div>
@@ -657,17 +587,17 @@
         <!-- ===== TAB: АНГЛИЙСКИЙ ===== -->
         <div id="tab-english" class="tab-content">
             <div class="card">
-                <h2><span class="icon">🇬🇧</span> Английский</h2>
-                <div style="text-align:center;padding:6px 0;">
-                    <div style="font-size:40px;font-weight:700;color:#b5d6f0;" id="engLevel">B1</div>
-                    <div style="font-size:13px;color:#5a7a9a;">Текущий уровень</div>
+                <h2>🇬🇧 Английский</h2>
+                <div style="text-align:center;padding:4px 0;">
+                    <div style="font-size:34px;font-weight:700;color:#b5d6f0;" id="engLevel">B1</div>
+                    <div style="font-size:11px;color:#5a7a9a;">Уровень</div>
                 </div>
                 <div class="progress-label"><span>Прогресс до B2</span><strong id="engProgressText">0%</strong></div>
                 <div class="progress-bar"><div class="fill blue" id="engProgressBar" style="width:0%;"></div></div>
-                <div class="grid-3" style="margin-top:10px;">
-                    <div class="stat-card"><div class="num" id="engWords">0</div><div class="label">Всего слов</div></div>
-                    <div class="stat-card"><div class="num" id="engStreak">0</div><div class="label">Дней подряд</div></div>
-                    <div class="stat-card"><div class="num" id="engToGoal">0</div><div class="label">Осталось до цели</div></div>
+                <div class="grid-3" style="margin-top:8px;">
+                    <div class="stat-card"><div class="num" id="engWords">0</div><div class="label">Слов</div></div>
+                    <div class="stat-card"><div class="num" id="engStreak">0</div><div class="label">Дней</div></div>
+                    <div class="stat-card"><div class="num" id="engToGoal">0</div><div class="label">До цели</div></div>
                 </div>
                 <div class="flex-center">
                     <button class="btn btn-success" onclick="addEnglish(5)">➕ 5%</button>
@@ -681,21 +611,21 @@
         <!-- ===== TAB: ПОСТУПЛЕНИЕ ===== -->
         <div id="tab-uni" class="tab-content">
             <div class="card">
-                <h2><span class="icon">🎓</span> Поступление</h2>
+                <h2>🎓 Поступление</h2>
                 <div class="uni-item">
                     <div class="name">🇨🇾 EMU (Кипр) — IT Security</div>
-                    <div class="detail">Бакалавриат · Старт: 2026</div>
+                    <div class="detail">Бакалавриат · 2026</div>
                 </div>
                 <div class="uni-item">
-                    <div class="name">🇮🇹 Турин / Падуя (Италия)</div>
-                    <div class="detail">Магистратура · Цель: 2030</div>
+                    <div class="name">🇮🇹 Турин / Падуя</div>
+                    <div class="detail">Магистратура · 2030</div>
                 </div>
-                <div style="margin-top:8px;">
+                <div style="margin-top:6px;">
                     <div class="progress-label"><span>Документы</span><strong id="uniDocs">0%</strong></div>
                     <div class="progress-bar"><div class="fill purple" id="uniDocsBar" style="width:0%;"></div></div>
                     <div class="progress-label" style="margin-top:4px;"><span>IELTS</span><strong id="uniIelts">0%</strong></div>
                     <div class="progress-bar"><div class="fill orange" id="uniIeltsBar" style="width:0%;"></div></div>
-                    <div class="progress-label" style="margin-top:4px;"><span>Общий прогресс</span><strong id="uniTotal">0%</strong></div>
+                    <div class="progress-label" style="margin-top:4px;"><span>Общий</span><strong id="uniTotal">0%</strong></div>
                     <div class="progress-bar"><div class="fill green" id="uniTotalBar" style="width:0%;"></div></div>
                 </div>
                 <div class="flex-center">
@@ -706,41 +636,15 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- ===== TAB: ПРОЕКТЫ ===== -->
-        <div id="tab-projects" class="tab-content">
-            <div class="card">
-                <h2><span class="icon">🚀</span> Проекты</h2>
-                <div id="projectsContainer"></div>
-                <div class="flex-center" style="margin-top:8px;">
-                    <button class="btn btn-success" onclick="addProject()">➕ Новый проект</button>
-                    <button class="btn" onclick="advanceProjects()">📈 Прогресс +10%</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================================== -->
         <!-- ===== TAB: СТАТИСТИКА ===== -->
         <div id="tab-stats" class="tab-content">
             <div class="card">
-                <h2><span class="icon">📊</span> Статистика</h2>
-                <div style="font-size:13px;color:#5a7a9a;text-align:center;padding:10px;">Графики прогресса по дням</div>
-                <div class="grid-2" id="statsContainer">
-                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
-                        <div style="font-size:13px;color:#5a7a9a;">Тренировки</div>
-                        <div id="statsWorkouts" style="font-size:20px;font-weight:600;color:#5aed8a;">0</div>
-                    </div>
-                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
-                        <div style="font-size:13px;color:#5a7a9a;">Слова</div>
-                        <div id="statsWords" style="font-size:20px;font-weight:600;color:#edba5a;">0</div>
-                    </div>
-                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
-                        <div style="font-size:13px;color:#5a7a9a;">Идеальные дни</div>
-                        <div id="statsPerfect" style="font-size:20px;font-weight:600;color:#5aed8a;">0</div>
-                    </div>
-                    <div class="stat-card" style="min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
-                        <div style="font-size:13px;color:#5a7a9a;">Всего XP</div>
-                        <div id="statsXP" style="font-size:20px;font-weight:600;color:#edba5a;">0</div>
-                    </div>
+                <h2>📊 Статистика</h2>
+                <div class="grid-2">
+                    <div class="stat-card"><div class="num" id="statsWorkouts">0</div><div class="label">Тренировок</div></div>
+                    <div class="stat-card"><div class="num" id="statsWords">0</div><div class="label">Слов</div></div>
+                    <div class="stat-card"><div class="num" id="statsPerfect">0</div><div class="label">Идеальных дней</div></div>
+                    <div class="stat-card"><div class="num" id="statsXP">0</div><div class="label">Всего XP</div></div>
                 </div>
             </div>
         </div>
@@ -749,7 +653,7 @@
         <!-- ===== TAB: ДОСТИЖЕНИЯ ===== -->
         <div id="tab-achievements" class="tab-content">
             <div class="card">
-                <h2><span class="icon">🏆</span> Достижения</h2>
+                <h2>🏆 Достижения</h2>
                 <div class="ach-grid" id="achGrid"></div>
             </div>
         </div>
@@ -758,42 +662,33 @@
         <!-- ===== TAB: НАСТРОЙКИ ===== -->
         <div id="tab-settings" class="tab-content">
             <div class="card">
-                <h2><span class="icon">⚙️</span> Настройки</h2>
+                <h2>⚙️ Настройки</h2>
                 <div class="setting-row">
-                    <label>Норма белка (г)</label>
-                    <input type="number" id="settingProtein" value="140" min="50" max="300" />
+                    <label>Белок (г)</label>
+                    <input type="number" id="settingProtein" value="140" />
                 </div>
                 <div class="setting-row">
-                    <label>Норма калорий (мин)</label>
-                    <input type="number" id="settingCalMin" value="1800" min="1000" max="4000" />
+                    <label>Калории (мин)</label>
+                    <input type="number" id="settingCalMin" value="1800" />
                 </div>
                 <div class="setting-row">
-                    <label>Норма калорий (макс)</label>
-                    <input type="number" id="settingCalMax" value="2100" min="1000" max="4000" />
+                    <label>Калории (макс)</label>
+                    <input type="number" id="settingCalMax" value="2100" />
                 </div>
                 <div class="setting-row">
                     <label>Цель слов</label>
-                    <input type="number" id="settingWordsGoal" value="1000" min="100" max="10000" />
+                    <input type="number" id="settingWordsGoal" value="1000" />
                 </div>
                 <div class="setting-row">
                     <label>Вес (кг)</label>
-                    <input type="number" id="settingWeight" value="75" min="40" max="200" />
-                </div>
-                <div class="setting-row">
-                    <label>Тема</label>
-                    <select id="settingTheme">
-                        <option value="dark">🌙 Тёмная</option>
-                        <option value="light">☀️ Светлая</option>
-                        <option value="ocean">🌊 Океан</option>
-                        <option value="forest">🌲 Лес</option>
-                    </select>
+                    <input type="number" id="settingWeight" value="75" />
                 </div>
                 <div class="flex-center">
                     <button class="btn btn-success" onclick="saveSettings()">💾 Сохранить</button>
                     <button class="btn" onclick="exportData()">📤 Экспорт</button>
                     <button class="btn" onclick="importData()">📥 Импорт</button>
                 </div>
-                <div id="settingsMsg" style="color:#5aed8a;text-align:center;margin-top:6px;opacity:0;transition:0.4s;">✅ Сохранено!</div>
+                <div id="settingsMsg" style="color:#5aed8a;text-align:center;margin-top:4px;opacity:0;transition:0.3s;">✅ Сохранено</div>
             </div>
         </div>
 
@@ -813,19 +708,16 @@
         }
 
         // ==========================================================
-        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        // ===== ДАННЫЕ =====
         let appData = JSON.parse(localStorage.getItem('timbul_os')) || {};
 
-        function saveAppData() {
+        function saveData() {
             localStorage.setItem('timbul_os', JSON.stringify(appData));
         }
 
-        function initApp() {
-            if (!appData.startDate) {
-                appData.startDate = getMSKDate().toISOString();
-            }
+        function init() {
+            if (!appData.startDate) appData.startDate = getMSKDate().toISOString();
             if (!appData.history) appData.history = [];
-            if (!appData.projects) appData.projects = [];
             if (!appData.achievements) appData.achievements = {};
             if (!appData.english) appData.english = { words: 0, progress: 0 };
             if (!appData.uni) appData.uni = { docs: 0, ielts: 0 };
@@ -833,7 +725,18 @@
                     arms: 0, back: 0, abs: 0 } };
             if (!appData.xp) appData.xp = 0;
             if (!appData.level) appData.level = 1;
-            if (!appData.today) {
+            if (!appData.today || appData.today.date !== getMSKDateStr()) {
+                if (appData.today) {
+                    appData.history.push({
+                        date: appData.today.date,
+                        workout: appData.today.workout || false,
+                        words: appData.today.words || 0,
+                        protein: appData.today.protein || 0,
+                        calories: appData.today.calories || 0,
+                        study: appData.today.study || false
+                    });
+                    if (appData.history.length > 365) appData.history.shift();
+                }
                 appData.today = {
                     date: getMSKDateStr(),
                     workout: false,
@@ -843,66 +746,42 @@
                     study: false
                 };
             }
-            if (appData.today.date !== getMSKDateStr()) {
-                // сохраняем в историю
-                const dayData = {
-                    date: appData.today.date,
-                    workout: appData.today.workout,
-                    words: appData.today.words,
-                    protein: appData.today.protein,
-                    calories: appData.today.calories,
-                    study: appData.today.study,
-                    xp: appData.xp
-                };
-                appData.history.push(dayData);
-                if (appData.history.length > 365) appData.history.shift();
-                appData.today = {
-                    date: getMSKDateStr(),
-                    workout: false,
-                    words: 0,
-                    protein: 0,
-                    calories: 0,
-                    study: false
-                };
-            }
-            saveAppData();
+            saveData();
             updateAll();
         }
 
         // ==========================================================
-        // ===== ОБНОВЛЕНИЕ =====
+        // ===== ОБНОВЛЕНИЯ =====
         function updateAll() {
-            updateDayDisplay();
-            updateLevelXP();
+            updateDay();
+            updateLevel();
             updateStats();
             updateBody();
             updateEnglish();
             updateUni();
-            updateProjects();
             updateAchievements();
             updateQuickStats();
             updateCharStats();
         }
 
-        function updateDayDisplay() {
+        function updateDay() {
             const start = new Date(appData.startDate);
             const now = getMSKDate();
             const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
             document.getElementById('dayDisplay').textContent = 'День ' + diff;
         }
 
-        function updateLevelXP() {
+        function updateLevel() {
             const lvl = appData.level || 1;
             const xp = appData.xp || 0;
-            const xpNeeded = lvl * 100;
+            const needed = lvl * 100;
             document.getElementById('levelDisplay').textContent = lvl;
-            document.getElementById('xpDisplay').textContent = xp + ' / ' + xpNeeded;
-            document.getElementById('xpBar').style.width = Math.min(100, (xp / xpNeeded) * 100) + '%';
+            document.getElementById('xpDisplay').textContent = xp + ' / ' + needed;
+            document.getElementById('xpBar').style.width = Math.min(100, (xp / needed) * 100) + '%';
 
-            // прогресс дня
             const today = appData.today;
-            let done = 0;
-            let total = 5;
+            let done = 0,
+                total = 5;
             if (today.workout) done++;
             if (today.study) done++;
             if (today.words >= 5) done++;
@@ -914,53 +793,43 @@
         }
 
         function updateCharStats() {
-            const body = appData.body || {};
+            const h = appData.history || [];
+            const t = appData.today;
+            const totalW = h.filter(hh => hh.workout).length + (t.workout ? 1 : 0);
+            const study = h.filter(hh => hh.study).length + (t.study ? 1 : 0);
             const eng = appData.english || {};
             const uni = appData.uni || {};
-            const projects = appData.projects || [];
-            const totalWorkouts = appData.history.filter(h => h.workout).length + (appData.today.workout ? 1 : 0);
-            const bodyPct = Math.min(100, Math.round((totalWorkouts / 100) * 100));
-            const studyPct = Math.min(100, Math.round((uni.docs + uni.ielts) / 2));
-            const engPct = Math.min(100, eng.progress || 0);
-            const projPct = projects.length > 0 ? Math.round(projects.reduce((s, p) => s + (p.progress || 0), 0) / projects
-                .length) : 0;
-            const discPct = Math.min(100, Math.round((appData.history.filter(h => h.workout || h.study).length / Math.max(1,
-                appData.history.length)) * 100));
-
-            document.getElementById('statBody').textContent = bodyPct + '%';
-            document.getElementById('statStudy').textContent = studyPct + '%';
-            document.getElementById('statEnglish').textContent = engPct + '%';
-            document.getElementById('statProjects').textContent = projPct + '%';
-            document.getElementById('statDiscipline').textContent = discPct + '%';
+            document.getElementById('statBody').textContent = Math.min(100, Math.round((totalW / 100) * 100)) + '%';
+            document.getElementById('statStudy').textContent = Math.min(100, Math.round((study / 30) * 100)) + '%';
+            document.getElementById('statEnglish').textContent = Math.min(100, eng.progress || 0) + '%';
+            document.getElementById('statDiscipline').textContent = Math.min(100, Math.round((h.filter(hh => hh.workout || hh
+                .study).length / Math.max(1, h.length)) * 100)) + '%';
+            document.getElementById('statUni').textContent = Math.round((uni.docs + uni.ielts) / 2) + '%';
         }
 
-        function updateStats() {
-            const history = appData.history || [];
-            const today = appData.today;
-            const totalWorkouts = history.filter(h => h.workout).length + (today.workout ? 1 : 0);
-            const totalWords = history.reduce((s, h) => s + (h.words || 0), 0) + (today.words || 0);
-            const perfectDays = history.filter(h => h.workout && h.words >= 5 && h.protein >= 100 && h.calories >= 1800)
-            .length;
-            const avgProtein = history.length > 0 ? Math.round(history.reduce((s, h) => s + (h.protein || 0), 0) / history
-                .length) : 0;
+        function updateQuickStats() {
+            const h = appData.history || [];
+            const t = appData.today;
+            const workouts = h.filter(hh => hh.workout).length + (t.workout ? 1 : 0);
+            const words = h.reduce((s, hh) => s + (hh.words || 0), 0) + (t.words || 0);
             const streak = calcStreak();
-
-            document.getElementById('qsWorkouts').textContent = totalWorkouts;
-            document.getElementById('qsWords').textContent = totalWords;
+            const protein = h.length > 0 ? Math.round(h.reduce((s, hh) => s + (hh.protein || 0), 0) / h.length) : 0;
+            document.getElementById('qsWorkouts').textContent = workouts;
+            document.getElementById('qsWords').textContent = words;
             document.getElementById('qsStreak').textContent = streak;
-            document.getElementById('qsProtein').textContent = avgProtein + 'г';
-
-            document.getElementById('statsWorkouts').textContent = totalWorkouts;
-            document.getElementById('statsWords').textContent = totalWords;
-            document.getElementById('statsPerfect').textContent = perfectDays;
+            document.getElementById('qsProtein').textContent = protein + 'г';
+            document.getElementById('statsWorkouts').textContent = workouts;
+            document.getElementById('statsWords').textContent = words;
+            document.getElementById('statsPerfect').textContent = h.filter(hh => hh.workout && hh.words >= 5 && hh.protein >=
+                100 && hh.calories >= 1800).length;
             document.getElementById('statsXP').textContent = appData.xp || 0;
         }
 
         function calcStreak() {
-            const history = appData.history || [];
-            if (history.length === 0) return 0;
-            const sorted = history.slice().sort((a, b) => new Date(a.date.split('.').reverse().join('-')) - new Date(b.date
-                .split('.').reverse().join('-')));
+            const h = appData.history || [];
+            if (h.length === 0) return 0;
+            const sorted = h.slice().sort((a, b) => new Date(a.date.split('.').reverse().join('-')) - new Date(b.date.split(
+                '.').reverse().join('-')));
             let streak = 0;
             const today = getMSKDate();
             today.setHours(0, 0, 0, 0);
@@ -969,11 +838,7 @@
                 const d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
                 d.setHours(0, 0, 0, 0);
                 const diff = (today - d) / (1000 * 60 * 60 * 24);
-                if (diff <= 1 && (sorted[i].workout || sorted[i].study)) {
-                    streak++;
-                } else if (diff > 1) {
-                    break;
-                }
+                if (diff <= 1 && (sorted[i].workout || sorted[i].study)) { streak++; } else if (diff > 1) break;
             }
             return streak;
         }
@@ -981,166 +846,97 @@
         // ==========================================================
         // ===== ТЕЛО =====
         function updateBody() {
-            const body = appData.body || {};
-            const today = appData.today;
-            document.getElementById('bodyWeight').textContent = body.weight || 75;
-            document.getElementById('bodyProtein').textContent = today.protein || 0;
-            document.getElementById('bodyWorkouts').textContent = appData.history.filter(h => h.workout).length + (today
-                .workout ? 1 : 0);
-            document.getElementById('bodyCalories').textContent = today.calories || 0;
-
-            const muscles = body.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
-            const total = Math.round((muscles.chest + muscles.arms + muscles.back + muscles.abs) / 4);
-            document.getElementById('muscleTotal').textContent = total + '%';
-            document.getElementById('muscleChest').textContent = muscles.chest + '%';
-            document.getElementById('muscleArms').textContent = muscles.arms + '%';
-            document.getElementById('muscleBack').textContent = muscles.back + '%';
-            document.getElementById('muscleAbs').textContent = muscles.abs + '%';
+            const b = appData.body || {};
+            const t = appData.today;
+            document.getElementById('bodyWeight').textContent = b.weight || 75;
+            document.getElementById('bodyProtein').textContent = t.protein || 0;
+            document.getElementById('bodyWorkouts').textContent = appData.history.filter(h => h.workout).length + (t.workout ?
+                1 : 0);
+            document.getElementById('bodyCalories').textContent = t.calories || 0;
+            const m = b.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
+            document.getElementById('muscleTotal').textContent = Math.round((m.chest + m.arms + m.back + m.abs) / 4) + '%';
+            document.getElementById('muscleChest').textContent = m.chest + '%';
+            document.getElementById('muscleArms').textContent = m.arms + '%';
+            document.getElementById('muscleBack').textContent = m.back + '%';
+            document.getElementById('muscleAbs').textContent = m.abs + '%';
         }
 
         function addWorkout() {
             appData.today.workout = true;
             addXP(20);
-            // прогресс мышц
-            const muscles = appData.body.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
+            const m = appData.body.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
             const cycle = (appData.history.length % 3) + 1;
-            if (cycle === 1) muscles.chest = Math.min(100, muscles.chest + 5);
-            else if (cycle === 2) { muscles.back = Math.min(100, muscles.back + 5);
-                muscles.arms = Math.min(100, muscles.arms + 5); } else muscles.abs = Math.min(100, muscles.abs + 5);
-            appData.body.muscles = muscles;
-            saveAppData();
+            if (cycle === 1) m.chest = Math.min(100, m.chest + 5);
+            else if (cycle === 2) { m.back = Math.min(100, m.back + 5);
+                m.arms = Math.min(100, m.arms + 5); } else m.abs = Math.min(100, m.abs + 5);
+            appData.body.muscles = m;
+            saveData();
             updateAll();
         }
 
-        function addProtein(amount) {
-            appData.today.protein = (appData.today.protein || 0) + amount;
-            saveAppData();
-            updateAll();
-        }
+        function addProtein(a) { appData.today.protein = (appData.today.protein || 0) + a;
+            saveData();
+            updateAll(); }
 
-        function addCalories(amount) {
-            appData.today.calories = (appData.today.calories || 0) + amount;
-            saveAppData();
-            updateAll();
-        }
+        function addCalories(a) { appData.today.calories = (appData.today.calories || 0) + a;
+            saveData();
+            updateAll(); }
 
         // ==========================================================
         // ===== АНГЛИЙСКИЙ =====
         function updateEnglish() {
-            const eng = appData.english || { words: 0, progress: 0 };
+            const e = appData.english || { words: 0, progress: 0 };
+            const total = appData.history.reduce((s, h) => s + (h.words || 0), 0) + (appData.today.words || 0) + e.words;
             const settings = getSettings();
-            const totalWords = appData.history.reduce((s, h) => s + (h.words || 0), 0) + (appData.today.words || 0) + eng
-                .words;
-
             let level = 'B1';
-            if (eng.progress > 66) level = 'C1';
-            else if (eng.progress > 33) level = 'B2';
+            if (e.progress > 66) level = 'C1';
+            else if (e.progress > 33) level = 'B2';
             document.getElementById('engLevel').textContent = level;
-            document.getElementById('engProgressText').textContent = Math.min(100, eng.progress) + '%';
-            document.getElementById('engProgressBar').style.width = Math.min(100, eng.progress) + '%';
-            document.getElementById('engWords').textContent = totalWords;
+            document.getElementById('engProgressText').textContent = Math.min(100, e.progress) + '%';
+            document.getElementById('engProgressBar').style.width = Math.min(100, e.progress) + '%';
+            document.getElementById('engWords').textContent = total;
             document.getElementById('engStreak').textContent = calcStreak();
-            document.getElementById('engToGoal').textContent = Math.max(0, settings.wordsGoal - totalWords);
+            document.getElementById('engToGoal').textContent = Math.max(0, settings.wordsGoal - total);
         }
 
-        function addEnglish(amount) {
-            const eng = appData.english || { words: 0, progress: 0 };
-            eng.progress = Math.min(100, (eng.progress || 0) + amount);
-            appData.english = eng;
+        function addEnglish(a) { const e = appData.english || { words: 0, progress: 0 };
+            e.progress = Math.min(100, (e.progress || 0) + a);
+            appData.english = e;
             addXP(5);
-            saveAppData();
-            updateAll();
-        }
+            saveData();
+            updateAll(); }
 
-        function addWords(amount) {
-            appData.today.words = (appData.today.words || 0) + amount;
+        function addWords(a) { appData.today.words = (appData.today.words || 0) + a;
             addXP(2);
-            saveAppData();
-            updateAll();
-        }
+            saveData();
+            updateAll(); }
 
         // ==========================================================
         // ===== ПОСТУПЛЕНИЕ =====
         function updateUni() {
-            const uni = appData.uni || { docs: 0, ielts: 0 };
-            document.getElementById('uniDocs').textContent = uni.docs + '%';
-            document.getElementById('uniDocsBar').style.width = uni.docs + '%';
-            document.getElementById('uniIelts').textContent = uni.ielts + '%';
-            document.getElementById('uniIeltsBar').style.width = uni.ielts + '%';
-            const total = Math.round((uni.docs + uni.ielts) / 2);
+            const u = appData.uni || { docs: 0, ielts: 0 };
+            document.getElementById('uniDocs').textContent = u.docs + '%';
+            document.getElementById('uniDocsBar').style.width = u.docs + '%';
+            document.getElementById('uniIelts').textContent = u.ielts + '%';
+            document.getElementById('uniIeltsBar').style.width = u.ielts + '%';
+            const total = Math.round((u.docs + u.ielts) / 2);
             document.getElementById('uniTotal').textContent = total + '%';
             document.getElementById('uniTotalBar').style.width = total + '%';
         }
 
-        function addUniProgress(amount) {
-            const uni = appData.uni || { docs: 0, ielts: 0 };
-            uni.docs = Math.min(100, uni.docs + amount);
-            appData.uni = uni;
+        function addUniProgress(a) { const u = appData.uni || { docs: 0, ielts: 0 };
+            u.docs = Math.min(100, u.docs + a);
+            appData.uni = u;
             addXP(5);
-            saveAppData();
-            updateAll();
-        }
+            saveData();
+            updateAll(); }
 
-        function addIelts(amount) {
-            const uni = appData.uni || { docs: 0, ielts: 0 };
-            uni.ielts = Math.min(100, uni.ielts + amount);
-            appData.uni = uni;
+        function addIelts(a) { const u = appData.uni || { docs: 0, ielts: 0 };
+            u.ielts = Math.min(100, u.ielts + a);
+            appData.uni = u;
             addXP(3);
-            saveAppData();
-            updateAll();
-        }
-
-        // ==========================================================
-        // ===== ПРОЕКТЫ =====
-        function updateProjects() {
-            const container = document.getElementById('projectsContainer');
-            const projects = appData.projects || [];
-            if (projects.length === 0) {
-                container.innerHTML = '<div style="color:#5a7a9a;text-align:center;padding:10px;">Нет проектов. Создай первый!</div>';
-                return;
-            }
-            container.innerHTML = projects.map((p, i) => `
-                <div class="project-item">
-                    <div>
-                        <div class="name">${p.name}</div>
-                        <div class="status ${p.progress >= 100 ? 'done' : 'inprogress'}">${p.progress >= 100 ? '✅ Завершён' : '⏳ В процессе'}</div>
-                    </div>
-                    <div style="width:120px;">
-                        <div class="progress-label"><span></span><strong>${p.progress}%</strong></div>
-                        <div class="progress-bar" style="height:4px;"><div class="fill blue" style="width:${p.progress}%;"></div></div>
-                    </div>
-                    <button class="btn btn-danger" style="font-size:11px;padding:2px 10px;" onclick="deleteProject(${i})">✕</button>
-                </div>
-            `).join('');
-        }
-
-        function addProject() {
-            const name = prompt('Название проекта:');
-            if (name && name.trim()) {
-                appData.projects.push({ name: name.trim(), progress: 0 });
-                saveAppData();
-                updateAll();
-            }
-        }
-
-        function deleteProject(index) {
-            if (confirm('Удалить проект?')) {
-                appData.projects.splice(index, 1);
-                saveAppData();
-                updateAll();
-            }
-        }
-
-        function advanceProjects() {
-            const projects = appData.projects || [];
-            if (projects.length === 0) return;
-            projects.forEach(p => {
-                p.progress = Math.min(100, p.progress + 10);
-                if (p.progress >= 100) addXP(10);
-            });
-            saveAppData();
-            updateAll();
-        }
+            saveData();
+            updateAll(); }
 
         // ==========================================================
         // ===== ДОСТИЖЕНИЯ =====
@@ -1150,9 +946,8 @@
             { id: 'streak_30', icon: '🔥', name: '30 дней подряд', check: (s) => s.streak >= 30 },
             { id: 'words_100', icon: '📚', name: '100 слов', check: (s) => s.words >= 100 },
             { id: 'words_1000', icon: '📚', name: '1000 слов', check: (s) => s.words >= 1000 },
-            { id: 'b2', icon: '🇬🇧', name: 'B2 достигнут', check: (s) => s.engProgress >= 34 },
+            { id: 'b2', icon: '🇬🇧', name: 'B2 достигнут', check: (s) => s.eng >= 34 },
             { id: 'perfect_10', icon: '⭐', name: '10 идеальных дней', check: (s) => s.perfect >= 10 },
-            { id: 'project_5', icon: '🚀', name: '5 проектов', check: (s) => s.projects >= 5 },
             { id: 'level_5', icon: '⬆️', name: 'Уровень 5', check: (s) => s.level >= 5 },
             { id: 'level_10', icon: '⬆️', name: 'Уровень 10', check: (s) => s.level >= 10 },
         ];
@@ -1161,49 +956,41 @@
             const grid = document.getElementById('achGrid');
             const stats = getAchievementStats();
             const unlocked = appData.achievements || {};
-
             grid.innerHTML = ACHIEVEMENTS_LIST.map(a => {
                 const isUnlocked = a.check(stats);
-                if (isUnlocked && !unlocked[a.id]) {
-                    unlocked[a.id] = true;
+                if (isUnlocked && !unlocked[a.id]) { unlocked[a.id] = true;
                     appData.achievements = unlocked;
-                    saveAppData();
-                }
-                return `
-                    <div class="ach-item ${isUnlocked ? 'unlocked' : 'locked'}">
-                        <span class="icon">${a.icon}</span>
-                        <div>${a.name}</div>
-                        ${isUnlocked ? '<div style="font-size:10px;color:#5aed8a;">✅</div>' : '<div style="font-size:10px;color:#3a5a7a;">🔒</div>'}
-                    </div>
-                `;
+                    saveData(); }
+                return `<div class="ach-item ${isUnlocked ? 'unlocked' : 'locked'}">
+                    <span class="icon">${a.icon}</span>
+                    <div>${a.name}</div>
+                    ${isUnlocked ? '✅' : '🔒'}
+                </div>`;
             }).join('');
         }
 
         function getAchievementStats() {
-            const history = appData.history || [];
-            const today = appData.today;
-            const workouts = history.filter(h => h.workout).length + (today.workout ? 1 : 0);
-            const words = history.reduce((s, h) => s + (h.words || 0), 0) + (today.words || 0);
-            const perfect = history.filter(h => h.workout && h.words >= 5 && h.protein >= 100 && h.calories >= 1800).length;
+            const h = appData.history || [];
+            const t = appData.today;
+            const workouts = h.filter(hh => hh.workout).length + (t.workout ? 1 : 0);
+            const words = h.reduce((s, hh) => s + (hh.words || 0), 0) + (t.words || 0);
+            const perfect = h.filter(hh => hh.workout && hh.words >= 5 && hh.protein >= 100 && hh.calories >= 1800).length;
             const streak = calcStreak();
-            const engProgress = (appData.english || {}).progress || 0;
-            const projects = (appData.projects || []).length;
-            const level = appData.level || 1;
-            return { workouts, words, perfect, streak, engProgress, projects, level };
+            const eng = (appData.english || {}).progress || 0;
+            return { workouts, words, perfect, streak, eng, level: appData.level || 1 };
         }
 
         // ==========================================================
-        // ===== XP И УРОВЕНЬ =====
+        // ===== XP / УРОВЕНЬ =====
         function addXP(amount) {
             appData.xp = (appData.xp || 0) + amount;
             const needed = (appData.level || 1) * 100;
             if (appData.xp >= needed) {
                 appData.xp -= needed;
                 appData.level = (appData.level || 1) + 1;
-                // проверка достижения уровня
                 updateAchievements();
             }
-            saveAppData();
+            saveData();
         }
 
         // ==========================================================
@@ -1219,7 +1006,7 @@
                 case 'study':
                     appData.today.study = true;
                     addXP(10);
-                    saveAppData();
+                    saveData();
                     updateAll();
                     break;
                 case 'protein':
@@ -1229,16 +1016,10 @@
                     addCalories(200);
                     break;
                 case 'reset':
-                    if (confirm('Сбросить сегодняшний день?')) {
-                        appData.today = {
-                            date: getMSKDateStr(),
-                            workout: false,
-                            words: 0,
-                            protein: 0,
-                            calories: 0,
-                            study: false
-                        };
-                        saveAppData();
+                    if (confirm('Сбросить день?')) {
+                        appData.today = { date: getMSKDateStr(), workout: false, words: 0, protein: 0, calories: 0,
+                            study: false };
+                        saveData();
                         updateAll();
                     }
                     break;
@@ -1253,8 +1034,7 @@
                 calMin: parseInt(localStorage.getItem('settingCalMin')) || 1800,
                 calMax: parseInt(localStorage.getItem('settingCalMax')) || 2100,
                 wordsGoal: parseInt(localStorage.getItem('settingWordsGoal')) || 1000,
-                weight: parseInt(localStorage.getItem('settingWeight')) || 75,
-                theme: localStorage.getItem('settingTheme') || 'dark'
+                weight: parseInt(localStorage.getItem('settingWeight')) || 75
             };
         }
 
@@ -1264,34 +1044,30 @@
             localStorage.setItem('settingCalMax', document.getElementById('settingCalMax').value);
             localStorage.setItem('settingWordsGoal', document.getElementById('settingWordsGoal').value);
             localStorage.setItem('settingWeight', document.getElementById('settingWeight').value);
-            localStorage.setItem('settingTheme', document.getElementById('settingTheme').value);
             appData.body.weight = parseInt(document.getElementById('settingWeight').value);
-            saveAppData();
+            saveData();
             const msg = document.getElementById('settingsMsg');
             msg.style.opacity = '1';
-            setTimeout(() => msg.style.opacity = '0', 2500);
+            setTimeout(() => msg.style.opacity = '0', 2000);
             updateAll();
         }
 
         function loadSettings() {
-            const settings = getSettings();
-            document.getElementById('settingProtein').value = settings.protein;
-            document.getElementById('settingCalMin').value = settings.calMin;
-            document.getElementById('settingCalMax').value = settings.calMax;
-            document.getElementById('settingWordsGoal').value = settings.wordsGoal;
-            document.getElementById('settingWeight').value = settings.weight;
-            document.getElementById('settingTheme').value = settings.theme;
+            const s = getSettings();
+            document.getElementById('settingProtein').value = s.protein;
+            document.getElementById('settingCalMin').value = s.calMin;
+            document.getElementById('settingCalMax').value = s.calMax;
+            document.getElementById('settingWordsGoal').value = s.wordsGoal;
+            document.getElementById('settingWeight').value = s.weight;
         }
 
-        // ==========================================================
-        // ===== ЭКСПОРТ / ИМПОРТ =====
         function exportData() {
             const data = JSON.stringify(appData, null, 2);
             const blob = new Blob([data], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `timbul_os_backup_${getMSKDateStr().replace(/\./g, '_')}.json`;
+            a.download = `timbul_backup_${getMSKDateStr().replace(/\./g, '_')}.json`;
             a.click();
             URL.revokeObjectURL(url);
         }
@@ -1305,14 +1081,11 @@
                 const reader = new FileReader();
                 reader.onload = function(ev) {
                     try {
-                        const data = JSON.parse(ev.target.result);
-                        appData = data;
-                        saveAppData();
-                        alert('✅ Данные импортированы!');
+                        appData = JSON.parse(ev.target.result);
+                        saveData();
+                        alert('✅ Импортировано!');
                         updateAll();
-                    } catch (err) {
-                        alert('❌ Ошибка: ' + err.message);
-                    }
+                    } catch (err) { alert('❌ Ошибка: ' + err.message); }
                 };
                 reader.readAsText(file);
             };
@@ -1327,16 +1100,14 @@
                 this.classList.add('active');
                 document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
                 document.getElementById(this.dataset.tab).classList.add('active');
-                // обновляем графики при переключении на статистику
-                if (this.dataset.tab === 'tab-stats') updateStats();
             });
         });
 
         // ==========================================================
         // ===== ЗАПУСК =====
         loadSettings();
-        initApp();
-        console.log('🖥️ Тимбул OS загружена!');
+        init();
+        console.log('🖥️ Тимбул OS');
     </script>
 </body>
 </html>
