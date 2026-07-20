@@ -498,6 +498,18 @@
             gap: 16px;
         }
 
+        .perfect-badge {
+            display: inline-block;
+            background: rgba(60, 200, 120, 0.15);
+            color: #5aed8a;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(60, 200, 120, 0.2);
+            margin-left: 6px;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 12px;
@@ -663,10 +675,9 @@
                     </div>
                     <div class="stat-item">
                         <div class="num" id="statWorkouts">0</div>
-                        <div class="label">🏋️ Тренировок</div>
+                        <div class="label">🏋️ Тренировка</div>
                         <div class="controls">
-                            <input type="number" id="inputWorkouts" value="0" min="0" step="1" />
-                            <button class="btn-sm success" onclick="updateStat('workouts')">➕</button>
+                            <button class="btn-sm success" onclick="toggleWorkout()" id="workoutToggleBtn">⭕ Нет</button>
                         </div>
                     </div>
                 </div>
@@ -683,7 +694,7 @@
                 <h2>📈 Итоги по дням</h2>
                 <div style="overflow-x:auto;">
                     <table class="history-table" id="historyTable">
-                        <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th><th>✅</th></tr></thead>
+                        <thead><tr><th>День</th><th>🔥</th><th>🥩</th><th>📚</th><th>🏋️</th><th>✅</th><th>🏆</th><th>🇬🇧</th></tr></thead>
                         <tbody id="historyBody"></tbody>
                     </table>
                 </div>
@@ -702,7 +713,7 @@
                 </div>
 
                 <div class="card">
-                    <h2>🔥 Серия дисциплины</h2>
+                    <h2>🔥 Серия дисциплины (МСК)</h2>
                     <div class="streak-box">
                         <div class="streak-number" id="streakCount">0</div>
                         <div class="streak-label">дней подряд</div>
@@ -738,14 +749,34 @@
 
     <script>
         // ==========================================================
-        // ===== ДЕНЬ =====
+        // ===== ВСЕ ДАТЫ В МСК =====
+        function getMSKDate() {
+            const now = new Date();
+            const mskTime = new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
+            return mskTime;
+        }
+
+        function getMSKDateStr() {
+            const d = getMSKDate();
+            return d.toLocaleDateString('ru-RU');
+        }
+
+        function getMSKDayOfWeek() {
+            const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+            return days[getMSKDate().getDay()];
+        }
+
+        // ==========================================================
+        // ===== ДЕНЬ (по МСК) =====
         (function() {
-            let start = localStorage.getItem('startDate');
+            const now = getMSKDate();
+            let start = localStorage.getItem('startDateMSK');
             if (!start) {
-                start = new Date().toISOString();
-                localStorage.setItem('startDate', start);
+                start = now.toISOString();
+                localStorage.setItem('startDateMSK', start);
             }
-            const diff = Math.floor((Date.now() - new Date(start)) / (1000 * 60 * 60 * 24)) + 1;
+            const startDate = new Date(start);
+            const diff = Math.floor((now - startDate) / (1000 * 60 * 60 * 24)) + 1;
             document.getElementById('dayDisplay').textContent = 'День ' + diff;
         })();
 
@@ -783,6 +814,30 @@
             }
         }
 
+        // ==========================================================
+        // ===== ТРЕНИРОВКА (галочка) =====
+        let workoutDone = localStorage.getItem('workoutDone') === 'true';
+
+        function updateWorkoutButton() {
+            const btn = document.getElementById('workoutToggleBtn');
+            if (workoutDone) {
+                btn.textContent = '✅ Да';
+                btn.style.color = '#5aed8a';
+            } else {
+                btn.textContent = '⭕ Нет';
+                btn.style.color = '#b57a7a';
+            }
+        }
+
+        function toggleWorkout() {
+            workoutDone = !workoutDone;
+            localStorage.setItem('workoutDone', workoutDone);
+            updateWorkoutButton();
+            autoSaveDay();
+        }
+        updateWorkoutButton();
+
+        // ==========================================================
         // ===== АВТОСОХРАНЕНИЕ =====
         function getChecklistData() {
             const checks = document.querySelectorAll('.checklist input[type="checkbox"]');
@@ -799,14 +854,15 @@
                 calories: parseInt(localStorage.getItem('stat_calories')) || 0,
                 protein: parseInt(localStorage.getItem('stat_protein')) || 0,
                 words: parseInt(localStorage.getItem('stat_words')) || 0,
-                workouts: parseInt(localStorage.getItem('stat_workouts')) || 0,
+                workouts: workoutDone ? 1 : 0,
                 checks_done: checks.done,
                 checks_total: checks.total,
-                date: new Date().toLocaleDateString()
+                date: getMSKDateStr(),
+                engProgress: parseInt(localStorage.getItem('engProgress')) || 0
             };
 
             let history = JSON.parse(localStorage.getItem('history')) || [];
-            const today = new Date().toLocaleDateString();
+            const today = getMSKDateStr();
             const existing = history.findIndex(h => h.date === today);
             if (existing !== -1) {
                 history[existing] = data;
@@ -852,6 +908,7 @@
                 engProgress = Math.min(100, engProgress + amount);
                 localStorage.setItem('engProgress', engProgress);
                 updateEngDisplay();
+                autoSaveDay();
             }
         }
 
@@ -860,19 +917,23 @@
                 engProgress = 0;
                 localStorage.setItem('engProgress', 0);
                 updateEngDisplay();
+                autoSaveDay();
             }
         }
         updateEngDisplay();
 
         // ==========================================================
         // ===== СЧЁТЧИКИ =====
-        const statKeys = ['calories', 'protein', 'words', 'workouts'];
+        const statKeys = ['calories', 'protein', 'words'];
 
         function loadStats() {
             statKeys.forEach(key => {
                 const val = parseInt(localStorage.getItem('stat_' + key)) || 0;
                 document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = val;
             });
+            // подгружаем тренировку
+            workoutDone = localStorage.getItem('workoutDone') === 'true';
+            updateWorkoutButton();
         }
         loadStats();
 
@@ -893,6 +954,9 @@
                     localStorage.setItem('stat_' + key, 0);
                     document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = 0;
                 });
+                workoutDone = false;
+                localStorage.setItem('workoutDone', false);
+                updateWorkoutButton();
                 autoSaveDay();
             }
         }
@@ -908,24 +972,39 @@
 
         // ==========================================================
         // ===== ИСТОРИЯ =====
+        function isPerfectDay(data) {
+            const proteinOk = (data.protein || 0) >= 140;
+            const caloriesOk = (data.calories || 0) >= 1800 && (data.calories || 0) <= 2100;
+            const workoutOk = (data.workouts || 0) === 1;
+            const wordsOk = (data.words || 0) >= 5;
+            return proteinOk && caloriesOk && workoutOk && wordsOk;
+        }
+
         function renderHistory() {
             const history = JSON.parse(localStorage.getItem('history')) || [];
             const tbody = document.getElementById('historyBody');
             if (history.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#3a5a7a;padding:12px;">Нет данных</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#3a5a7a;padding:12px;">Нет данных</td></tr>';
                 return;
             }
             const sorted = history.slice().reverse();
-            tbody.innerHTML = sorted.map(h =>
-                `<tr class="day-row">
+            tbody.innerHTML = sorted.map(h => {
+                const perfect = isPerfectDay(h);
+                const engLevel = h.engProgress || 0;
+                let engText = 'B1';
+                if (engLevel > 66) engText = 'C1';
+                else if (engLevel > 33) engText = 'B2';
+                return `<tr class="day-row">
                     <td><strong>${h.day}</strong> <span class="weekday">${h.date || ''}</span></td>
                     <td>${h.calories || 0}</td>
                     <td>${h.protein || 0}</td>
                     <td>${h.words || 0}</td>
-                    <td>${h.workouts || 0}</td>
+                    <td>${h.workouts ? '✅' : '❌'}</td>
                     <td>${h.checks_done || 0}/${h.checks_total || 5}</td>
-                </tr>`
-            ).join('');
+                    <td>${perfect ? '⭐ ИДЕАЛ' : ''}</td>
+                    <td>${engText}</td>
+                </tr>`;
+            }).join('');
         }
 
         function clearHistory() {
@@ -985,14 +1064,20 @@
                 return;
             }
 
-            const sorted = history.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+            const sorted = history.slice().sort((a, b) => {
+                const da = new Date(a.date.split('.').reverse().join('-'));
+                const db = new Date(b.date.split('.').reverse().join('-'));
+                return da - db;
+            });
+
             let streak = 0;
             let record = parseInt(localStorage.getItem('streakRecord')) || 0;
-            let today = new Date();
+            const today = getMSKDate();
             today.setHours(0, 0, 0, 0);
 
             for (let i = sorted.length - 1; i >= 0; i--) {
-                const d = new Date(sorted[i].date);
+                const parts = sorted[i].date.split('.');
+                const d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
                 d.setHours(0, 0, 0, 0);
                 const diff = (today - d) / (1000 * 60 * 60 * 24);
                 if (diff <= 1 && sorted[i].checks_done > 0) {
@@ -1012,11 +1097,11 @@
 
             const daysContainer = document.getElementById('streakDays');
             daysContainer.innerHTML = '';
-            const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+            const dayNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
             for (let i = 6; i >= 0; i--) {
-                const d = new Date();
+                const d = new Date(today);
                 d.setDate(d.getDate() - i);
-                const dateStr = d.toLocaleDateString();
+                const dateStr = d.toLocaleDateString('ru-RU');
                 const found = sorted.find(h => h.date === dateStr);
                 const dot = document.createElement('div');
                 dot.className = 'day-dot';
@@ -1084,7 +1169,7 @@
         renderStreak();
         renderChart();
         setTimeout(autoSaveDay, 300);
-        console.log('⚡ Дисциплина Тимбула загружена!');
+        console.log('⚡ Дисциплина Тимбула загружена! (МСК)');
     </script>
 </body>
 </html>
