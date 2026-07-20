@@ -577,31 +577,29 @@
             gap: 8px;
         }
 
-        .country-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px 8px;
+        .workout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .workout-day {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 8px;
+            padding: 8px 10px;
+            border: 1px solid rgba(70, 120, 180, 0.04);
             font-size: 12px;
         }
-        .country-row .country {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            padding: 2px 8px;
-            background: rgba(16, 30, 50, 0.15);
-            border-radius: 30px;
-            border: 1px solid rgba(70, 120, 180, 0.04);
+        .workout-day .name {
+            font-weight: 600;
+            color: #b5d6f0;
         }
-        .badge {
-            font-size: 9px;
-            padding: 1px 6px;
-            border-radius: 30px;
-            background: rgba(26, 44, 68, 0.2);
+        .workout-day .ex {
+            color: #7aaac8;
+            font-size: 11px;
+        }
+        .workout-day .rest {
             color: #3a5a7a;
-        }
-        .badge.green {
-            background: rgba(40, 100, 70, 0.12);
-            color: #5a9a7a;
+            font-style: italic;
         }
 
         @media (max-width: 480px) {
@@ -640,6 +638,9 @@
                 min-height: 46px;
                 padding: 10px;
             }
+            .workout-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -657,6 +658,7 @@
             <button class="tab-btn active" data-tab="tab-main">📋 Дела</button>
             <button class="tab-btn" data-tab="tab-stats">📊 Счёт</button>
             <button class="tab-btn" data-tab="tab-history">📈 Итоги</button>
+            <button class="tab-btn" data-tab="tab-workout">💪 Тренировки</button>
             <button class="tab-btn" data-tab="tab-shop">🛒 Магазин</button>
             <button class="tab-btn" data-tab="tab-fire">🔥 Кайф</button>
             <button class="tab-btn" data-tab="tab-settings">⚙️</button>
@@ -669,37 +671,14 @@
                     <button class="reset-btn" onclick="resetChecklist()">🔄 сброс</button>
                 </h2>
                 <label><input type="checkbox" class="check-item" /> <span>Тренировка (по плану)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Полезное питание (белок/калории)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Новые слова (минимум 5)</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Калории и белок записаны</span></label>
-                <label><input type="checkbox" class="check-item" /> <span>Разговорный ролик на английском</span></label>
+                <label><input type="checkbox" class="check-item" /> <span>Белок ≥130 г</span></label>
+                <label><input type="checkbox" class="check-item" /> <span>Калории 1900–2200</span></label>
+                <label><input type="checkbox" class="check-item" /> <span>Новые слова (≥5)</span></label>
+                <label><input type="checkbox" class="check-item" /> <span>Английский (3 стр. Grammar/Vocab)</span></label>
             </div>
 
             <div class="card">
-                <h2>🏋️ План тренировок</h2>
-                <div style="font-size:13px;color:#7aaac8;background:rgba(16,30,50,0.15);border-radius:10px;padding:8px 10px;border:1px solid rgba(70,120,180,0.04);">
-                    <div><strong>День 1 (грудные + трицепс):</strong> отжимания широкие 3×12, узкие 3×10, V-скручивания 3×15, планка 3×45 сек</div>
-                    <div style="margin-top:4px;"><strong>День 2 (спина + бицепс):</strong> тяга гантели 3×12, обратные отжимания 3×12, подъем гантелей 3×10, гиперэкстензия 3×15</div>
-                    <div style="margin-top:4px;"><strong>День 3 (пресс + плечи):</strong> скручивания 3×20, V-скручивания 3×15, подъем ног 3×12, отжимания с подъемом таза 3×10, планка 3×40 сек</div>
-                    <div style="margin-top:4px;color:#3a5a7a;font-size:11px;">🔄 Повторять цикл · Вс — отдых · Кардио — прогулка</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>🌍 Страны</h2>
-                <div class="country-row">
-                    <span class="country">🇨🇾 Кипр <span class="badge green">старт</span> $3,765</span>
-                    <span class="country">🇮🇹 Италия <span class="badge">цель</span> от €161</span>
-                    <span class="country">🇸🇰 Словакия <span class="badge">запас</span> €7,500</span>
-                    <span class="country">🇨🇳 Китай <span class="badge">сложно</span> $2,400</span>
-                </div>
-                <div style="font-size:12px;color:#3a5a7a;margin-top:4px;">
-                    ✅ Бакалавриат: <strong style="color:#b5d6f0;">EMU (IT Security)</strong> · ⏳ Магистратура: <strong style="color:#b5d6f0;">Турин / Падуя</strong>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>🇬🇧 Английский B1 → B2</h2>
+                <h2>📚 Английский B1 → B2</h2>
                 <div class="eng-progress">
                     <div style="text-align:center;font-size:13px;color:#7aaac8;padding:4px 0;">
                         Текущий уровень: <strong id="currentLevelDisplay" style="color:#b5d6f0;">B1</strong> · До B2: <strong id="levelProgressText">0%</strong>
@@ -725,6 +704,18 @@
                         <button class="btn-sm" onclick="resetProgress()" style="color:#b57a7a;">Сброс</button>
                     </div>
                 </div>
+            </div>
+
+            <div class="card">
+                <h2>🍽️ Питание (сегодня)</h2>
+                <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:13px;color:#5a7a9a;">
+                    <span>🔥 <strong id="displayCal" style="color:#b5d6f0;">0</strong> / 2200 ккал</span>
+                    <span>🥩 <strong id="displayProt" style="color:#b5d6f0;">0</strong> / 140 г</span>
+                    <span>💧 <strong id="displayWater" style="color:#b5d6f0;">0</strong> / 2.5 л</span>
+                </div>
+                <div class="progress-bar"><div class="fill green" id="calProgress" style="width:0%;"></div></div>
+                <div class="progress-bar" style="margin-top:2px;"><div class="fill blue" id="protProgress" style="width:0%;"></div></div>
+                <div class="progress-bar" style="margin-top:2px;"><div class="fill orange" id="waterProgress" style="width:0%;"></div></div>
             </div>
         </div>
 
@@ -822,6 +813,50 @@
             </div>
         </div>
 
+        <!-- TAB: ТРЕНИРОВКИ -->
+        <div id="tab-workout" class="tab-content">
+            <div class="card">
+                <h2>💪 План тренировок (3 раза/нед)</h2>
+                <div class="workout-grid">
+                    <div class="workout-day">
+                        <div class="name">🇵🇳 ПН — Грудь + Трицепс + Пресс</div>
+                        <div class="ex">• Отжимания 4×15–25</div>
+                        <div class="ex">• Отжимания (ноги выше) 4×10–15</div>
+                        <div class="ex">• Узкие отжимания 3×12–15</div>
+                        <div class="ex">• Пики на плечи 3×12–15</div>
+                        <div class="ex">• Подъём ног 4×15</div>
+                        <div class="ex">• Планка 3×1 мин</div>
+                    </div>
+                    <div class="workout-day">
+                        <div class="name">🇧🇾 ВТ — Спина + Бицепс</div>
+                        <div class="ex">• Подтягивания 5×макс</div>
+                        <div class="ex">• Австр. подтягивания 4×12–15</div>
+                        <div class="ex">• Тяга рюкзака 4×12</div>
+                        <div class="ex">• Бицепс с рюкзаком 4×12–15</div>
+                        <div class="ex">• Вис на турнике 3×40 сек</div>
+                    </div>
+                    <div class="workout-day">
+                        <div class="name">🇨🇭 ЧТ — Грудь + Руки + Пресс</div>
+                        <div class="ex">• Отжимания 4×макс</div>
+                        <div class="ex">• Узкие отжимания 3×15</div>
+                        <div class="ex">• Бицепс с рюкзаком 4×15</div>
+                        <div class="ex">• Французский жим 3×12</div>
+                        <div class="ex">• Скручивания 3×20</div>
+                        <div class="ex">• Планка 3×1 мин</div>
+                    </div>
+                    <div class="workout-day">
+                        <div class="name">🛌 СР / ПТ / СБ / ВС — Отдых</div>
+                        <div class="rest">• Восстановление</div>
+                        <div class="rest">• Сон 8–9 часов</div>
+                        <div class="rest">• Растяжка по желанию</div>
+                    </div>
+                </div>
+                <div style="margin-top:8px;font-size:11px;color:#5a7a9a;text-align:center;">
+                    📈 Каждую неделю +1–3 повторения или вес в рюкзак
+                </div>
+            </div>
+        </div>
+
         <!-- TAB: МАГАЗИН -->
         <div id="tab-shop" class="tab-content">
             <div class="card">
@@ -868,6 +903,10 @@
                     <label>Слова (мин)</label>
                     <input type="number" id="settingWordsMin" value="5" />
                 </div>
+                <div class="setting-row">
+                    <label>Вода (л)</label>
+                    <input type="number" id="settingWater" value="2.5" step="0.1" />
+                </div>
                 <div class="flex-center">
                     <button class="btn btn-export" onclick="saveSettings()">💾 Сохранить</button>
                     <button class="btn" onclick="exportData()">📤 Экспорт</button>
@@ -878,7 +917,7 @@
         </div>
 
         <div class="footer">
-            ⚡ <strong>Тимбул</strong> · Кипр → Италия · B1 → B2 · IT Security
+            ⚡ <strong>Тимбул</strong> · 185 см / 75 кг · B1 → B2 · 3 тренировки/нед
         </div>
 
     </div>
@@ -978,7 +1017,8 @@
                 calMin: parseInt(localStorage.getItem('settingCalMin')) || 1900,
                 calMax: parseInt(localStorage.getItem('settingCalMax')) || 2200,
                 protein: parseInt(localStorage.getItem('settingProtein')) || 130,
-                wordsMin: parseInt(localStorage.getItem('settingWordsMin')) || 5
+                wordsMin: parseInt(localStorage.getItem('settingWordsMin')) || 5,
+                water: parseFloat(localStorage.getItem('settingWater')) || 2.5
             };
         }
 
@@ -1040,15 +1080,25 @@
                 workoutStatus.textContent = '❌';
                 workoutStatus.style.color = '#ed5a5a';
             }
+
+            // Обновление карточки питания
+            document.getElementById('displayCal').textContent = cal;
+            document.getElementById('displayProt').textContent = protein;
+            document.getElementById('displayWater').textContent = parseFloat(localStorage.getItem('stat_water')) || 0;
+            document.getElementById('calProgress').style.width = Math.min(100, (cal / settings.calMax) * 100) + '%';
+            document.getElementById('protProgress').style.width = Math.min(100, (protein / settings.protein) * 100) + '%';
+            document.getElementById('waterProgress').style.width = Math.min(100, ((parseFloat(localStorage.getItem(
+                'stat_water')) || 0) / settings.water) * 100) + '%';
         }
 
         // ==========================================================
         // ===== СЧЁТЧИКИ =====
-        const statKeys = ['calories', 'protein', 'words'];
+        const statKeys = ['calories', 'protein', 'words', 'water'];
 
         function loadStats() {
             statKeys.forEach(key => {
-                const val = parseInt(localStorage.getItem('stat_' + key)) || 0;
+                const val = key === 'water' ? (parseFloat(localStorage.getItem('stat_' + key)) || 0) : (parseInt(
+                    localStorage.getItem('stat_' + key)) || 0);
                 document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = val;
             });
             workoutDone = localStorage.getItem('workoutDone') === 'true';
@@ -1059,11 +1109,20 @@
 
         function updateStat(key) {
             const input = document.getElementById('input' + key.charAt(0).toUpperCase() + key.slice(1));
-            let val = parseInt(input.value) || 0;
-            if (val <= 0) return;
-            const current = parseInt(localStorage.getItem('stat_' + key)) || 0;
-            localStorage.setItem('stat_' + key, current + val);
-            document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = current + val;
+            let val;
+            if (key === 'water') {
+                val = parseFloat(input.value) || 0;
+                if (val <= 0) return;
+                const current = parseFloat(localStorage.getItem('stat_' + key)) || 0;
+                localStorage.setItem('stat_' + key, current + val);
+                document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = current + val;
+            } else {
+                val = parseInt(input.value) || 0;
+                if (val <= 0) return;
+                const current = parseInt(localStorage.getItem('stat_' + key)) || 0;
+                localStorage.setItem('stat_' + key, current + val);
+                document.getElementById('stat' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = current + val;
+            }
             input.value = 0;
             updateLimits();
             autoSaveDay();
@@ -1109,6 +1168,7 @@
                 calories: parseInt(localStorage.getItem('stat_calories')) || 0,
                 protein: parseInt(localStorage.getItem('stat_protein')) || 0,
                 words: parseInt(localStorage.getItem('stat_words')) || 0,
+                water: parseFloat(localStorage.getItem('stat_water')) || 0,
                 workouts: workoutDone ? 1 : 0,
                 checks_done: checks.done,
                 checks_total: checks.total,
@@ -1250,7 +1310,7 @@
                     `${h.day} | ${h.calories || 0} | ${h.protein || 0} | ${h.words || 0} | ${h.workouts ? '✅' : '❌'} | ${h.checks_done || 0}/${h.checks_total || 5} | ${perfect ? '⭐' : ''}\n`;
             });
             text += '═'.repeat(35) + '\n';
-            text += '🎯 Кипр → Италия · IT Security';
+            text += '🎯 185 см / 75 кг · B1 → B2 · 3 тренировки/нед';
 
             navigator.clipboard.writeText(text).then(() => {
                 const msg = document.getElementById('historyMsg');
@@ -1495,6 +1555,7 @@
             localStorage.setItem('settingCalMax', document.getElementById('settingCalMax').value);
             localStorage.setItem('settingProtein', document.getElementById('settingProtein').value);
             localStorage.setItem('settingWordsMin', document.getElementById('settingWordsMin').value);
+            localStorage.setItem('settingWater', document.getElementById('settingWater').value);
             const msg = document.getElementById('settingsMsg');
             msg.classList.add('show');
             setTimeout(() => msg.classList.remove('show'), 2500);
@@ -1506,6 +1567,7 @@
             document.getElementById('settingCalMax').value = localStorage.getItem('settingCalMax') || 2200;
             document.getElementById('settingProtein').value = localStorage.getItem('settingProtein') || 130;
             document.getElementById('settingWordsMin').value = localStorage.getItem('settingWordsMin') || 5;
+            document.getElementById('settingWater').value = localStorage.getItem('settingWater') || 2.5;
         }
 
         function exportData() {
