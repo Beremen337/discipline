@@ -290,28 +290,10 @@
             color: #b5d6f0;
         }
 
-        /* ===== UNI ===== */
-        .uni-item {
-            background: rgba(12, 26, 46, 0.15);
-            border-radius: 8px;
-            padding: 8px 10px;
-            margin-bottom: 4px;
-            border: 1px solid rgba(70, 120, 180, 0.04);
-        }
-        .uni-item .name {
-            font-weight: 500;
-            color: #b5d6f0;
-            font-size: 14px;
-        }
-        .uni-item .detail {
-            font-size: 11px;
-            color: #5a7a9a;
-        }
-
         /* ===== ACHIEVEMENTS ===== */
         .ach-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
             gap: 6px;
         }
         .ach-item {
@@ -366,6 +348,42 @@
             border-color: rgba(70, 140, 200, 0.15);
         }
 
+        /* ===== COINS / SHOP ===== */
+        .coins-display {
+            font-size: 28px;
+            font-weight: 700;
+            color: #edba5a;
+            text-align: center;
+        }
+        .reward-item {
+            background: rgba(12, 26, 46, 0.2);
+            border-radius: 10px;
+            padding: 10px 8px;
+            text-align: center;
+            border: 1px solid rgba(70, 120, 180, 0.04);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .reward-item:hover {
+            border-color: rgba(70, 120, 180, 0.1);
+        }
+        .reward-item.locked {
+            opacity: 0.4;
+            filter: grayscale(0.5);
+        }
+        .reward-item .icon {
+            font-size: 24px;
+            display: block;
+        }
+        .reward-item .name {
+            font-size: 12px;
+            color: #b5d6f0;
+        }
+        .reward-item .cost {
+            font-size: 11px;
+            color: #edba5a;
+        }
+
         .btn {
             background: rgba(40, 80, 130, 0.1);
             border: 1px solid rgba(70, 120, 180, 0.06);
@@ -387,6 +405,14 @@
         .btn-success:hover {
             background: rgba(40, 120, 70, 0.2);
         }
+        .btn-danger {
+            background: rgba(120, 40, 40, 0.12);
+            border-color: rgba(200, 60, 60, 0.06);
+            color: #ed5a5a;
+        }
+        .btn-danger:hover {
+            background: rgba(120, 40, 40, 0.2);
+        }
 
         .flex-center {
             display: flex;
@@ -394,6 +420,32 @@
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 6px;
+        }
+
+        /* ===== INPUT ROW ===== */
+        .input-row {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .input-row input {
+            background: rgba(8, 18, 34, 0.4);
+            border: 1px solid rgba(70, 120, 180, 0.06);
+            color: #d6e2f0;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 13px;
+            width: 80px;
+            text-align: center;
+        }
+        .input-row input:focus {
+            outline: none;
+            border-color: rgba(70, 140, 200, 0.15);
+        }
+        .input-row .label {
+            font-size: 12px;
+            color: #5a7a9a;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -429,7 +481,7 @@
                 padding: 4px 10px;
             }
             .ach-grid {
-                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
             }
         }
 
@@ -468,6 +520,9 @@
             .setting-row input {
                 width: 100%;
             }
+            .input-row input {
+                width: 60px;
+            }
         }
 
         ::-webkit-scrollbar {
@@ -495,13 +550,13 @@
 
         <!-- ===== TAB BAR ===== -->
         <div class="tab-bar">
-            <button class="tab-btn active" data-tab="tab-main">🏠</button>
-            <button class="tab-btn" data-tab="tab-body">💪</button>
-            <button class="tab-btn" data-tab="tab-english">🇬🇧</button>
-            <button class="tab-btn" data-tab="tab-uni">🎓</button>
-            <button class="tab-btn" data-tab="tab-stats">📊</button>
-            <button class="tab-btn" data-tab="tab-achievements">🏆</button>
-            <button class="tab-btn" data-tab="tab-settings">⚙️</button>
+            <button class="tab-btn active" data-tab="tab-main">🏠 Главная</button>
+            <button class="tab-btn" data-tab="tab-body">💪 Тело</button>
+            <button class="tab-btn" data-tab="tab-english">🇬🇧 Английский</button>
+            <button class="tab-btn" data-tab="tab-stats">📊 Статистика</button>
+            <button class="tab-btn" data-tab="tab-achievements">🏆 Достижения</button>
+            <button class="tab-btn" data-tab="tab-shop">🛒 Магазин</button>
+            <button class="tab-btn" data-tab="tab-settings">⚙️ Настройки</button>
         </div>
 
         <!-- ========================================================== -->
@@ -608,34 +663,6 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- ===== TAB: ПОСТУПЛЕНИЕ ===== -->
-        <div id="tab-uni" class="tab-content">
-            <div class="card">
-                <h2>🎓 Поступление</h2>
-                <div class="uni-item">
-                    <div class="name">🇨🇾 EMU (Кипр) — IT Security</div>
-                    <div class="detail">Бакалавриат · 2026</div>
-                </div>
-                <div class="uni-item">
-                    <div class="name">🇮🇹 Турин / Падуя</div>
-                    <div class="detail">Магистратура · 2030</div>
-                </div>
-                <div style="margin-top:6px;">
-                    <div class="progress-label"><span>Документы</span><strong id="uniDocs">0%</strong></div>
-                    <div class="progress-bar"><div class="fill purple" id="uniDocsBar" style="width:0%;"></div></div>
-                    <div class="progress-label" style="margin-top:4px;"><span>IELTS</span><strong id="uniIelts">0%</strong></div>
-                    <div class="progress-bar"><div class="fill orange" id="uniIeltsBar" style="width:0%;"></div></div>
-                    <div class="progress-label" style="margin-top:4px;"><span>Общий</span><strong id="uniTotal">0%</strong></div>
-                    <div class="progress-bar"><div class="fill green" id="uniTotalBar" style="width:0%;"></div></div>
-                </div>
-                <div class="flex-center">
-                    <button class="btn btn-success" onclick="addUniProgress(10)">📄 +10% документы</button>
-                    <button class="btn btn-success" onclick="addIelts(5)">🎧 +5% IELTS</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================================== -->
         <!-- ===== TAB: СТАТИСТИКА ===== -->
         <div id="tab-stats" class="tab-content">
             <div class="card">
@@ -655,6 +682,17 @@
             <div class="card">
                 <h2>🏆 Достижения</h2>
                 <div class="ach-grid" id="achGrid"></div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- ===== TAB: МАГАЗИН ===== -->
+        <div id="tab-shop" class="tab-content">
+            <div class="card">
+                <h2>🛒 Магазин</h2>
+                <div class="coins-display" id="coinsDisplay">0</div>
+                <div style="text-align:center;font-size:11px;color:#5a7a9a;margin-bottom:8px;">монет</div>
+                <div class="grid-3" id="rewardsGrid"></div>
             </div>
         </div>
 
@@ -720,11 +758,11 @@
             if (!appData.history) appData.history = [];
             if (!appData.achievements) appData.achievements = {};
             if (!appData.english) appData.english = { words: 0, progress: 0 };
-            if (!appData.uni) appData.uni = { docs: 0, ielts: 0 };
             if (!appData.body) appData.body = { weight: 75, protein: 0, calories: 0, workouts: 0, muscles: { chest: 0,
                     arms: 0, back: 0, abs: 0 } };
             if (!appData.xp) appData.xp = 0;
             if (!appData.level) appData.level = 1;
+            if (!appData.coins) appData.coins = 0;
             if (!appData.today || appData.today.date !== getMSKDateStr()) {
                 if (appData.today) {
                     appData.history.push({
@@ -758,10 +796,10 @@
             updateStats();
             updateBody();
             updateEnglish();
-            updateUni();
             updateAchievements();
             updateQuickStats();
             updateCharStats();
+            updateCoins();
         }
 
         function updateDay() {
@@ -798,13 +836,13 @@
             const totalW = h.filter(hh => hh.workout).length + (t.workout ? 1 : 0);
             const study = h.filter(hh => hh.study).length + (t.study ? 1 : 0);
             const eng = appData.english || {};
-            const uni = appData.uni || {};
             document.getElementById('statBody').textContent = Math.min(100, Math.round((totalW / 100) * 100)) + '%';
             document.getElementById('statStudy').textContent = Math.min(100, Math.round((study / 30) * 100)) + '%';
             document.getElementById('statEnglish').textContent = Math.min(100, eng.progress || 0) + '%';
             document.getElementById('statDiscipline').textContent = Math.min(100, Math.round((h.filter(hh => hh.workout || hh
                 .study).length / Math.max(1, h.length)) * 100)) + '%';
-            document.getElementById('statUni').textContent = Math.round((uni.docs + uni.ielts) / 2) + '%';
+            const uniProgress = Math.round((appData.uni?.docs || 0 + appData.uni?.ielts || 0) / 2) || 0;
+            document.getElementById('statUni').textContent = uniProgress + '%';
         }
 
         function updateQuickStats() {
@@ -864,6 +902,7 @@
         function addWorkout() {
             appData.today.workout = true;
             addXP(20);
+            appData.coins = (appData.coins || 0) + 20;
             const m = appData.body.muscles || { chest: 0, arms: 0, back: 0, abs: 0 };
             const cycle = (appData.history.length % 3) + 1;
             if (cycle === 1) m.chest = Math.min(100, m.chest + 5);
@@ -908,33 +947,7 @@
 
         function addWords(a) { appData.today.words = (appData.today.words || 0) + a;
             addXP(2);
-            saveData();
-            updateAll(); }
-
-        // ==========================================================
-        // ===== ПОСТУПЛЕНИЕ =====
-        function updateUni() {
-            const u = appData.uni || { docs: 0, ielts: 0 };
-            document.getElementById('uniDocs').textContent = u.docs + '%';
-            document.getElementById('uniDocsBar').style.width = u.docs + '%';
-            document.getElementById('uniIelts').textContent = u.ielts + '%';
-            document.getElementById('uniIeltsBar').style.width = u.ielts + '%';
-            const total = Math.round((u.docs + u.ielts) / 2);
-            document.getElementById('uniTotal').textContent = total + '%';
-            document.getElementById('uniTotalBar').style.width = total + '%';
-        }
-
-        function addUniProgress(a) { const u = appData.uni || { docs: 0, ielts: 0 };
-            u.docs = Math.min(100, u.docs + a);
-            appData.uni = u;
-            addXP(5);
-            saveData();
-            updateAll(); }
-
-        function addIelts(a) { const u = appData.uni || { docs: 0, ielts: 0 };
-            u.ielts = Math.min(100, u.ielts + a);
-            appData.uni = u;
-            addXP(3);
+            appData.coins = (appData.coins || 0) + 5;
             saveData();
             updateAll(); }
 
@@ -981,6 +994,42 @@
         }
 
         // ==========================================================
+        // ===== МАГАЗИН =====
+        const REWARDS = [
+            { icon: '🍕', name: 'Пицца', cost: 250 },
+            { icon: '🎮', name: 'Вечер игр', cost: 150 },
+            { icon: '🎥', name: 'Фильм', cost: 100 },
+            { icon: '🍔', name: 'Бургер', cost: 200 },
+            { icon: '☕', name: 'Кофе', cost: 50 },
+            { icon: '🎁', name: 'Подарок', cost: 500 },
+        ];
+
+        function updateCoins() {
+            document.getElementById('coinsDisplay').textContent = appData.coins || 0;
+            const grid = document.getElementById('rewardsGrid');
+            const coins = appData.coins || 0;
+            grid.innerHTML = REWARDS.map(r =>
+                `<div class="reward-item ${coins < r.cost ? 'locked' : ''}" onclick="buyReward('${r.name}', ${r.cost})">
+                    <span class="icon">${r.icon}</span>
+                    <div class="name">${r.name}</div>
+                    <div class="cost">🪙 ${r.cost}</div>
+                </div>`
+            ).join('');
+        }
+
+        function buyReward(name, cost) {
+            const coins = appData.coins || 0;
+            if (coins >= cost) {
+                appData.coins = coins - cost;
+                saveData();
+                updateCoins();
+                alert(`🎉 Ты купил ${name}! Осталось ${appData.coins} монет.`);
+            } else {
+                alert(`😩 Не хватает монет. Нужно ${cost}, у тебя ${coins}.`);
+            }
+        }
+
+        // ==========================================================
         // ===== XP / УРОВЕНЬ =====
         function addXP(amount) {
             appData.xp = (appData.xp || 0) + amount;
@@ -1006,6 +1055,7 @@
                 case 'study':
                     appData.today.study = true;
                     addXP(10);
+                    appData.coins = (appData.coins || 0) + 10;
                     saveData();
                     updateAll();
                     break;
